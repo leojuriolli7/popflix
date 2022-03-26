@@ -5,7 +5,7 @@ export const Container = styled.main.attrs({
 })`
   max-width: 1100px;
   margin: 0 auto;
-  margin-top: 4rem;
+  margin-top: 2rem;
   min-height: 80vh;
   margin-bottom: 2rem;
 
@@ -30,6 +30,10 @@ export const Content = styled.div`
     flex-direction: column;
     align-items: center;
   }
+
+  @media (max-width: 426px) {
+    margin: 0 1rem 0 1rem;
+  }
 `;
 
 export const Poster = styled.img`
@@ -51,6 +55,14 @@ export const InfoContainer = styled.div`
   text-align: center;
   color: ${(props) => props.theme.colors.sectionText};
 
+  .alice-carousel__dots {
+    margin-top: 10px;
+  }
+
+  .alice-carousel__dots-item:not(.__custom).__active {
+    background-color: #df2935;
+  }
+
   @media (max-width: 845px) {
     width: 100%;
   }
@@ -61,15 +73,30 @@ export const MovieTitle = styled.h1`
   margin-bottom: 0;
   margin-top: 2.2rem;
   line-height: 45px;
+
+  @media (max-width: 426px) {
+    margin: 2.2rem 10px 0 10px;
+  }
+`;
+
+export const MovieGenresContainer = styled.div`
+  margin: 20px 10px 20px 10px;
 `;
 
 export const MovieGenres = styled.span`
   font-size: 1.1rem;
-  line-height: 45px;
+  line-height: 25px;
 
   @media (max-width: 845px) {
     font-size: 1.5rem;
   }
+`;
+
+export const ReleaseAndRuntimeContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
 `;
 
 export const MovieReleaseDate = styled.p`
@@ -82,20 +109,22 @@ export const MovieReleaseDate = styled.p`
   }
 `;
 
+export const MovieRuntime = styled(MovieReleaseDate)``;
+
 export const MovieOverview = styled.p`
   margin-top: 20px;
   font-size: 1.1rem;
-  margin: 20px 40px 20px 40px;
+  margin: 5px 40px 20px 40px;
 
   @media (max-width: 845px) {
     font-size: 1.3rem;
+    margin: 10px 15px 30px 15px;
   }
 `;
 
 export const CastContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
+  margin: 0 auto;
+  width: 88%;
 `;
 
 export const CastMemberContainer = styled.div`
@@ -107,6 +136,7 @@ export const CastMemberContainer = styled.div`
 export const CastMemberPicture = styled.img`
   width: 100px;
   border-radius: 20px;
+  box-shadow: 2px 4px 7px 0px rgb(0 0 0 / 20%);
 `;
 
 export const CastMemberName = styled.p`
@@ -127,6 +157,7 @@ export const RatingContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 20px;
 
   span {
     // Rating stars
