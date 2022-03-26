@@ -1,25 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { Home } from "./pages/home";
+import { RootState } from "./store/";
+import { GlobalStyle } from "./styles/global";
+import { ThemeProvider } from "styled-components";
+import light from "./styles/themes/light";
+import dark from "./styles/themes/dark";
+import { Movies } from "./pages/movies";
+import { Shows } from "./pages/shows";
+import { useSelector } from "react-redux";
+import { MovieDetailsPage } from "./pages/movieDetails";
+import { ShowDetailsPage } from "./pages/showDetails";
 
 function App() {
+  const { theme } = useSelector((state: RootState) => state.theme);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme === "light" ? light : dark}>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/movies" element={<Movies />} />
+          <Route path="/movie/:id" element={<MovieDetailsPage />} />
+          <Route path="/show/:id" element={<ShowDetailsPage />} />
+          <Route path="/shows" element={<Shows />} />
+        </Routes>
+        <GlobalStyle />
+      </Router>
+    </ThemeProvider>
   );
 }
 
