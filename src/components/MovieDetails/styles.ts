@@ -71,21 +71,30 @@ export const InfoContainer = styled.div`
 export const MovieTitle = styled.h1`
   font-size: 2.8rem;
   margin-bottom: 0;
-  margin-top: 2.2rem;
+  margin: 2.2rem 30px 0 30px;
   line-height: 45px;
-
-  @media (max-width: 426px) {
-    margin: 2.2rem 10px 0 10px;
-  }
 `;
 
 export const MovieGenresContainer = styled.div`
-  margin: 20px 10px 20px 10px;
+  margin: 15px 10px 5px 10px;
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+
+  @media (max-width: 845px) {
+    margin: 30px 20px 5px 20px;
+  }
 `;
 
-export const MovieGenres = styled.span`
+export const MovieGenres = styled.p`
   font-size: 1.1rem;
   line-height: 25px;
+  text-decoration: underline;
+
+  &:hover {
+    cursor: pointer;
+    color: #3772ff;
+  }
 
   @media (max-width: 845px) {
     font-size: 1.5rem;
@@ -111,12 +120,14 @@ export const MovieReleaseDate = styled.p`
 
 export const MovieRuntime = styled(MovieReleaseDate)``;
 
+export const MovieProductionCompany = styled(MovieReleaseDate)``;
+
 export const MovieOverview = styled.p`
   margin-top: 20px;
   font-size: 1.1rem;
   margin: 5px 40px 20px 40px;
 
-  @media (max-width: 845px) {
+  @media (max-width: 985px) {
     font-size: 1.3rem;
     margin: 10px 15px 30px 15px;
   }
@@ -131,12 +142,24 @@ export const CastMemberContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-top: 1rem;
+
+  transition: 0.3s;
+
+  &:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+  }
 `;
 
 export const CastMemberPicture = styled.img`
-  width: 100px;
+  width: 115px;
   border-radius: 20px;
   box-shadow: 2px 4px 7px 0px rgb(0 0 0 / 20%);
+
+  @media (max-width: 845px) {
+    width: 140px;
+  }
 `;
 
 export const CastMemberName = styled.p`
@@ -152,6 +175,8 @@ export const CastMemberName = styled.p`
     font-size: 1.2rem;
   }
 `;
+
+export const ReleasedContainer = styled.div``;
 
 export const RatingContainer = styled.div`
   display: flex;
@@ -185,5 +210,17 @@ export const ReviewLink = styled.p`
   &:hover {
     cursor: pointer;
     color: #3772ff;
+  }
+`;
+
+export const UnreleasedText = styled.p`
+  display: inline-block;
+  font-size: 1.2rem;
+  margin-top: 20px;
+  color: #df2935;
+
+  @media (max-width: 845px) {
+    font-size: 1.5rem;
+    padding-bottom: 2rem;
   }
 `;

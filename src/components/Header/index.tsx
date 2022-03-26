@@ -24,7 +24,11 @@ export function Header() {
     <S.Container>
       <S.Content>
         <S.LogoContainer>
-          <S.Logo src={theme === "dark" ? logoDark : logoWhite} />
+          <S.Logo
+            src={theme === "dark" ? logoDark : logoWhite}
+            title="Go to TMDBd"
+            onClick={() => window.open("https://www.themoviedb.org/")}
+          />
         </S.LogoContainer>
         <S.Navigation>
           <HamburguerMenu />

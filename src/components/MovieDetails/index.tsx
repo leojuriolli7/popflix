@@ -15,6 +15,11 @@ interface SpokenLanguagesInterface {
   english_name: string;
 }
 
+interface ProductionCompaniesInterface {
+  id: number;
+  name: string;
+}
+
 interface MovieDetailsInterface {
   genres: GenreInterface[];
   id: number;
@@ -25,7 +30,9 @@ interface MovieDetailsInterface {
   poster_path: string;
   release_date: string;
   runtime: number;
+  status: string;
   spoken_languages: SpokenLanguagesInterface;
+  production_companies: ProductionCompaniesInterface[];
 }
 
 interface CastInterface {
@@ -57,6 +64,16 @@ export function MovieDetails() {
       .then((response) => setMovieCredits(response.data));
   }, [id]);
 
+  const date = new Date(
+    movieDetails?.release_date ? movieDetails?.release_date : "1969-09-12"
+  );
+
+  const currentDate = new Date();
+
+  const diff = Math.floor(
+    (Number(date) - Number(currentDate)) / (1000 * 60 * 60 * 24)
+  );
+
   return (
     <S.Container>
       <S.Content>
@@ -67,14 +84,17 @@ export function MovieDetails() {
           <S.MovieTitle>{movieDetails?.title}</S.MovieTitle>
           <S.MovieGenresContainer>
             {movieDetails?.genres.map((genre: GenreInterface) => (
-              <S.MovieGenres>{genre.name} </S.MovieGenres>
+              <S.MovieGenres key={genre.id}>{genre.name} </S.MovieGenres>
             ))}
           </S.MovieGenresContainer>
           <S.ReleaseAndRuntimeContainer>
             <S.MovieReleaseDate>
-              {`${movieDetails?.release_date}`}
+              {`${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`}
             </S.MovieReleaseDate>
             <S.MovieRuntime>{`${movieDetails?.runtime}min`}</S.MovieRuntime>
+            <S.MovieProductionCompany>
+              {movieDetails?.production_companies[0].name}
+            </S.MovieProductionCompany>
           </S.ReleaseAndRuntimeContainer>
           <S.MovieOverview>{movieDetails?.overview}</S.MovieOverview>
           <S.CastContainer>
@@ -85,7 +105,7 @@ export function MovieDetails() {
                 0: {
                   items: 2,
                 },
-                510: {
+                564: {
                   items: 3,
                 },
                 985: {
@@ -95,7 +115,7 @@ export function MovieDetails() {
               items={movieCredits?.cast
                 .slice(0, 10)
                 .map((cast: CastInterface) => (
-                  <S.CastMemberContainer>
+                  <S.CastMemberContainer key={cast.id}>
                     <S.CastMemberPicture
                       src={
                         cast.profile_path === null
@@ -104,33 +124,41 @@ export function MovieDetails() {
                       }
                     />
                     <S.CastMemberName>
-                      {cast.name} as {cast.character}
+                      {cast.character !== ""
+                        ? `${cast.name} as ${cast.character}`
+                        : `${cast.name}`}
                     </S.CastMemberName>
                   </S.CastMemberContainer>
                 ))}
             />
           </S.CastContainer>
-          <S.RatingContainer>
-            <Rating
-              value={
-                movieDetails?.vote_average
-                  ? Number(movieDetails.vote_average / 2)
-                  : 5
-              }
-              precision={0.5}
-              readOnly
-              size="large"
-            />
-            <S.RatingText>
-              {`${
-                movieDetails?.vote_average
-                  ? Number(movieDetails.vote_average / 2)
-                  : 5
-              }
+          {movieDetails?.status === "Released" ? (
+            <S.ReleasedContainer>
+              <S.RatingContainer>
+                <Rating
+                  value={
+                    movieDetails?.vote_average
+                      ? Number(movieDetails.vote_average / 2)
+                      : 0
+                  }
+                  precision={0.5}
+                  readOnly
+                  size="large"
+                />
+                <S.RatingText>
+                  {`${
+                    movieDetails?.vote_average
+                      ? Number(movieDetails.vote_average / 2)
+                      : 0
+                  }
               Stars`}
-            </S.RatingText>
-          </S.RatingContainer>
-          <S.ReviewLink>Check out the Reviews</S.ReviewLink>
+                </S.RatingText>
+              </S.RatingContainer>
+              <S.ReviewLink>Check out the Reviews</S.ReviewLink>
+            </S.ReleasedContainer>
+          ) : (
+            <S.UnreleasedText>{`Releases in ${diff} days`}</S.UnreleasedText>
+          )}
         </S.InfoContainer>
       </S.Content>
     </S.Container>

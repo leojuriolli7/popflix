@@ -13,7 +13,10 @@ export function Footer() {
       <S.Content>
         <S.FooterText>&copy; 2022</S.FooterText>
         <S.FooterText>Popflix Inc.</S.FooterText>
-        <S.BackToTopButton onClick={() => scrollToTop()} />
+        <S.BackToTopButton
+          title="Back to the top"
+          onClick={() => scrollToTop()}
+        />
       </S.Content>
     </S.Container>
   );
