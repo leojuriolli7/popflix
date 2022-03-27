@@ -9,7 +9,7 @@ export function HamburguerMenu() {
   const handleShow = () => setShow(true);
 
   return (
-    <>
+    <S.Container>
       <S.MenuToggle onClick={() => handleShow()}>
         <S.MenuToggleBar />
         <S.MenuToggleBar />
@@ -17,9 +17,13 @@ export function HamburguerMenu() {
       </S.MenuToggle>
 
       <Offcanvas show={show} onHide={handleClose} placement="end">
-        <Offcanvas.Header closeButton></Offcanvas.Header>
+        <Offcanvas.Header>
+          <S.HeaderContainer>
+            <S.CloseButton onClick={() => setShow(false)} />
+          </S.HeaderContainer>
+        </Offcanvas.Header>
         <Offcanvas.Body></Offcanvas.Body>
       </Offcanvas>
-    </>
+    </S.Container>
   );
 }

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { api } from "../../services/api";
 import * as S from "./styles";
 import defaultPicture from "../../assets/default2.png";
@@ -50,6 +50,7 @@ export function MovieDetails() {
   const { id } = useParams();
   const [movieDetails, setMovieDetails] = useState<MovieDetailsInterface>();
   const [movieCredits, setMovieCredits] = useState<MovieCreditsInterface>();
+  const navigate = useNavigate();
 
   useEffect(() => {
     api
@@ -154,7 +155,9 @@ export function MovieDetails() {
               Stars`}
                 </S.RatingText>
               </S.RatingContainer>
-              <S.ReviewLink>Check out the Reviews</S.ReviewLink>
+              <S.ReviewLink onClick={() => navigate(`/movie/${id}/reviews`)}>
+                Check out the Reviews
+              </S.ReviewLink>
             </S.ReleasedContainer>
           ) : (
             <S.UnreleasedText>{`Releases in ${diff} days`}</S.UnreleasedText>

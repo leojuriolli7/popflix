@@ -99,17 +99,21 @@ export const SectionTitle = styled.h1`
   }
 `;
 
-export const MediaPoster = styled.img`
-  width: 90%;
+export const MediaPosterContainer = styled.div`
+  position: relative;
   transition: 0.3s;
-  transform: scale(1.03);
-  box-shadow: 2px 4px 7px 0px rgb(0 0 0 / 50%);
-  border-radius: 20px;
 
   &:hover {
     transform: scale(1.05);
     cursor: pointer;
   }
+`;
+
+export const MediaPoster = styled.img`
+  width: 90%;
+  transform: scale(1.03);
+  box-shadow: 2px 4px 7px 0px rgb(0 0 0 / 50%);
+  border-radius: 20px;
 
   @media (max-width: 750px) {
     width: 95%;
@@ -123,4 +127,18 @@ export const MediaPoster = styled.img`
       transform: scale(1.1);
     }
   }
+`;
+
+export const MediaNameContainer = styled.div`
+  position: absolute;
+  bottom: 10px;
+  left: 17px;
+  width: 80%;
+  text-align: center;
+`;
+
+export const MediaName = styled.p`
+  margin: 0;
+  font-weight: bold;
+  font-size: 1.2rem;
 `;

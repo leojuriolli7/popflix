@@ -4,10 +4,11 @@ import * as S from "./styles";
 import "react-alice-carousel/lib/alice-carousel.css";
 import AliceCarousel from "react-alice-carousel";
 import { MediaPosterSkeleton } from "../../Skeleton/MediaPosterSkeleton";
+import defaultPoster from "../../../assets/defaultposter.png";
 import { useNavigate } from "react-router-dom";
 
 interface MediaListProps {
-  apiEndpoint: string;
+  apiEndpoint: any;
   title: string;
 }
 
@@ -61,14 +62,27 @@ export function MediaList({ apiEndpoint, title }: MediaListProps) {
             isLoading
               ? [1, 2, 3, 4, 5].map(() => <MediaPosterSkeleton />)
               : media.map((item) => (
-                  <S.MediaPoster
-                    key={item.id}
-                    src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}
-                    alt={`${item.title} Poster`}
-                    onClick={() =>
-                      navigate(`/${item.title ? "movie" : "show"}/${item.id}`)
-                    }
-                  />
+                  <S.MediaPosterContainer>
+                    <S.MediaPoster
+                      key={item.id}
+                      src={
+                        item.poster_path === null
+                          ? defaultPoster
+                          : `https://image.tmdb.org/t/p/w500/${item.poster_path}`
+                      }
+                      alt={`${item.title} Poster`}
+                      onClick={() =>
+                        navigate(`/${item.title ? "movie" : "show"}/${item.id}`)
+                      }
+                    />
+                    {item.poster_path === null && (
+                      <S.MediaNameContainer>
+                        <S.MediaName>
+                          {item?.name || item?.original_title}
+                        </S.MediaName>
+                      </S.MediaNameContainer>
+                    )}
+                  </S.MediaPosterContainer>
                 ))
           }
         />
