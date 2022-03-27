@@ -142,3 +142,15 @@ export const MediaName = styled.p`
   font-weight: bold;
   font-size: 1.2rem;
 `;
+
+export const IconContainer = styled.div`
+  position: absolute;
+  bottom: 120px;
+  left: 17px;
+  width: 80%;
+  text-align: center;
+`;
+
+export const Icon = styled.img`
+  width: 60%;
+`;

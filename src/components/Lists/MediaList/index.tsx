@@ -5,6 +5,8 @@ import "react-alice-carousel/lib/alice-carousel.css";
 import AliceCarousel from "react-alice-carousel";
 import { MediaPosterSkeleton } from "../../Skeleton/MediaPosterSkeleton";
 import defaultPoster from "../../../assets/defaultposter.png";
+import tvIcon from "../../../assets/tvicon.svg";
+import movieIcon from "../../../assets/movieicon.svg";
 import { useNavigate } from "react-router-dom";
 
 interface MediaListProps {
@@ -76,11 +78,16 @@ export function MediaList({ apiEndpoint, title }: MediaListProps) {
                       }
                     />
                     {item.poster_path === null && (
-                      <S.MediaNameContainer>
-                        <S.MediaName>
-                          {item?.name || item?.original_title}
-                        </S.MediaName>
-                      </S.MediaNameContainer>
+                      <>
+                        <S.IconContainer>
+                          <S.Icon src={item.name ? tvIcon : movieIcon} />
+                        </S.IconContainer>
+                        <S.MediaNameContainer>
+                          <S.MediaName>
+                            {item?.name || item?.original_title}
+                          </S.MediaName>
+                        </S.MediaNameContainer>
+                      </>
                     )}
                   </S.MediaPosterContainer>
                 ))
