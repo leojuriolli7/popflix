@@ -162,6 +162,10 @@ export const CastMemberPicture = styled.img`
   @media (max-width: 845px) {
     width: 140px;
   }
+
+  @media (max-width: 361px) {
+    width: 120px;
+  }
 `;
 
 export const CastMemberName = styled.p`
