@@ -1,3 +1,4 @@
+import { darken } from "polished";
 import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
@@ -36,7 +37,7 @@ export const GlobalStyle = createGlobalStyle`
     background-color: ${(props) =>
       props.theme.title === "dark"
         ? props.theme.colors.primary
-        : props.theme.colors.background};
+        : darken(0.06, props.theme.colors.background)};
   }
 
   .offcanvas-end {

@@ -98,6 +98,11 @@ export const SectionTitle = styled.h1`
     font-size: 2rem;
     margin-bottom: 0;
   }
+
+  @media (max-width: 353px) {
+    font-size: 1.8rem;
+    margin-bottom: 0;
+  }
 `;
 
 export const MediaPosterContainer = styled.div`

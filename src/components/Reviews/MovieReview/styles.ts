@@ -212,7 +212,7 @@ export const ReviewText = styled.p`
   font-size: 1.2rem;
   color: ${(props) => darken(0.1, props.theme.colors.sectionText)};
 
-  @media (max-width: 600px) {
+  @media (max-width: 890px) {
     overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 10;

@@ -1,13 +1,13 @@
-import { useParams } from "react-router-dom";
+import { Footer } from "../components/Footer";
 import { Header } from "../components/Header";
+import { ShowDetails } from "../components/ShowDetails";
 
 export function ShowDetailsPage() {
-  let { id } = useParams();
-
   return (
     <>
       <Header />
-      <p>show id: {id}</p>
+      <ShowDetails />
+      <Footer />
     </>
   );
 }

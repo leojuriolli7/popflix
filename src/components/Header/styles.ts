@@ -110,5 +110,5 @@ export const LightModeIcon = styled(FaSun).attrs({
   size: 20,
   color: "#DF2935",
 })`
-  margin: 0px 0 2px 2px;
+  margin: 1px 0px 3px 2px;
 `;
