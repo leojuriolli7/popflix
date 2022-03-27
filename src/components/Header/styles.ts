@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import { darken } from "polished";
+import { MdDarkMode } from "react-icons/md";
+import { FaSun } from "react-icons/fa";
 
 export const Container = styled.header`
   box-shadow: 1px 5px 15px 5px rgba(0, 0, 0, 0.1);
@@ -75,6 +77,7 @@ export const ListItemText = styled.a<MenuOptionInterface>`
 
   &:hover {
     color: ${darken(0.2, "white")};
+    border-color: ${darken(0.2, "white")};
   }
 `;
 
@@ -94,4 +97,18 @@ export const ButtonContainer = styled.div`
   align-items: center;
   justify-content: center;
   gap: 0.8rem;
+`;
+
+export const DarkModeIcon = styled(MdDarkMode).attrs({
+  size: 22,
+  color: "black",
+})`
+  margin: 0 0 2px 1px;
+`;
+
+export const LightModeIcon = styled(FaSun).attrs({
+  size: 20,
+  color: "#DF2935",
+})`
+  margin: 0px 0 2px 2px;
 `;

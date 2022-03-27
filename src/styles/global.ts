@@ -31,6 +31,19 @@ export const GlobalStyle = createGlobalStyle`
   body, input, textarea, button {
   font-family: "Roboto", sans-serif;
 	font-weight: 400; 
+
+  .offcanvas {
+    background-color: ${(props) =>
+      props.theme.title === "dark"
+        ? props.theme.colors.primary
+        : props.theme.colors.background};
+  }
+
+  .offcanvas-end {
+    @media(max-width: 426px) {
+      width: 100vw;
+    }
+  }
   } 
 
   h1, h2, h3, h4, h5, h6, strong {

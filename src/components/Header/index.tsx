@@ -8,13 +8,6 @@ import { Button } from "../Button";
 import { HamburguerMenu } from "../HamburgerMenu";
 import { ThemeSwitch } from "../ThemeSwitch";
 
-/* <S.ListItemText
-onClick={() => navigate(`/movies/${movie.id}`)}
-isSelected={history.pathname === "/movies"}
->
-Movies
-</S.ListItemText> */
-
 export function Header() {
   const navigate = useNavigate();
   const history = useLocation();
@@ -76,7 +69,13 @@ export function Header() {
               text="Sign Up"
             />
           </S.ButtonContainer>
-          <ThemeSwitch />
+          <ThemeSwitch
+            height={15}
+            width={40}
+            handleDiameter={23}
+            uncheckedIcon={<S.LightModeIcon />}
+            checkedIcon={<S.DarkModeIcon />}
+          />
         </S.OptionsContainer>
       </S.Content>
     </S.Container>

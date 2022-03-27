@@ -80,6 +80,7 @@ export const MovieGenresContainer = styled.div`
   display: flex;
   justify-content: center;
   gap: 0.75rem;
+  flex-wrap: wrap;
 
   @media (max-width: 845px) {
     margin: 30px 20px 5px 20px;
@@ -106,11 +107,12 @@ export const ReleaseAndRuntimeContainer = styled.div`
   align-items: center;
   justify-content: center;
   gap: 10px;
+  margin: 0 1rem;
+  flex-wrap: wrap;
 `;
 
 export const MovieReleaseDate = styled.p`
   font-size: 1.1rem;
-  line-height: 10px;
 
   @media (max-width: 845px) {
     font-size: 1.3rem;
