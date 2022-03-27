@@ -91,6 +91,7 @@ export const ShowGenres = styled.p`
   font-size: 1.1rem;
   line-height: 25px;
   text-decoration: underline;
+  margin: 0;
 
   &:hover {
     cursor: pointer;
@@ -107,12 +108,13 @@ export const ReleaseAndRuntimeContainer = styled.div`
   align-items: center;
   justify-content: center;
   gap: 10px;
-  margin: 0 1rem;
+  margin: 0.5rem;
   flex-wrap: wrap;
 `;
 
 export const ShowReleaseDate = styled.p`
   font-size: 1.1rem;
+  margin: 0;
 
   @media (max-width: 845px) {
     font-size: 1.3rem;
@@ -188,11 +190,17 @@ export const RatingContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 20px;
+  transition: 0.3s;
+  margin-top: 0.5rem;
 
   span {
     // Rating stars
     color: #fdca40;
+  }
+
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.05);
   }
 `;
 
@@ -200,23 +208,6 @@ export const RatingText = styled.p`
   font-size: 1.25rem;
   margin: 0;
   margin-left: 0.5rem;
-`;
-
-export const ReviewLink = styled.p`
-  display: inline-block;
-  font-size: 1.2rem;
-  margin-top: 20px;
-  text-decoration: underline;
-
-  @media (max-width: 845px) {
-    font-size: 1.5rem;
-    padding-bottom: 2rem;
-  }
-
-  &:hover {
-    cursor: pointer;
-    color: #3772ff;
-  }
 `;
 
 export const UnreleasedText = styled.p`
@@ -281,11 +272,25 @@ export const SeasonContainer = styled.div`
   flex-direction: column;
 `;
 
-export const SeasonImageContainer = styled.div``;
+export const SeasonImageContainer = styled.div`
+  position: relative;
+`;
 
 export const SeasonImage = styled.img`
   border-radius: 20px;
   box-shadow: 1px 5px 15px 5px rgba(0, 0, 0, 0.2);
+`;
+
+export const IconContainer = styled.div`
+  position: absolute;
+  bottom: 120px;
+  left: 25px;
+  width: 80%;
+  text-align: center;
+`;
+
+export const Icon = styled.img`
+  width: 45%;
 `;
 
 export const SeasonTitle = styled.h3`

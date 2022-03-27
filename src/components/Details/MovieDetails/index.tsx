@@ -53,6 +53,7 @@ export function MovieDetails() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     api
       .get(
         `movie/${id}?api_key=24e0e0f71e0ac9cb9c5418459514eda9&language=en-US`
@@ -88,6 +89,32 @@ export function MovieDetails() {
               <S.MovieGenres key={genre.id}>{genre.name} </S.MovieGenres>
             ))}
           </S.MovieGenresContainer>
+          {movieDetails?.status === "Released" && (
+            <S.ReleasedContainer>
+              <S.RatingContainer
+                onClick={() => navigate(`/movie/${id}/reviews`)}
+              >
+                <Rating
+                  value={
+                    movieDetails?.vote_average
+                      ? Number(movieDetails.vote_average / 2)
+                      : 0
+                  }
+                  precision={0.5}
+                  readOnly
+                  size="large"
+                />
+                <S.RatingText>
+                  {`${
+                    movieDetails?.vote_average
+                      ? Number(movieDetails.vote_average / 2)
+                      : 0
+                  }
+              Stars`}
+                </S.RatingText>
+              </S.RatingContainer>
+            </S.ReleasedContainer>
+          )}
           <S.ReleaseAndRuntimeContainer>
             <S.MovieReleaseDate>
               {`${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`}
@@ -133,33 +160,7 @@ export function MovieDetails() {
                 ))}
             />
           </S.CastContainer>
-          {movieDetails?.status === "Released" ? (
-            <S.ReleasedContainer>
-              <S.RatingContainer>
-                <Rating
-                  value={
-                    movieDetails?.vote_average
-                      ? Number(movieDetails.vote_average / 2)
-                      : 0
-                  }
-                  precision={0.5}
-                  readOnly
-                  size="large"
-                />
-                <S.RatingText>
-                  {`${
-                    movieDetails?.vote_average
-                      ? Number(movieDetails.vote_average / 2)
-                      : 0
-                  }
-              Stars`}
-                </S.RatingText>
-              </S.RatingContainer>
-              <S.ReviewLink onClick={() => navigate(`/movie/${id}/reviews`)}>
-                Check out the Reviews
-              </S.ReviewLink>
-            </S.ReleasedContainer>
-          ) : (
+          {movieDetails?.status !== "Released" && (
             <S.UnreleasedText>{`Releases in ${diff} days`}</S.UnreleasedText>
           )}
         </S.InfoContainer>

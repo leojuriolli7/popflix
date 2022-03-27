@@ -6,6 +6,7 @@ import defaultPicture from "../../../assets/default2.png";
 import { Rating } from "@mui/material";
 import AliceCarousel from "react-alice-carousel";
 import defaultPoster from "../../../assets/defaultposter.png";
+import tvIcon from "../../../assets/tvicon.svg";
 
 interface GenreInterface {
   name: string;
@@ -65,6 +66,7 @@ export function ShowDetails() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     api
       .get(`tv/${id}?api_key=24e0e0f71e0ac9cb9c5418459514eda9&language=en-US`)
       .then((response) => setShowDetails(response.data));
@@ -98,6 +100,32 @@ export function ShowDetails() {
               <S.ShowGenres key={genre.id}>{genre.name} </S.ShowGenres>
             ))}
           </S.ShowGenresContainer>
+          {showDetails?.status !== "Unreleased" && (
+            <S.ReleasedContainer>
+              <S.RatingContainer
+                onClick={() => navigate(`/show/${id}/reviews`)}
+              >
+                <Rating
+                  value={
+                    showDetails?.vote_average
+                      ? Number(showDetails.vote_average / 2)
+                      : 0
+                  }
+                  precision={0.5}
+                  readOnly
+                  size="large"
+                />
+                <S.RatingText>
+                  {`${
+                    showDetails?.vote_average
+                      ? Number(showDetails.vote_average / 2)
+                      : 0
+                  }
+              Stars`}
+                </S.RatingText>
+              </S.RatingContainer>
+            </S.ReleasedContainer>
+          )}
           <S.ReleaseAndRuntimeContainer>
             <S.ShowReleaseDate>
               {`${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`}
@@ -143,33 +171,7 @@ export function ShowDetails() {
                 ))}
             />
           </S.CastContainer>
-          {showDetails?.status !== "Unreleased" ? (
-            <S.ReleasedContainer>
-              <S.RatingContainer>
-                <Rating
-                  value={
-                    showDetails?.vote_average
-                      ? Number(showDetails.vote_average / 2)
-                      : 0
-                  }
-                  precision={0.5}
-                  readOnly
-                  size="large"
-                />
-                <S.RatingText>
-                  {`${
-                    showDetails?.vote_average
-                      ? Number(showDetails.vote_average / 2)
-                      : 0
-                  }
-              Stars`}
-                </S.RatingText>
-              </S.RatingContainer>
-              <S.ReviewLink onClick={() => navigate(`/show/${id}/reviews`)}>
-                Check out the Reviews
-              </S.ReviewLink>
-            </S.ReleasedContainer>
-          ) : (
+          {showDetails?.status === "Unreleased" && (
             <S.UnreleasedText>{`Releases in ${diff} days`}</S.UnreleasedText>
           )}
         </S.InfoContainer>
@@ -187,6 +189,13 @@ export function ShowDetails() {
                       : `https://image.tmdb.org/t/p/w200/${season.poster_path}`
                   }
                 />
+                {season.poster_path === null && (
+                  <>
+                    <S.IconContainer>
+                      <S.Icon src={tvIcon} />
+                    </S.IconContainer>
+                  </>
+                )}
               </S.SeasonImageContainer>
               <S.SeasonTitle>{season.name}</S.SeasonTitle>
               <S.SeasonDetailsContainer>
