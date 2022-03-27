@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { api } from "../../services/api";
+import { api } from "../../../services/api";
 import * as S from "./styles";
-import defaultPicture from "../../assets/default2.png";
+import defaultPicture from "../../../assets/default2.png";
 import { Rating } from "@mui/material";
 import AliceCarousel from "react-alice-carousel";
 

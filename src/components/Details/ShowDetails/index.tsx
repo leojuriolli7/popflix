@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { api } from "../../services/api";
+import { api } from "../../../services/api";
 import * as S from "./styles";
-import defaultPicture from "../../assets/default2.png";
+import defaultPicture from "../../../assets/default2.png";
 import { Rating } from "@mui/material";
 import AliceCarousel from "react-alice-carousel";
+import defaultPoster from "../../../assets/defaultposter.png";
 
 interface GenreInterface {
   name: string;
@@ -173,6 +174,33 @@ export function ShowDetails() {
           )}
         </S.InfoContainer>
       </S.Content>
+      <S.SeasonsContent>
+        <S.SeasonOverview>Seasons Overview</S.SeasonOverview>
+        <S.SeasonsContainer>
+          {showDetails?.seasons.map((season) => (
+            <S.SeasonContainer key={season.id}>
+              <S.SeasonImageContainer>
+                <S.SeasonImage
+                  src={
+                    season.poster_path === null
+                      ? defaultPoster
+                      : `https://image.tmdb.org/t/p/w200/${season.poster_path}`
+                  }
+                />
+              </S.SeasonImageContainer>
+              <S.SeasonTitle>{season.name}</S.SeasonTitle>
+              <S.SeasonDetailsContainer>
+                <S.SeasonAirDate>
+                  Air Date: {season.air_date === null ? "?" : season.air_date}
+                </S.SeasonAirDate>
+                <S.SeasonEpisodeCount>
+                  {season.episode_count} Episodes
+                </S.SeasonEpisodeCount>
+              </S.SeasonDetailsContainer>
+            </S.SeasonContainer>
+          ))}
+        </S.SeasonsContainer>
+      </S.SeasonsContent>
     </S.Container>
   );
 }

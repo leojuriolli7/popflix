@@ -26,7 +26,7 @@ interface GenreInterface {
   id: number;
 }
 
-interface MovieDetailsInterface {
+interface ShowDetailsInterface {
   genres: GenreInterface[];
   id: number;
   original_title: string;
@@ -42,7 +42,7 @@ interface MovieDetailsInterface {
 export function ShowReview() {
   const { id } = useParams();
   const [reviews, setReviews] = useState<ReviewsInterface[]>();
-  const [movieDetails, setMovieDetails] = useState<MovieDetailsInterface>();
+  const [showDetails, setShowDetails] = useState<ShowDetailsInterface>();
 
   const navigate = useNavigate();
 
@@ -55,19 +55,19 @@ export function ShowReview() {
 
     api
       .get(`tv/${id}?api_key=24e0e0f71e0ac9cb9c5418459514eda9&language=en-US`)
-      .then((response) => setMovieDetails(response.data));
+      .then((response) => setShowDetails(response.data));
   }, [id]);
 
   return (
     <S.Container>
       <S.Content>
-        <S.MovieInfoContainer>
+        <S.ShowInfoContainer>
           <S.TitleTextContainer>
             <S.TitleText onClick={() => navigate(`/show/${id}`)}>
-              <S.Span>{movieDetails?.name}</S.Span> Reviews
+              <S.Span>{showDetails?.name}</S.Span> Reviews
             </S.TitleText>
           </S.TitleTextContainer>
-        </S.MovieInfoContainer>
+        </S.ShowInfoContainer>
         {reviews?.length === 0 ? (
           <S.NoReviewsContainer>
             <S.NoReviewsMessage>No Reviews Available</S.NoReviewsMessage>

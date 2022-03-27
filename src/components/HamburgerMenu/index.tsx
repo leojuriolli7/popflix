@@ -83,7 +83,7 @@ export function HamburguerMenu() {
             <S.ThemeSwitchContainer>
               <ThemeSwitch
                 height={35}
-                width={100}
+                width={90}
                 handleDiameter={40}
                 checkedIcon={<S.DarkModeIcon />}
                 uncheckedIcon={<S.LightModeIcon />}

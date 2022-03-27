@@ -230,3 +230,87 @@ export const UnreleasedText = styled.p`
     padding-bottom: 2rem;
   }
 `;
+
+export const SeasonsContent = styled(Content)`
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 2rem 0;
+  margin-top: 3rem;
+`;
+
+export const SeasonOverview = styled.h2`
+  font-size: 3rem;
+  color: ${(props) => props.theme.colors.sectionText};
+
+  @media (max-width: 455px) {
+    font-size: 2.6rem;
+  }
+
+  @media (max-width: 353px) {
+    font-size: 2.1rem;
+  }
+`;
+
+export const SeasonsContainer = styled.div`
+  display: flex;
+  box-shadow: 1px 5px 15px 5px rgba(0, 0, 0, 0.3);
+  border-radius: 23px;
+  background: ${(props) =>
+    props.theme.title === "dark" ? props.theme.colors.primary : "#fff"};
+  flex-wrap: wrap;
+  box-shadow: none;
+  justify-content: center;
+  gap: 2.5rem;
+  padding: 2rem 0;
+
+  @media (max-width: 1150px) {
+    margin: 0 1.5rem 0 1.5rem;
+  }
+
+  @media (max-width: 426px) {
+    margin: 0 1rem 0 1rem;
+  }
+`;
+
+export const SeasonContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+`;
+
+export const SeasonImageContainer = styled.div``;
+
+export const SeasonImage = styled.img`
+  border-radius: 20px;
+  box-shadow: 1px 5px 15px 5px rgba(0, 0, 0, 0.2);
+`;
+
+export const SeasonTitle = styled.h3`
+  margin-top: 0.5rem;
+  color: ${(props) => props.theme.colors.sectionText};
+  font-size: 2.1rem;
+`;
+
+export const SeasonDetailsContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+`;
+
+export const SeasonEpisodeCount = styled.p`
+  margin-top: 0.25rem;
+  color: ${(props) => props.theme.colors.sectionText};
+  font-size: 1.2rem;
+
+  @media (max-width: 720px) {
+    font-size: 1.3rem;
+  }
+`;
+
+export const SeasonAirDate = styled(SeasonEpisodeCount)`
+  margin: 0rem;
+`;

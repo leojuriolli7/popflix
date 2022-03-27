@@ -15,7 +15,7 @@ export const Content = styled.div`
   color: ${(props) => props.theme.colors.sectionText};
 `;
 
-export const MovieInfoContainer = styled.div`
+export const ShowInfoContainer = styled.div`
   display: flex;
   border-radius: 20px;
   flex-direction: column;
@@ -52,7 +52,7 @@ export const Span = styled.span`
   }
 `;
 
-export const MovieGenresContainer = styled.div`
+export const ShowGenresContainer = styled.div`
   margin: 0px 10px 5px 10px;
   display: flex;
   justify-content: center;
@@ -64,7 +64,7 @@ export const MovieGenresContainer = styled.div`
   }
 `;
 
-export const MovieGenres = styled.p`
+export const ShowGenres = styled.p`
   font-size: 1.1rem;
   line-height: 25px;
   text-decoration: underline;
@@ -79,14 +79,14 @@ export const MovieGenres = styled.p`
   }
 `;
 
-export const MovieCastContainer = styled.div`
+export const ShowCastContainer = styled.div`
   display: flex;
   justify-content: center;
   text-align: center;
   gap: 1rem;
 `;
 
-export const MovieCast = styled(MovieGenres)``;
+export const ShowCast = styled(ShowGenres)``;
 
 export const NoReviewsContainer = styled.div`
   text-align: center;
