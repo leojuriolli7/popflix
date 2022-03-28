@@ -108,6 +108,10 @@ export const SectionTitle = styled.h1`
 export const MediaPosterContainer = styled.div`
   position: relative;
   transition: 0.3s;
+  /* width: 220.61px;
+  height: 330.92px; */
+
+  // width: 12rem;
 
   &:hover {
     transform: scale(1.05);
@@ -117,6 +121,7 @@ export const MediaPosterContainer = styled.div`
 
 export const MediaPoster = styled.img`
   width: 90%;
+  object-fit: cover;
   transform: scale(1.03);
   box-shadow: 2px 4px 7px 0px rgb(0 0 0 / 50%);
   border-radius: 20px;

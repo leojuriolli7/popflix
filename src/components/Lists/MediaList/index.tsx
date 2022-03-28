@@ -52,7 +52,7 @@ export function MediaList({ apiEndpoint, title }: MediaListProps) {
             580: {
               items: 3,
             },
-            850: {
+            860: {
               items: 4,
             },
             1200: {

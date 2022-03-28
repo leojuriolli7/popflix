@@ -274,11 +274,16 @@ export const SeasonContainer = styled.div`
 
 export const SeasonImageContainer = styled.div`
   position: relative;
+  width: 200px;
+  height: 300px;
 `;
 
 export const SeasonImage = styled.img`
+  width: 100%;
+  height: 100%;
   border-radius: 20px;
   box-shadow: 1px 5px 15px 5px rgba(0, 0, 0, 0.2);
+  object-fit: cover;
 `;
 
 export const IconContainer = styled.div`
