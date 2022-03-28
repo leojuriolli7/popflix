@@ -94,9 +94,11 @@ export function MovieReview() {
               <S.UserContainer>
                 <S.UserImage
                   src={
-                    review.author_details.avatar_path === null
-                      ? defaultProfileImage
-                      : String(review.author_details.avatar_path).substring(1)
+                    String(review.author_details.avatar_path)
+                      .substring(1)
+                      .startsWith("h")
+                      ? String(review.author_details.avatar_path).substring(1)
+                      : defaultProfileImage
                   }
                   alt="User"
                 />
