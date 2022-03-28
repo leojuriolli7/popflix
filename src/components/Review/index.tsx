@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { api } from "../../../services/api";
+import { api } from "../../services/api";
 import * as S from "./styles";
-import defaultProfileImage from "../../../assets/default.png";
+import defaultProfileImage from "../../assets/default.png";
 import { Rating } from "@mui/material";
 
 interface AuthorDetailsInterface {
@@ -26,12 +26,13 @@ interface GenreInterface {
   id: number;
 }
 
-interface MovieDetailsInterface {
+interface MediaDetailsInterface {
   genres: GenreInterface[];
   id: number;
-  original_title: string;
+  original_title?: string;
   overview: string;
-  title: string;
+  title?: string;
+  name?: string;
   vote_average: number;
   poster_path: string;
   release_date: string;
@@ -39,48 +40,58 @@ interface MovieDetailsInterface {
   status: string;
 }
 
-export function MovieReview() {
+interface ReviewProps {
+  mediaType: "tv" | "movie";
+}
+
+export function Review({ mediaType }: ReviewProps) {
   const { id } = useParams();
   const [reviews, setReviews] = useState<ReviewsInterface[]>();
-  const [movieDetails, setMovieDetails] = useState<MovieDetailsInterface>();
+  const [mediaDetails, setMediaDetails] = useState<MediaDetailsInterface>();
 
   const navigate = useNavigate();
 
   useEffect(() => {
     api
       .get(
-        `movie/${id}/reviews?api_key=24e0e0f71e0ac9cb9c5418459514eda9&language=en-US&page=1`
+        `${mediaType}/${id}/reviews?api_key=24e0e0f71e0ac9cb9c5418459514eda9&language=en-US&page=1`
       )
       .then((response) => setReviews(response.data.results));
 
     api
       .get(
-        `movie/${id}?api_key=24e0e0f71e0ac9cb9c5418459514eda9&language=en-US`
+        `${mediaType}/${id}?api_key=24e0e0f71e0ac9cb9c5418459514eda9&language=en-US`
       )
-      .then((response) => setMovieDetails(response.data));
-  }, [id]);
+      .then((response) => setMediaDetails(response.data));
+  }, [id, mediaType]);
 
   return (
     <S.Container>
       <S.Content>
-        <S.MovieInfoContainer>
+        <S.MediaInfoContainer>
           {reviews?.length !== 0 && (
             <S.ArrowBackContainer
-              onClick={() => navigate(`/movie/${id}`)}
+              onClick={() =>
+                navigate(`/${mediaType === "tv" ? "show" : "movie"}/${id}`)
+              }
               title="Go back"
             >
               <S.WhiteArrowBack />
             </S.ArrowBackContainer>
           )}
           <S.TitleTextContainer>
-            <S.TitleText>{movieDetails?.title} Reviews</S.TitleText>
+            <S.TitleText>
+              {mediaDetails?.title || mediaDetails?.name} Reviews
+            </S.TitleText>
           </S.TitleTextContainer>
-        </S.MovieInfoContainer>
+        </S.MediaInfoContainer>
         {reviews?.length === 0 ? (
           <S.NoReviewsContainer>
             <S.NoReviewsMessageContainer>
               <S.NoReviewsArrowContainer
-                onClick={() => navigate(`/movie/${id}`)}
+                onClick={() =>
+                  navigate(`/${mediaType === "tv" ? "show" : "movie"}/${id}`)
+                }
                 title="Go back"
               >
                 <S.WhiteArrowBack />

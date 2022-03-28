@@ -16,7 +16,7 @@ export const Content = styled.div`
   color: ${(props) => props.theme.colors.sectionText};
 `;
 
-export const ShowInfoContainer = styled.div`
+export const MediaInfoContainer = styled.div`
   position: relative;
   display: flex;
   border-radius: 20px;
@@ -89,7 +89,7 @@ export const NoReviewsArrowContainer = styled.div`
   }
 `;
 
-export const ShowGenresContainer = styled.div`
+export const MediaGenresContainer = styled.div`
   margin: 0px 10px 5px 10px;
   display: flex;
   justify-content: center;
@@ -101,7 +101,7 @@ export const ShowGenresContainer = styled.div`
   }
 `;
 
-export const ShowGenres = styled.p`
+export const MediaGenres = styled.p`
   font-size: 1.1rem;
   line-height: 25px;
   text-decoration: underline;
@@ -116,14 +116,14 @@ export const ShowGenres = styled.p`
   }
 `;
 
-export const ShowCastContainer = styled.div`
+export const MediaCastContainer = styled.div`
   display: flex;
   justify-content: center;
   text-align: center;
   gap: 1rem;
 `;
 
-export const ShowCast = styled(ShowGenres)``;
+export const MediaCast = styled(MediaGenres)``;
 
 export const NoReviewsContainer = styled.div`
   text-align: center;

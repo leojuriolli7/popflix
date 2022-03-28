@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import { api } from "../../../services/api";
+import { api } from "../../services/api";
 import * as S from "./styles";
 import "react-alice-carousel/lib/alice-carousel.css";
 import AliceCarousel from "react-alice-carousel";
-import { MediaPosterSkeleton } from "../../Skeleton/MediaPosterSkeleton";
-import defaultPoster from "../../../assets/defaultposter.png";
-import tvIcon from "../../../assets/tvicon.svg";
-import movieIcon from "../../../assets/movieicon.svg";
+import { MediaPosterSkeleton } from "../Skeleton/MediaPosterSkeleton";
+import defaultPoster from "../../assets/defaultposter.png";
+import tvIcon from "../../assets/tvicon.svg";
+import movieIcon from "../../assets/movieicon.svg";
 import { useNavigate } from "react-router-dom";
 
 interface MediaListProps {

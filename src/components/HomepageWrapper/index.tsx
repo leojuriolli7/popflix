@@ -1,4 +1,4 @@
-import { MediaList } from "../Lists/MediaList";
+import { MediaList } from "../MediaList";
 import * as S from "./styles";
 import "animate.css";
 

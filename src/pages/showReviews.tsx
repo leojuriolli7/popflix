@@ -1,12 +1,12 @@
 import { Footer } from "../components/Footer";
 import { Header } from "../components/Header";
-import { ShowReview } from "../components/Reviews/ShowReview";
+import { Review } from "../components/Review";
 
 export function ShowReviewsPage() {
   return (
     <>
       <Header />
-      <ShowReview />
+      <Review mediaType="tv" />
       <Footer />
     </>
   );
