@@ -63,7 +63,7 @@ export function ShowReview() {
       <S.Content>
         <S.ShowInfoContainer>
           <S.ArrowBackContainer
-            onClick={() => navigate(`/movie/${id}`)}
+            onClick={() => navigate(`/show/${id}`)}
             title="Go back"
           >
             <S.WhiteArrowBack />

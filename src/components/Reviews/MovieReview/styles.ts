@@ -103,12 +103,13 @@ export const MovieCast = styled(MovieGenres)``;
 export const NoReviewsContainer = styled.div`
   text-align: center;
   margin: 0 auto;
-  padding-top: 3rem;
-  padding-bottom: 3rem;
+  margin-top: 2.5rem;
 `;
 
 export const NoReviewsMessage = styled(TitleText)`
   color: ${(props) => props.theme.colors.sectionText};
+  margin-left: 6rem;
+  margin-right: 6rem;
 `;
 
 export const ReviewContainer = styled.div`

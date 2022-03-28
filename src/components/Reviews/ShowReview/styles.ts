@@ -49,7 +49,10 @@ export const ArrowBackContainer = styled.div`
   padding: 0.5rem;
   left: 35px;
   bottom: -85px;
-  background: ${(props) => props.theme.colors.primary};
+  background: ${(props) =>
+    props.theme.title === "light"
+      ? props.theme.colors.primary
+      : props.theme.colors.background};
   border-radius: 50%;
   transition: 0.3s;
 
@@ -103,12 +106,13 @@ export const ShowCast = styled(ShowGenres)``;
 export const NoReviewsContainer = styled.div`
   text-align: center;
   margin: 0 auto;
-  padding-top: 3rem;
-  padding-bottom: 3rem;
+  margin-top: 2.5rem;
 `;
 
 export const NoReviewsMessage = styled(TitleText)`
   color: ${(props) => props.theme.colors.sectionText};
+  margin-left: 6rem;
+  margin-right: 6rem;
 `;
 
 export const ReviewContainer = styled.div`
