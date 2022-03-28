@@ -1,5 +1,6 @@
-import { darken, lighten } from "polished";
+import { darken } from "polished";
 import styled from "styled-components";
+import { IoMdArrowRoundBack } from "react-icons/io";
 
 export const Container = styled.main.attrs({
   className: "animate__animated animate__fadeIn",
@@ -16,6 +17,7 @@ export const Content = styled.div`
 `;
 
 export const ShowInfoContainer = styled.div`
+  position: relative;
   display: flex;
   border-radius: 20px;
   flex-direction: column;
@@ -42,15 +44,25 @@ export const TitleText = styled.h1`
   }
 `;
 
-export const Span = styled.span`
+export const ArrowBackContainer = styled.div`
+  position: absolute;
+  padding: 0.5rem;
+  left: 35px;
+  bottom: -85px;
+  background: ${(props) => props.theme.colors.primary};
+  border-radius: 50%;
+  transition: 0.3s;
+
   &:hover {
     cursor: pointer;
-    color: ${(props) =>
-      props.theme.title === "dark"
-        ? darken(0.4, props.theme.colors.sectionText)
-        : lighten(0.3, props.theme.colors.sectionText)};
+    transform: scale(1.1);
   }
 `;
+
+export const WhiteArrowBack = styled(IoMdArrowRoundBack).attrs({
+  size: 25,
+  color: "white",
+})``;
 
 export const ShowGenresContainer = styled.div`
   margin: 0px 10px 5px 10px;

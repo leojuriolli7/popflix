@@ -64,10 +64,14 @@ export function MovieReview() {
     <S.Container>
       <S.Content>
         <S.MovieInfoContainer>
+          <S.ArrowBackContainer
+            onClick={() => navigate(`/movie/${id}`)}
+            title="Go back"
+          >
+            <S.WhiteArrowBack />
+          </S.ArrowBackContainer>
           <S.TitleTextContainer>
-            <S.TitleText onClick={() => navigate(`/movie/${id}`)}>
-              <S.Span>{movieDetails?.title}</S.Span> Reviews
-            </S.TitleText>
+            <S.TitleText>{movieDetails?.title} Reviews</S.TitleText>
           </S.TitleTextContainer>
         </S.MovieInfoContainer>
         {reviews?.length === 0 ? (

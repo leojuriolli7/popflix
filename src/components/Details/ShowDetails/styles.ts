@@ -108,7 +108,7 @@ export const ReleaseAndRuntimeContainer = styled.div`
   align-items: center;
   justify-content: center;
   gap: 10px;
-  margin: 0.5rem;
+  margin-top: 0.7rem;
   flex-wrap: wrap;
 `;
 
@@ -129,7 +129,7 @@ export const ShowProductionCompany = styled(ShowReleaseDate)``;
 export const ShowOverview = styled.p`
   margin-top: 20px;
   font-size: 1.1rem;
-  margin: 5px 40px 20px 40px;
+  margin: 15px 40px 20px 40px;
 
   @media (max-width: 985px) {
     font-size: 1.3rem;
@@ -191,7 +191,7 @@ export const RatingContainer = styled.div`
   justify-content: center;
   align-items: center;
   transition: 0.3s;
-  margin-top: 0.5rem;
+  margin-top: 0.7rem;
 
   span {
     // Rating stars
