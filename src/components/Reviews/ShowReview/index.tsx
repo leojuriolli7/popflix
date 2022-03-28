@@ -62,19 +62,29 @@ export function ShowReview() {
     <S.Container>
       <S.Content>
         <S.ShowInfoContainer>
-          <S.ArrowBackContainer
-            onClick={() => navigate(`/show/${id}`)}
-            title="Go back"
-          >
-            <S.WhiteArrowBack />
-          </S.ArrowBackContainer>
+          {reviews?.length !== 0 && (
+            <S.ArrowBackContainer
+              onClick={() => navigate(`/show/${id}`)}
+              title="Go back"
+            >
+              <S.WhiteArrowBack />
+            </S.ArrowBackContainer>
+          )}
           <S.TitleTextContainer>
             <S.TitleText>{showDetails?.name} Reviews</S.TitleText>
           </S.TitleTextContainer>
         </S.ShowInfoContainer>
         {reviews?.length === 0 ? (
           <S.NoReviewsContainer>
-            <S.NoReviewsMessage>No Reviews Available</S.NoReviewsMessage>
+            <S.NoReviewsMessageContainer>
+              <S.NoReviewsArrowContainer
+                onClick={() => navigate(`/show/${id}`)}
+                title="Go back"
+              >
+                <S.WhiteArrowBack />
+              </S.NoReviewsArrowContainer>
+              <S.NoReviewsMessage>No Reviews Available</S.NoReviewsMessage>
+            </S.NoReviewsMessageContainer>
           </S.NoReviewsContainer>
         ) : (
           reviews?.map((review) => (

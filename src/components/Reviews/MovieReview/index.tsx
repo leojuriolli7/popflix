@@ -64,19 +64,29 @@ export function MovieReview() {
     <S.Container>
       <S.Content>
         <S.MovieInfoContainer>
-          <S.ArrowBackContainer
-            onClick={() => navigate(`/movie/${id}`)}
-            title="Go back"
-          >
-            <S.WhiteArrowBack />
-          </S.ArrowBackContainer>
+          {reviews?.length !== 0 && (
+            <S.ArrowBackContainer
+              onClick={() => navigate(`/movie/${id}`)}
+              title="Go back"
+            >
+              <S.WhiteArrowBack />
+            </S.ArrowBackContainer>
+          )}
           <S.TitleTextContainer>
             <S.TitleText>{movieDetails?.title} Reviews</S.TitleText>
           </S.TitleTextContainer>
         </S.MovieInfoContainer>
         {reviews?.length === 0 ? (
           <S.NoReviewsContainer>
-            <S.NoReviewsMessage>No Reviews Available</S.NoReviewsMessage>
+            <S.NoReviewsMessageContainer>
+              <S.NoReviewsArrowContainer
+                onClick={() => navigate(`/movie/${id}`)}
+                title="Go back"
+              >
+                <S.WhiteArrowBack />
+              </S.NoReviewsArrowContainer>
+              <S.NoReviewsMessage>No Reviews Available</S.NoReviewsMessage>
+            </S.NoReviewsMessageContainer>
           </S.NoReviewsContainer>
         ) : (
           reviews?.map((review) => (

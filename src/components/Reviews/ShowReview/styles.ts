@@ -67,6 +67,28 @@ export const WhiteArrowBack = styled(IoMdArrowRoundBack).attrs({
   color: "white",
 })``;
 
+export const NoReviewsArrowContainer = styled.div`
+  position: absolute;
+  top: 8px;
+  left: 10px;
+  padding: 0.25rem;
+  background: ${(props) =>
+    props.theme.title === "light"
+      ? props.theme.colors.primary
+      : props.theme.colors.background};
+  border-radius: 50%;
+  transition: 0.3s;
+
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+  }
+
+  @media (max-width: 385px) {
+    left: 0px;
+  }
+`;
+
 export const ShowGenresContainer = styled.div`
   margin: 0px 10px 5px 10px;
   display: flex;
@@ -107,12 +129,34 @@ export const NoReviewsContainer = styled.div`
   text-align: center;
   margin: 0 auto;
   margin-top: 2.5rem;
+  border-radius: 23px;
+  padding: 1rem;
+  box-shadow: 1px 5px 15px 5px rgba(0, 0, 0, 0.3);
+  background: ${(props) =>
+    props.theme.title === "dark" ? props.theme.colors.primary : "#fff"};
+
+  @media (max-width: 1135px) {
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+`;
+
+export const NoReviewsMessageContainer = styled.div`
+  position: relative;
 `;
 
 export const NoReviewsMessage = styled(TitleText)`
   color: ${(props) => props.theme.colors.sectionText};
-  margin-left: 6rem;
-  margin-right: 6rem;
+
+  @media (max-width: 580px) {
+    margin-left: 4rem;
+    margin-right: 4rem;
+  }
+
+  @media (max-width: 385px) {
+    margin-left: 3rem;
+    margin-right: 3rem;
+  }
 `;
 
 export const ReviewContainer = styled.div`
