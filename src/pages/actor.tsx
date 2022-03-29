@@ -1,4 +1,5 @@
 import { ActorDetails } from "../components/Details/ActorDetails";
+import { Footer } from "../components/Footer";
 import { Header } from "../components/Header";
 
 export function ActorPage() {
@@ -6,6 +7,7 @@ export function ActorPage() {
     <>
       <Header />
       <ActorDetails />
+      <Footer />
     </>
   );
 }

@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { api } from "../../../services/api";
+import defaultPicture from "../../../assets/default2.png";
 import * as S from "./styles";
+import { ActorBiographyModal } from "../../Modal/ActorBiographyModal";
 
 interface ActorDetailsInterface {
   name: string;
@@ -13,9 +15,23 @@ interface ActorDetailsInterface {
   deathday?: string;
 }
 
+// interface ActorCreditsInterface {
+//   adult: boolean;
+//   backdrop_path: string;
+//   original_title: string;
+//   vote_average: number;
+//   title: string;
+//   character: string;
+// }
+
 export function ActorDetails() {
   const { id } = useParams();
   const [actorDetails, setActorDetails] = useState<ActorDetailsInterface>();
+  // const [actorCredits, setActorCredits] = useState<ActorCreditsInterface[]>();
+
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
 
   useEffect(() => {
     api
@@ -30,7 +46,11 @@ export function ActorDetails() {
       <S.MainInfoContainer>
         <S.PictureContainer>
           <S.ActorPicture
-            src={`https://image.tmdb.org/t/p/w500/${actorDetails?.profile_path}`}
+            src={
+              actorDetails?.profile_path
+                ? `https://image.tmdb.org/t/p/w500/${actorDetails?.profile_path}`
+                : defaultPicture
+            }
           />
         </S.PictureContainer>
         <S.ActorDetails>
@@ -47,11 +67,21 @@ export function ActorDetails() {
           <S.ActorBiographyContainer>
             <S.ActorBiography>{actorDetails?.biography}</S.ActorBiography>
           </S.ActorBiographyContainer>
-          <S.FullBiographyLinkContainer>
-            <S.FullBiographyLink>Read Full Biography</S.FullBiographyLink>
-          </S.FullBiographyLinkContainer>
+          {actorDetails?.biography && (
+            <S.FullBiographyLinkContainer>
+              <S.FullBiographyLink onClick={() => setShow(true)}>
+                Read Full Biography
+              </S.FullBiographyLink>
+            </S.FullBiographyLinkContainer>
+          )}
         </S.ActorDetails>
       </S.MainInfoContainer>
+      <ActorBiographyModal
+        show={show}
+        setShow={setShow}
+        handleClose={handleClose}
+        actorDetails={actorDetails}
+      />
     </S.Container>
   );
 }

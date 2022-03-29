@@ -59,4 +59,12 @@ export const GlobalStyle = createGlobalStyle`
   h1, h2, h3, h4, h5, h6, strong {
     font-weight: 600; 
   }
+
+  .modal-content {
+    background-color: ${(props) =>
+      props.theme.title === "dark"
+        ? props.theme.colors.primary
+        : darken(0.06, props.theme.colors.background)};
+
+  }
 `;

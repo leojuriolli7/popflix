@@ -41,7 +41,7 @@ export const CloseButtonDark = styled(BsXLg).attrs({
 `;
 
 export const Content = styled.div`
-  padding-top: 5rem;
+  padding-top: 1rem;
 `;
 
 export const Navigation = styled.nav``;

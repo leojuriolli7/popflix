@@ -27,7 +27,7 @@ export const MainInfoContainer = styled.div`
     margin: 0 1rem 0 1rem;
   }
 
-  @media (max-width: 625px) {
+  @media (max-width: 690px) {
     flex-direction: column;
   }
 `;
@@ -36,7 +36,7 @@ export const PictureContainer = styled.div`
   /* width: clamp(8rem, 50%, 21rem); */
   width: clamp(8rem, 50%, 31rem);
 
-  @media (max-width: 625px) {
+  @media (max-width: 690px) {
     width: 100%;
   }
 `;
@@ -58,7 +58,7 @@ export const ActorDetails = styled.div`
   text-align: center;
   color: ${(props) => props.theme.colors.sectionText};
 
-  @media (max-width: 625px) {
+  @media (max-width: 690px) {
     width: 100%;
   }
 `;
@@ -119,8 +119,8 @@ export const ActorBiography = styled.p`
     -webkit-line-clamp: 15;
   }
 
-  @media (max-width: 827px) {
-    -webkit-line-clamp: 12;
+  @media (max-width: 800px) {
+    -webkit-line-clamp: 10;
   }
 
   @media (max-width: 690px) {
@@ -146,4 +146,25 @@ export const FullBiographyLink = styled.p`
   @media (max-width: 1080px) {
     font-size: 1.2rem;
   }
+`;
+
+export const ActorCreditsContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  box-shadow: 1px 5px 15px 5px rgba(0, 0, 0, 0.3);
+  border-radius: 23px;
+  background: ${(props) =>
+    props.theme.title === "dark" ? props.theme.colors.primary : "#fff"};
+
+  @media (max-width: 910px) {
+    margin: 0 1rem 0 1rem;
+  }
+`;
+
+export const MediaCreditContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  flex-wrap: wrap;
 `;
