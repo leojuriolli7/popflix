@@ -83,10 +83,6 @@ export const NoReviewsArrowContainer = styled.div`
     cursor: pointer;
     transform: scale(1.1);
   }
-
-  @media (max-width: 385px) {
-    left: 0px;
-  }
 `;
 
 export const MediaGenresContainer = styled.div`
@@ -126,7 +122,12 @@ export const MediaCastContainer = styled.div`
 export const MediaCast = styled(MediaGenres)``;
 
 export const NoReviewsContainer = styled.div`
+  position: relative;
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50vh;
   margin: 0 auto;
   margin-top: 2.5rem;
   border-radius: 23px;
@@ -136,27 +137,15 @@ export const NoReviewsContainer = styled.div`
     props.theme.title === "dark" ? props.theme.colors.primary : "#fff"};
 
   @media (max-width: 1135px) {
-    margin-left: 1rem;
-    margin-right: 1rem;
-  }
-`;
-
-export const NoReviewsMessageContainer = styled.div`
-  position: relative;
-`;
-
-export const NoReviewsMessage = styled(TitleText)`
-  color: ${(props) => props.theme.colors.sectionText};
-
-  @media (max-width: 580px) {
-    margin-left: 4rem;
-    margin-right: 4rem;
-  }
-
-  @media (max-width: 385px) {
     margin-left: 3rem;
     margin-right: 3rem;
   }
+`;
+
+export const NoReviewsMessageContainer = styled.div``;
+
+export const NoReviewsMessage = styled(TitleText)`
+  color: ${(props) => props.theme.colors.sectionText};
 `;
 
 export const ReviewContainer = styled.div`

@@ -192,6 +192,10 @@ export const RatingContainer = styled.div`
   transition: 0.3s;
   margin-top: 0.7rem;
 
+  @media (max-width: 845px) {
+    margin-top: 1rem;
+  }
+
   span {
     // Rating stars
     color: #fdca40;

@@ -145,6 +145,7 @@ export function MovieDetails() {
                 .map((cast: CastInterface) => (
                   <S.CastMemberContainer key={cast.id}>
                     <S.CastMemberPicture
+                      onClick={() => navigate(`/actor/${cast.id}`)}
                       src={
                         cast.profile_path === null
                           ? defaultPicture

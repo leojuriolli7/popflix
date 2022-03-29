@@ -87,15 +87,15 @@ export function Review({ mediaType }: ReviewProps) {
         </S.MediaInfoContainer>
         {reviews?.length === 0 ? (
           <S.NoReviewsContainer>
+            <S.NoReviewsArrowContainer
+              onClick={() =>
+                navigate(`/${mediaType === "tv" ? "show" : "movie"}/${id}`)
+              }
+              title="Go back"
+            >
+              <S.WhiteArrowBack />
+            </S.NoReviewsArrowContainer>
             <S.NoReviewsMessageContainer>
-              <S.NoReviewsArrowContainer
-                onClick={() =>
-                  navigate(`/${mediaType === "tv" ? "show" : "movie"}/${id}`)
-                }
-                title="Go back"
-              >
-                <S.WhiteArrowBack />
-              </S.NoReviewsArrowContainer>
               <S.NoReviewsMessage>No Reviews Available</S.NoReviewsMessage>
             </S.NoReviewsMessageContainer>
           </S.NoReviewsContainer>
@@ -107,7 +107,7 @@ export function Review({ mediaType }: ReviewProps) {
                   src={
                     String(review.author_details.avatar_path)
                       .substring(1)
-                      .startsWith("h")
+                      .startsWith("http")
                       ? String(review.author_details.avatar_path).substring(1)
                       : defaultProfileImage
                   }

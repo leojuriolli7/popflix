@@ -3,7 +3,10 @@ import { BsFillArrowUpCircleFill } from "react-icons/bs";
 import { darken } from "polished";
 
 export const Container = styled.footer`
-  box-shadow: 1px 5px 15px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: ${(props) =>
+    props.theme.title === "light"
+      ? "1px 5px 15px 5px rgba(0, 0, 0, 0.1)"
+      : "1px -1px 22px 17px rgba(0, 0, 0, 0.65)"};
   background: ${(props) => props.theme.colors.primary};
   color: ${(props) => props.theme.colors.text};
 `;

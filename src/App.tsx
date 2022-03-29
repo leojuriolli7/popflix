@@ -12,6 +12,7 @@ import { MovieDetailsPage } from "./pages/movieDetails";
 import { ShowDetailsPage } from "./pages/showDetails";
 import { MovieReviewsPage } from "./pages/movieReviews";
 import { ShowReviewsPage } from "./pages/showReviews";
+import { ActorPage } from "./pages/actor";
 
 function App() {
   const { theme } = useSelector((state: RootState) => state.theme);
@@ -24,9 +25,10 @@ function App() {
           <Route path="/movies" element={<Movies />} />
           <Route path="/movie/:id" element={<MovieDetailsPage />} />
           <Route path="/movie/:id/reviews" element={<MovieReviewsPage />} />
+          <Route path="/shows" element={<Shows />} />
           <Route path="/show/:id" element={<ShowDetailsPage />} />
           <Route path="/show/:id/reviews" element={<ShowReviewsPage />} />
-          <Route path="/shows" element={<Shows />} />
+          <Route path="/actor/:id" element={<ActorPage />} />
         </Routes>
         <GlobalStyle />
       </Router>

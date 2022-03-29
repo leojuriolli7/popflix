@@ -11,6 +11,12 @@ export const GlobalStyle = createGlobalStyle`
   
   body {
     background: ${(props) => props.theme.colors.background};
+    -webkit-box-shadow: ${(props) =>
+      props.theme.title === "dark" &&
+      "inset 4px 77px 132px 13px rgba(0, 0, 0, 0.84)"};
+  box-shadow: ${(props) =>
+    props.theme.title === "dark" &&
+    "inset 4px 77px 132px 13px rgba(0, 0, 0, 0.84)"};
     color: ${(props) => props.theme.colors.text};
     -webkit-font-smoothing: antialiased;
     min-height: 100vh;
@@ -38,6 +44,9 @@ export const GlobalStyle = createGlobalStyle`
       props.theme.title === "dark"
         ? props.theme.colors.primary
         : darken(0.06, props.theme.colors.background)};
+          box-shadow: ${(props) =>
+            props.theme.title === "dark" &&
+            "inset 4px 4px 55px 14px rgb(0 0 0 / 84%)"};
   }
 
   .offcanvas-end {
