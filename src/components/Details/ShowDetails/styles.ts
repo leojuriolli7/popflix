@@ -108,8 +108,12 @@ export const ReleaseAndRuntimeContainer = styled.div`
   align-items: center;
   justify-content: center;
   gap: 10px;
-  margin-top: 0.7rem;
+  margin: 0.7rem 0.7rem 0 0.7rem;
   flex-wrap: wrap;
+
+  @media (max-width: 845px) {
+    margin-top: calc(0.7rem + 10px);
+  }
 `;
 
 export const ShowReleaseDate = styled.p`
@@ -118,7 +122,6 @@ export const ShowReleaseDate = styled.p`
 
   @media (max-width: 845px) {
     font-size: 1.3rem;
-    margin-top: 10px;
   }
 `;
 

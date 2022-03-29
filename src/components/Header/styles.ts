@@ -49,6 +49,7 @@ export const Navigation = styled.nav``;
 
 export const UnorganizedList = styled.ul`
   display: flex;
+  padding: 0;
   list-style: none;
   gap: 2rem;
   align-items: center;
