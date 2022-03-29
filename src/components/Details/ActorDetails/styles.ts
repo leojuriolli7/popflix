@@ -151,13 +151,43 @@ export const FullBiographyLink = styled.p`
 export const ActorCreditsContainer = styled.div`
   display: flex;
   justify-content: center;
+  align-items: center;
+  flex-direction: column;
   box-shadow: 1px 5px 15px 5px rgba(0, 0, 0, 0.3);
   border-radius: 23px;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+  color: ${(props) => props.theme.colors.sectionText};
+
   background: ${(props) =>
     props.theme.title === "dark" ? props.theme.colors.primary : "#fff"};
 
   @media (max-width: 910px) {
-    margin: 0 1rem 0 1rem;
+    margin: 2rem 1rem 2rem 1rem;
+  }
+`;
+
+export const ActorCreditsTitle = styled.h2`
+  font-size: 2.1rem;
+  margin: 0;
+  padding: 0 1rem;
+  line-height: 40px;
+  margin-top: 2rem;
+`;
+
+export const ActorCreditContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-top: 2rem;
+  padding: 0 2rem 2rem;
+
+  @media (max-width: 703px) {
+    padding: 0 1rem 2rem;
+  }
+
+  @media (max-width: 505px) {
+    grid-template-columns: 1fr;
   }
 `;
 
@@ -167,4 +197,60 @@ export const MediaCreditContainer = styled.div`
   justify-content: center;
   flex-direction: column;
   flex-wrap: wrap;
+  transition: 0.3s;
+  margin: 10px;
+
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.04);
+  }
+`;
+
+export const MediaPosterContainer = styled.div`
+  width: 300px;
+  height: 200px;
+  position: relative;
+
+  @media (max-width: 703px) {
+    width: 255px;
+    height: 170px;
+  }
+
+  @media (max-width: 579px) {
+    width: 216.75px;
+    height: 144.5px;
+  }
+`;
+
+export const MediaPoster = styled.img`
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  box-shadow: 1px 5px 15px 5px rgba(0, 0, 0, 0.2);
+  object-fit: cover;
+`;
+
+export const NoPosterIconContainer = styled.div`
+  position: absolute;
+  top: 71px;
+  left: 122px;
+  width: 60px;
+`;
+
+export const NoPosterIcon = styled.img``;
+
+export const MediaTitle = styled.h3`
+  font-size: 1.4rem;
+  text-align: center;
+  margin: 0;
+  margin-top: 0.3rem;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+`;
+
+export const MediaCharater = styled.p`
+  text-align: center;
+  margin: 0;
 `;

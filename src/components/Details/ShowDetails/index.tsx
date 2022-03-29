@@ -128,14 +128,26 @@ export function ShowDetails() {
           )}
           <S.ReleaseAndRuntimeContainer>
             <S.ShowReleaseDate>
-              {`${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`}
+              {showDetails?.first_air_date
+                ? `${date.getDate()}/${
+                    date.getMonth() + 1
+                  }/${date.getFullYear()}`
+                : "Unknown Release Date"}
             </S.ShowReleaseDate>
-            <S.ShowRuntime>{`${showDetails?.number_of_seasons} Seasons`}</S.ShowRuntime>
+            <S.ShowRuntime>
+              {showDetails?.number_of_seasons
+                ? `${showDetails?.number_of_seasons} ${
+                    showDetails.number_of_seasons > 1 ? "Seasons" : "Season"
+                  }`
+                : "Unknown/No Seasons"}
+            </S.ShowRuntime>
             <S.ShowProductionCompany>
               {showDetails?.networks[0].name}
             </S.ShowProductionCompany>
           </S.ReleaseAndRuntimeContainer>
-          <S.ShowOverview>{showDetails?.overview}</S.ShowOverview>
+          <S.ShowOverview>
+            {showDetails?.overview ? showDetails?.overview : "No Overview"}
+          </S.ShowOverview>
           <S.CastContainer>
             <AliceCarousel
               animationDuration={200}
@@ -173,7 +185,11 @@ export function ShowDetails() {
             />
           </S.CastContainer>
           {showDetails?.status === "Unreleased" && (
-            <S.UnreleasedText>{`Releases in ${diff} days`}</S.UnreleasedText>
+            <S.UnreleasedText>
+              {showDetails?.first_air_date
+                ? `Releases in ${diff} days`
+                : "Release Date to be Announced"}
+            </S.UnreleasedText>
           )}
         </S.InfoContainer>
       </S.Content>

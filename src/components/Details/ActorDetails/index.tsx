@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { api } from "../../../services/api";
 import defaultPicture from "../../../assets/default2.png";
+import defaultPoster from "../../../assets/defaultposter.png";
 import * as S from "./styles";
 import { ActorBiographyModal } from "../../Modal/ActorBiographyModal";
+import tvIcon from "../../../assets/tvicon.svg";
+import movieIcon from "../../../assets/movieicon.svg";
 
 interface ActorDetailsInterface {
   name: string;
@@ -15,19 +18,24 @@ interface ActorDetailsInterface {
   deathday?: string;
 }
 
-// interface ActorCreditsInterface {
-//   adult: boolean;
-//   backdrop_path: string;
-//   original_title: string;
-//   vote_average: number;
-//   title: string;
-//   character: string;
-// }
+interface ActorCreditsInterface {
+  adult: boolean;
+  backdrop_path: string;
+  original_title: string;
+  name?: string;
+  vote_average: number;
+  title?: string;
+  character: string;
+  media_type: string;
+  id: number;
+}
 
 export function ActorDetails() {
   const { id } = useParams();
   const [actorDetails, setActorDetails] = useState<ActorDetailsInterface>();
-  // const [actorCredits, setActorCredits] = useState<ActorCreditsInterface[]>();
+  const [actorCredits, setActorCredits] = useState<ActorCreditsInterface[]>();
+
+  const navigate = useNavigate();
 
   const [show, setShow] = useState(false);
 
@@ -39,7 +47,12 @@ export function ActorDetails() {
         `person/${id}?api_key=24e0e0f71e0ac9cb9c5418459514eda9&language=en-US`
       )
       .then((response) => setActorDetails(response.data));
-  });
+    api
+      .get(
+        `person/${id}/combined_credits?api_key=24e0e0f71e0ac9cb9c5418459514eda9&language=en-US`
+      )
+      .then((response) => setActorCredits(response.data.cast));
+  }, [id]);
 
   return (
     <S.Container>
@@ -76,6 +89,44 @@ export function ActorDetails() {
           )}
         </S.ActorDetails>
       </S.MainInfoContainer>
+      <S.ActorCreditsContainer>
+        <S.ActorCreditsTitle>{actorDetails?.name} Credits</S.ActorCreditsTitle>
+        <S.ActorCreditContainer>
+          {actorCredits?.map((credit) => (
+            <S.MediaCreditContainer
+              key={credit.id}
+              onClick={() =>
+                navigate(
+                  credit.media_type === "tv"
+                    ? `/show/${credit.id}`
+                    : `/movie/${credit.id}`
+                )
+              }
+            >
+              <S.MediaPosterContainer>
+                <S.MediaPoster
+                  src={
+                    credit.backdrop_path
+                      ? `https://image.tmdb.org/t/p/w500/${credit.backdrop_path}`
+                      : defaultPoster
+                  }
+                />
+                {credit.backdrop_path === null && (
+                  <S.NoPosterIconContainer>
+                    <S.NoPosterIcon
+                      src={credit.media_type === "tv" ? tvIcon : movieIcon}
+                    />
+                  </S.NoPosterIconContainer>
+                )}
+              </S.MediaPosterContainer>
+              <S.MediaTitle>{credit.title || credit.name}</S.MediaTitle>
+              <S.MediaCharater>{`as ${
+                credit.character ? credit.character : "Unknown Character"
+              }`}</S.MediaCharater>
+            </S.MediaCreditContainer>
+          ))}
+        </S.ActorCreditContainer>
+      </S.ActorCreditsContainer>
       <ActorBiographyModal
         show={show}
         setShow={setShow}

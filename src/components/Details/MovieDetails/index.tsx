@@ -117,14 +117,26 @@ export function MovieDetails() {
           )}
           <S.ReleaseAndRuntimeContainer>
             <S.MovieReleaseDate>
-              {`${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`}
+              {movieDetails?.release_date
+                ? `${date.getDate()}/${
+                    date.getMonth() + 1
+                  }/${date.getFullYear()}`
+                : "Unknown Date"}
             </S.MovieReleaseDate>
-            <S.MovieRuntime>{`${movieDetails?.runtime}min`}</S.MovieRuntime>
+            <S.MovieRuntime>
+              {movieDetails?.runtime
+                ? `${movieDetails?.runtime}min`
+                : "Unknown Runtime"}
+            </S.MovieRuntime>
             <S.MovieProductionCompany>
-              {movieDetails?.production_companies[0].name}
+              {movieDetails?.production_companies[0]
+                ? movieDetails?.production_companies[0].name
+                : "Unknown"}
             </S.MovieProductionCompany>
           </S.ReleaseAndRuntimeContainer>
-          <S.MovieOverview>{movieDetails?.overview}</S.MovieOverview>
+          <S.MovieOverview>
+            {movieDetails?.overview ? movieDetails?.overview : "No Overview"}
+          </S.MovieOverview>
           <S.CastContainer>
             <AliceCarousel
               animationDuration={200}
@@ -162,7 +174,11 @@ export function MovieDetails() {
             />
           </S.CastContainer>
           {movieDetails?.status !== "Released" && (
-            <S.UnreleasedText>{`Releases in ${diff} days`}</S.UnreleasedText>
+            <S.UnreleasedText>
+              {movieDetails?.release_date
+                ? `Releases in ${diff} days`
+                : "Release Date to be Announced"}
+            </S.UnreleasedText>
           )}
         </S.InfoContainer>
       </S.Content>

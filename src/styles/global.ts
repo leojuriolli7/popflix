@@ -65,6 +65,7 @@ export const GlobalStyle = createGlobalStyle`
       props.theme.title === "dark"
         ? props.theme.colors.primary
         : darken(0.06, props.theme.colors.background)};
+    border-radius: 20px;
 
   }
 `;
