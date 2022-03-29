@@ -5,6 +5,7 @@ import * as S from "./styles";
 import defaultPicture from "../../../assets/default2.png";
 import { Rating } from "@mui/material";
 import AliceCarousel from "react-alice-carousel";
+import defaultPoster from "../../../assets/defaultposter.png";
 
 interface GenreInterface {
   name: string;
@@ -80,7 +81,11 @@ export function MovieDetails() {
     <S.Container>
       <S.Content>
         <S.Poster
-          src={`https://image.tmdb.org/t/p/w500/${movieDetails?.poster_path}`}
+          src={
+            movieDetails?.poster_path === null
+              ? defaultPoster
+              : `https://image.tmdb.org/t/p/w500/${movieDetails?.poster_path}`
+          }
         />
         <S.InfoContainer>
           <S.MovieTitle>{movieDetails?.title}</S.MovieTitle>

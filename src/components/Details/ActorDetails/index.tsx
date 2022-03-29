@@ -42,6 +42,7 @@ export function ActorDetails() {
   const handleClose = () => setShow(false);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     api
       .get(
         `person/${id}?api_key=24e0e0f71e0ac9cb9c5418459514eda9&language=en-US`
@@ -90,7 +91,7 @@ export function ActorDetails() {
         </S.ActorDetails>
       </S.MainInfoContainer>
       <S.ActorCreditsContainer>
-        <S.ActorCreditsTitle>{actorDetails?.name} Credits</S.ActorCreditsTitle>
+        <S.ActorCreditsTitle>{`${actorDetails?.name}'s Credits`}</S.ActorCreditsTitle>
         <S.ActorCreditContainer>
           {actorCredits?.map((credit) => (
             <S.MediaCreditContainer
@@ -120,9 +121,9 @@ export function ActorDetails() {
                 )}
               </S.MediaPosterContainer>
               <S.MediaTitle>{credit.title || credit.name}</S.MediaTitle>
-              <S.MediaCharater>{`as ${
-                credit.character ? credit.character : "Unknown Character"
-              }`}</S.MediaCharater>
+              <S.MediaCharacter>{`as ${
+                credit.character ? credit.character : "Unknown Character/Self"
+              }`}</S.MediaCharacter>
             </S.MediaCreditContainer>
           ))}
         </S.ActorCreditContainer>

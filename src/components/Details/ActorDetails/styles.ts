@@ -170,9 +170,9 @@ export const ActorCreditsContainer = styled.div`
 export const ActorCreditsTitle = styled.h2`
   font-size: 2.1rem;
   margin: 0;
-  padding: 0 1rem;
+  margin: 2rem 1rem 0 1rem;
   line-height: 40px;
-  margin-top: 2rem;
+  text-align: center;
 `;
 
 export const ActorCreditContainer = styled.div`
@@ -186,7 +186,7 @@ export const ActorCreditContainer = styled.div`
     padding: 0 1rem 2rem;
   }
 
-  @media (max-width: 505px) {
+  @media (max-width: 544px) {
     grid-template-columns: 1fr;
   }
 `;
@@ -216,7 +216,7 @@ export const MediaPosterContainer = styled.div`
     height: 170px;
   }
 
-  @media (max-width: 579px) {
+  @media (max-width: 612px) {
     width: 216.75px;
     height: 144.5px;
   }
@@ -235,6 +235,16 @@ export const NoPosterIconContainer = styled.div`
   top: 71px;
   left: 122px;
   width: 60px;
+
+  @media (max-width: 703px) {
+    top: 56px;
+    left: 103px;
+  }
+
+  @media (max-width: 579px) {
+    top: 44px;
+    left: 83px;
+  }
 `;
 
 export const NoPosterIcon = styled.img``;
@@ -250,7 +260,7 @@ export const MediaTitle = styled.h3`
   -webkit-box-orient: vertical;
 `;
 
-export const MediaCharater = styled.p`
+export const MediaCharacter = styled.p`
   text-align: center;
   margin: 0;
 `;

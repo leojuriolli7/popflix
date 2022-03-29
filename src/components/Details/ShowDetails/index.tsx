@@ -91,7 +91,11 @@ export function ShowDetails() {
     <S.Container>
       <S.Content>
         <S.Poster
-          src={`https://image.tmdb.org/t/p/w500/${showDetails?.poster_path}`}
+          src={
+            showDetails?.poster_path === null
+              ? defaultPoster
+              : `https://image.tmdb.org/t/p/w500/${showDetails?.poster_path}`
+          }
         />
         <S.InfoContainer>
           <S.ShowTitle>{showDetails?.name}</S.ShowTitle>
@@ -193,40 +197,42 @@ export function ShowDetails() {
           )}
         </S.InfoContainer>
       </S.Content>
-      <S.SeasonsContent>
-        <S.SeasonOverview>Seasons Overview</S.SeasonOverview>
-        <S.SeasonsContainer>
-          {showDetails?.seasons.map((season) => (
-            <S.SeasonContainer key={season.id}>
-              <S.SeasonImageContainer>
-                <S.SeasonImage
-                  src={
-                    season.poster_path === null
-                      ? defaultPoster
-                      : `https://image.tmdb.org/t/p/w200/${season.poster_path}`
-                  }
-                />
-                {season.poster_path === null && (
-                  <>
-                    <S.IconContainer>
-                      <S.Icon src={tvIcon} />
-                    </S.IconContainer>
-                  </>
-                )}
-              </S.SeasonImageContainer>
-              <S.SeasonTitle>{season.name}</S.SeasonTitle>
-              <S.SeasonDetailsContainer>
-                <S.SeasonAirDate>
-                  Air Date: {season.air_date === null ? "?" : season.air_date}
-                </S.SeasonAirDate>
-                <S.SeasonEpisodeCount>
-                  {season.episode_count} Episodes
-                </S.SeasonEpisodeCount>
-              </S.SeasonDetailsContainer>
-            </S.SeasonContainer>
-          ))}
-        </S.SeasonsContainer>
-      </S.SeasonsContent>
+      {showDetails?.seasons && (
+        <S.SeasonsContent>
+          <S.SeasonOverview>Seasons Overview</S.SeasonOverview>
+          <S.SeasonsContainer>
+            {showDetails?.seasons.map((season) => (
+              <S.SeasonContainer key={season.id}>
+                <S.SeasonImageContainer>
+                  <S.SeasonImage
+                    src={
+                      season.poster_path === null
+                        ? defaultPoster
+                        : `https://image.tmdb.org/t/p/w200/${season.poster_path}`
+                    }
+                  />
+                  {season.poster_path === null && (
+                    <>
+                      <S.IconContainer>
+                        <S.Icon src={tvIcon} />
+                      </S.IconContainer>
+                    </>
+                  )}
+                </S.SeasonImageContainer>
+                <S.SeasonTitle>{season.name}</S.SeasonTitle>
+                <S.SeasonDetailsContainer>
+                  <S.SeasonAirDate>
+                    Air Date: {season.air_date === null ? "?" : season.air_date}
+                  </S.SeasonAirDate>
+                  <S.SeasonEpisodeCount>
+                    {season.episode_count} Episodes
+                  </S.SeasonEpisodeCount>
+                </S.SeasonDetailsContainer>
+              </S.SeasonContainer>
+            ))}
+          </S.SeasonsContainer>
+        </S.SeasonsContent>
+      )}
     </S.Container>
   );
 }
