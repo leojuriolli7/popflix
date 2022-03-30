@@ -39,6 +39,7 @@ export const TitleText = styled.h2`
 export const BiographyText = styled.p`
   font-size: 1.1rem;
   color: ${(props) => props.theme.colors.sectionText};
+  text-align: justify;
 
   @media (max-width: 1080px) {
     font-size: 1.4rem;

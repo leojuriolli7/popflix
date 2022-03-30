@@ -250,6 +250,7 @@ export const ReviewTextContainer = styled.div`
   margin-top: 0.5rem;
   width: 95%;
   padding: 1rem;
+  text-align: justify;
   border-radius: 20px;
   background: ${(props) =>
     props.theme.title === "dark" ? props.theme.colors.background : "#fff"};
