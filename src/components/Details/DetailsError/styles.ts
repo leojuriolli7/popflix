@@ -1,5 +1,19 @@
 import styled from "styled-components";
 
+export const Container = styled.main.attrs({
+  className: "animate__animated animate__fadeIn",
+})`
+  max-width: 1100px;
+  margin: 0 auto;
+  margin-top: 2rem;
+  min-height: 80vh;
+  margin-bottom: 2rem;
+
+  @media (max-width: 845px) {
+    margin-top: 2rem;
+  }
+`;
+
 export const ErrorMessageContainer = styled.div`
   display: flex;
   justify-content: center;

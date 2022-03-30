@@ -88,156 +88,152 @@ export function ShowDetails() {
     (Number(date) - Number(currentDate)) / (1000 * 60 * 60 * 24)
   );
 
-  return (
+  return showDetails?.id ? (
     <S.Container>
-      {showDetails?.id ? (
-        <S.Content>
-          <S.Poster
-            src={
-              showDetails?.poster_path === null
-                ? defaultPoster
-                : `https://image.tmdb.org/t/p/w500/${showDetails?.poster_path}`
-            }
-          />
-          <S.InfoContainer>
-            <S.ShowTitle>{showDetails?.name}</S.ShowTitle>
-            <S.ShowGenresContainer>
-              {showDetails?.genres.map((genre: GenreInterface) => (
-                <S.ShowGenres key={genre.id}>{genre.name} </S.ShowGenres>
-              ))}
-            </S.ShowGenresContainer>
-            {showDetails?.status !== "Unreleased" && (
-              <S.ReleasedContainer>
-                <S.RatingContainer
-                  onClick={() => navigate(`/show/${id}/reviews`)}
-                >
-                  <Rating
-                    value={
-                      showDetails?.vote_average
-                        ? Number(showDetails.vote_average / 2)
-                        : 0
-                    }
-                    precision={0.5}
-                    readOnly
-                    size="large"
-                  />
-                  <S.RatingText>
-                    {`${
-                      showDetails?.vote_average
-                        ? Number(showDetails.vote_average / 2)
-                        : 0
-                    }
-              Stars`}
-                  </S.RatingText>
-                </S.RatingContainer>
-              </S.ReleasedContainer>
-            )}
-            <S.ReleaseAndRuntimeContainer>
-              <S.ShowReleaseDate>
-                {showDetails?.first_air_date
-                  ? `${date.getDate()}/${
-                      date.getMonth() + 1
-                    }/${date.getFullYear()}`
-                  : "Unknown Release Date"}
-              </S.ShowReleaseDate>
-              <S.ShowRuntime>
-                {showDetails?.number_of_seasons
-                  ? `${showDetails?.number_of_seasons} ${
-                      showDetails.number_of_seasons > 1 ? "Seasons" : "Season"
-                    }`
-                  : "Unknown/No Seasons"}
-              </S.ShowRuntime>
-              <S.ShowProductionCompany>
-                {showDetails?.networks[0].name}
-              </S.ShowProductionCompany>
-            </S.ReleaseAndRuntimeContainer>
-            <S.ShowOverview>
-              {showDetails?.overview ? showDetails?.overview : "No Overview"}
-            </S.ShowOverview>
-            <S.CastContainer>
-              <AliceCarousel
-                animationDuration={200}
-                disableButtonsControls
-                responsive={{
-                  0: {
-                    items: 2,
-                  },
-                  564: {
-                    items: 3,
-                  },
-                  985: {
-                    items: 4,
-                  },
-                }}
-                items={showCredits?.cast
-                  .slice(0, 10)
-                  .map((cast: CastInterface) => (
-                    <S.CastMemberContainer key={cast.id}>
-                      <S.CastMemberPicture
-                        onClick={() => navigate(`/actor/${cast.id}`)}
-                        src={
-                          cast.profile_path === null
-                            ? defaultPicture
-                            : `https://image.tmdb.org/t/p/w200/${cast.profile_path}`
-                        }
-                      />
-                      <S.CastMemberName>
-                        {cast.character !== ""
-                          ? `${cast.name} as ${cast.character}`
-                          : `${cast.name}`}
-                      </S.CastMemberName>
-                    </S.CastMemberContainer>
-                  ))}
-              />
-            </S.CastContainer>
-            {showDetails?.status === "Unreleased" && (
-              <S.UnreleasedText>
-                {showDetails?.first_air_date
-                  ? `Releases in ${diff} days`
-                  : "Release Date to be Announced"}
-              </S.UnreleasedText>
-            )}
-          </S.InfoContainer>
-        </S.Content>
-      ) : (
-        <DetailsError text="Show" />
-      )}
-      {showDetails?.seasons && (
-        <S.SeasonsContent>
-          <S.SeasonOverview>Seasons Overview</S.SeasonOverview>
-          <S.SeasonsContainer>
-            {showDetails?.seasons.map((season) => (
-              <S.SeasonContainer key={season.id}>
-                <S.SeasonImageContainer>
-                  <S.SeasonImage
-                    src={
-                      season.poster_path === null
-                        ? defaultPoster
-                        : `https://image.tmdb.org/t/p/w200/${season.poster_path}`
-                    }
-                  />
-                  {season.poster_path === null && (
-                    <>
-                      <S.IconContainer>
-                        <S.Icon src={tvIcon} />
-                      </S.IconContainer>
-                    </>
-                  )}
-                </S.SeasonImageContainer>
-                <S.SeasonTitle>{season.name}</S.SeasonTitle>
-                <S.SeasonDetailsContainer>
-                  <S.SeasonAirDate>
-                    Air Date: {season.air_date === null ? "?" : season.air_date}
-                  </S.SeasonAirDate>
-                  <S.SeasonEpisodeCount>
-                    {season.episode_count} Episodes
-                  </S.SeasonEpisodeCount>
-                </S.SeasonDetailsContainer>
-              </S.SeasonContainer>
+      <S.Content>
+        <S.Poster
+          src={
+            showDetails?.poster_path === null
+              ? defaultPoster
+              : `https://image.tmdb.org/t/p/w500/${showDetails?.poster_path}`
+          }
+        />
+        <S.InfoContainer>
+          <S.ShowTitle>{showDetails?.name}</S.ShowTitle>
+          <S.ShowGenresContainer>
+            {showDetails?.genres.map((genre: GenreInterface) => (
+              <S.ShowGenres key={genre.id}>{genre.name} </S.ShowGenres>
             ))}
-          </S.SeasonsContainer>
-        </S.SeasonsContent>
-      )}
+          </S.ShowGenresContainer>
+          {showDetails?.status !== "Unreleased" && (
+            <S.ReleasedContainer>
+              <S.RatingContainer
+                onClick={() => navigate(`/show/${id}/reviews`)}
+              >
+                <Rating
+                  value={
+                    showDetails?.vote_average
+                      ? Number(showDetails.vote_average / 2)
+                      : 0
+                  }
+                  precision={0.5}
+                  readOnly
+                  size="large"
+                />
+                <S.RatingText>
+                  {`${
+                    showDetails?.vote_average
+                      ? Number(showDetails.vote_average / 2)
+                      : 0
+                  }
+              Stars`}
+                </S.RatingText>
+              </S.RatingContainer>
+            </S.ReleasedContainer>
+          )}
+          <S.ReleaseAndRuntimeContainer>
+            <S.ShowReleaseDate>
+              {showDetails?.first_air_date
+                ? `${date.getDate()}/${
+                    date.getMonth() + 1
+                  }/${date.getFullYear()}`
+                : "Unknown Release Date"}
+            </S.ShowReleaseDate>
+            <S.ShowRuntime>
+              {showDetails?.number_of_seasons
+                ? `${showDetails?.number_of_seasons} ${
+                    showDetails.number_of_seasons > 1 ? "Seasons" : "Season"
+                  }`
+                : "Unknown/No Seasons"}
+            </S.ShowRuntime>
+            <S.ShowProductionCompany>
+              {showDetails?.networks[0].name}
+            </S.ShowProductionCompany>
+          </S.ReleaseAndRuntimeContainer>
+          <S.ShowOverview>
+            {showDetails?.overview ? showDetails?.overview : "No Overview"}
+          </S.ShowOverview>
+          <S.CastContainer>
+            <AliceCarousel
+              animationDuration={200}
+              disableButtonsControls
+              responsive={{
+                0: {
+                  items: 2,
+                },
+                564: {
+                  items: 3,
+                },
+                985: {
+                  items: 4,
+                },
+              }}
+              items={showCredits?.cast
+                .slice(0, 10)
+                .map((cast: CastInterface) => (
+                  <S.CastMemberContainer key={cast.id}>
+                    <S.CastMemberPicture
+                      onClick={() => navigate(`/actor/${cast.id}`)}
+                      src={
+                        cast.profile_path === null
+                          ? defaultPicture
+                          : `https://image.tmdb.org/t/p/w200/${cast.profile_path}`
+                      }
+                    />
+                    <S.CastMemberName>
+                      {cast.character !== ""
+                        ? `${cast.name} as ${cast.character}`
+                        : `${cast.name}`}
+                    </S.CastMemberName>
+                  </S.CastMemberContainer>
+                ))}
+            />
+          </S.CastContainer>
+          {showDetails?.status === "Unreleased" && (
+            <S.UnreleasedText>
+              {showDetails?.first_air_date
+                ? `Releases in ${diff} days`
+                : "Release Date to be Announced"}
+            </S.UnreleasedText>
+          )}
+        </S.InfoContainer>
+      </S.Content>
+      <S.SeasonsContent>
+        <S.SeasonOverview>Seasons Overview</S.SeasonOverview>
+        <S.SeasonsContainer>
+          {showDetails?.seasons.map((season) => (
+            <S.SeasonContainer key={season.id}>
+              <S.SeasonImageContainer>
+                <S.SeasonImage
+                  src={
+                    season.poster_path === null
+                      ? defaultPoster
+                      : `https://image.tmdb.org/t/p/w200/${season.poster_path}`
+                  }
+                />
+                {season.poster_path === null && (
+                  <>
+                    <S.IconContainer>
+                      <S.Icon src={tvIcon} />
+                    </S.IconContainer>
+                  </>
+                )}
+              </S.SeasonImageContainer>
+              <S.SeasonTitle>{season.name}</S.SeasonTitle>
+              <S.SeasonDetailsContainer>
+                <S.SeasonAirDate>
+                  Air Date: {season.air_date === null ? "?" : season.air_date}
+                </S.SeasonAirDate>
+                <S.SeasonEpisodeCount>
+                  {season.episode_count} Episodes
+                </S.SeasonEpisodeCount>
+              </S.SeasonDetailsContainer>
+            </S.SeasonContainer>
+          ))}
+        </S.SeasonsContainer>
+      </S.SeasonsContent>
     </S.Container>
+  ) : (
+    <DetailsError text="Error: No Show with this id" />
   );
 }
