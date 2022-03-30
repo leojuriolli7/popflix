@@ -5,8 +5,7 @@ export const ErrorMessageContainer = styled.div`
   justify-content: center;
   align-items: center;
   border-radius: 23px;
-  background: ${(props) =>
-    props.theme.title === "dark" ? props.theme.colors.primary : "#fff"};
+  background: transparent;
 
   @media (max-width: 1150px) {
     margin: 0 2rem 0 2rem;
