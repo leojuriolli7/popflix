@@ -75,7 +75,7 @@ export const ActorName = styled.h1`
 
 export const ActorPlaceOfBirth = styled.p`
   font-size: 1.1rem;
-  margin: 0;
+  margin: 0 1rem 0 1rem;
 
   @media (max-width: 1080px) {
     font-size: 1.2rem;

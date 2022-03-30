@@ -15,7 +15,7 @@ export const CloseButtonContainer = styled.div`
 
   &:hover {
     cursor: pointer;
-    transform: scale(1.05);
+    transform: scale(1.1);
   }
 `;
 

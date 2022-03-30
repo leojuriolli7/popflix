@@ -67,5 +67,21 @@ export const GlobalStyle = createGlobalStyle`
         : darken(0.06, props.theme.colors.background)};
     border-radius: 20px;
 
+    .btn {
+      padding: 0.475rem 1.25rem;
+      font-size: 1.2rem;
+      border-radius: 40px;
+    }
   }
+
+  .modal {
+    padding: 0;
+  }
+
+  .modal-dialog {
+    @media (min-width: 740px) {
+      max-width: 688px;
+    }
+  }
+
 `;

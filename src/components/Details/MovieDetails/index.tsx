@@ -6,6 +6,7 @@ import defaultPicture from "../../../assets/default2.png";
 import { Rating } from "@mui/material";
 import AliceCarousel from "react-alice-carousel";
 import defaultPoster from "../../../assets/defaultposter.png";
+import { DetailsError } from "../DetailsError";
 
 interface GenreInterface {
   name: string;
@@ -79,114 +80,118 @@ export function MovieDetails() {
 
   return (
     <S.Container>
-      <S.Content>
-        <S.Poster
-          src={
-            movieDetails?.poster_path === null
-              ? defaultPoster
-              : `https://image.tmdb.org/t/p/w500/${movieDetails?.poster_path}`
-          }
-        />
-        <S.InfoContainer>
-          <S.MovieTitle>{movieDetails?.title}</S.MovieTitle>
-          <S.MovieGenresContainer>
-            {movieDetails?.genres.map((genre: GenreInterface) => (
-              <S.MovieGenres key={genre.id}>{genre.name} </S.MovieGenres>
-            ))}
-          </S.MovieGenresContainer>
-          {movieDetails?.status === "Released" && (
-            <S.ReleasedContainer>
-              <S.RatingContainer
-                onClick={() => navigate(`/movie/${id}/reviews`)}
-              >
-                <Rating
-                  value={
-                    movieDetails?.vote_average
-                      ? Number(movieDetails.vote_average / 2)
-                      : 0
-                  }
-                  precision={0.5}
-                  readOnly
-                  size="large"
-                />
-                <S.RatingText>
-                  {`${
-                    movieDetails?.vote_average
-                      ? Number(movieDetails.vote_average / 2)
-                      : 0
-                  }
+      {movieDetails?.id ? (
+        <S.Content>
+          <S.Poster
+            src={
+              movieDetails?.poster_path === null
+                ? defaultPoster
+                : `https://image.tmdb.org/t/p/w500/${movieDetails?.poster_path}`
+            }
+          />
+          <S.InfoContainer>
+            <S.MovieTitle>{movieDetails?.title}</S.MovieTitle>
+            <S.MovieGenresContainer>
+              {movieDetails?.genres.map((genre: GenreInterface) => (
+                <S.MovieGenres key={genre.id}>{genre.name} </S.MovieGenres>
+              ))}
+            </S.MovieGenresContainer>
+            {movieDetails?.status === "Released" && (
+              <S.ReleasedContainer>
+                <S.RatingContainer
+                  onClick={() => navigate(`/movie/${id}/reviews`)}
+                >
+                  <Rating
+                    value={
+                      movieDetails?.vote_average
+                        ? Number(movieDetails.vote_average / 2)
+                        : 0
+                    }
+                    precision={0.5}
+                    readOnly
+                    size="large"
+                  />
+                  <S.RatingText>
+                    {`${
+                      movieDetails?.vote_average
+                        ? Number(movieDetails.vote_average / 2)
+                        : 0
+                    }
               Stars`}
-                </S.RatingText>
-              </S.RatingContainer>
-            </S.ReleasedContainer>
-          )}
-          <S.ReleaseAndRuntimeContainer>
-            <S.MovieReleaseDate>
-              {movieDetails?.release_date
-                ? `${date.getDate()}/${
-                    date.getMonth() + 1
-                  }/${date.getFullYear()}`
-                : "Unknown Date"}
-            </S.MovieReleaseDate>
-            <S.MovieRuntime>
-              {movieDetails?.runtime
-                ? `${movieDetails?.runtime}min`
-                : "Unknown Runtime"}
-            </S.MovieRuntime>
-            <S.MovieProductionCompany>
-              {movieDetails?.production_companies[0]
-                ? movieDetails?.production_companies[0].name
-                : "Unknown"}
-            </S.MovieProductionCompany>
-          </S.ReleaseAndRuntimeContainer>
-          <S.MovieOverview>
-            {movieDetails?.overview ? movieDetails?.overview : "No Overview"}
-          </S.MovieOverview>
-          <S.CastContainer>
-            <AliceCarousel
-              animationDuration={200}
-              disableButtonsControls
-              responsive={{
-                0: {
-                  items: 2,
-                },
-                564: {
-                  items: 3,
-                },
-                985: {
-                  items: 4,
-                },
-              }}
-              items={movieCredits?.cast
-                .slice(0, 10)
-                .map((cast: CastInterface) => (
-                  <S.CastMemberContainer key={cast.id}>
-                    <S.CastMemberPicture
-                      onClick={() => navigate(`/actor/${cast.id}`)}
-                      src={
-                        cast.profile_path === null
-                          ? defaultPicture
-                          : `https://image.tmdb.org/t/p/w200/${cast.profile_path}`
-                      }
-                    />
-                    <S.CastMemberName>
-                      {cast.character !== ""
-                        ? `${cast.name} as ${cast.character}`
-                        : `${cast.name}`}
-                    </S.CastMemberName>
-                  </S.CastMemberContainer>
-                ))}
-            />
-          </S.CastContainer>
-          {movieDetails?.status !== "Released" && (
-            <S.UnreleasedText>
-              {movieDetails?.release_date
-                ? `Releases in ${diff} days`
-                : "Release Date to be Announced"}
-            </S.UnreleasedText>
-          )}
-        </S.InfoContainer>
-      </S.Content>
+                  </S.RatingText>
+                </S.RatingContainer>
+              </S.ReleasedContainer>
+            )}
+            <S.ReleaseAndRuntimeContainer>
+              <S.MovieReleaseDate>
+                {movieDetails?.release_date
+                  ? `${
+                      date.getMonth() + 1
+                    }/${date.getDate()}/${date.getFullYear()}`
+                  : "Unknown Date"}
+              </S.MovieReleaseDate>
+              <S.MovieRuntime>
+                {movieDetails?.runtime
+                  ? `${movieDetails?.runtime}min`
+                  : "Unknown Runtime"}
+              </S.MovieRuntime>
+              <S.MovieProductionCompany>
+                {movieDetails?.production_companies[0]
+                  ? movieDetails?.production_companies[0].name
+                  : "Unknown"}
+              </S.MovieProductionCompany>
+            </S.ReleaseAndRuntimeContainer>
+            <S.MovieOverview>
+              {movieDetails?.overview ? movieDetails?.overview : "No Overview"}
+            </S.MovieOverview>
+            <S.CastContainer>
+              <AliceCarousel
+                animationDuration={200}
+                disableButtonsControls
+                responsive={{
+                  0: {
+                    items: 2,
+                  },
+                  564: {
+                    items: 3,
+                  },
+                  985: {
+                    items: 4,
+                  },
+                }}
+                items={movieCredits?.cast
+                  .slice(0, 10)
+                  .map((cast: CastInterface) => (
+                    <S.CastMemberContainer key={cast.id}>
+                      <S.CastMemberPicture
+                        onClick={() => navigate(`/actor/${cast.id}`)}
+                        src={
+                          cast.profile_path === null
+                            ? defaultPicture
+                            : `https://image.tmdb.org/t/p/w200/${cast.profile_path}`
+                        }
+                      />
+                      <S.CastMemberName>
+                        {cast.character !== ""
+                          ? `${cast.name} as ${cast.character}`
+                          : `${cast.name}`}
+                      </S.CastMemberName>
+                    </S.CastMemberContainer>
+                  ))}
+              />
+            </S.CastContainer>
+            {movieDetails?.status !== "Released" && (
+              <S.UnreleasedText>
+                {movieDetails?.release_date
+                  ? `Releases in ${diff} days`
+                  : "Release Date to be Announced"}
+              </S.UnreleasedText>
+            )}
+          </S.InfoContainer>
+        </S.Content>
+      ) : (
+        <DetailsError text="Movie" />
+      )}
     </S.Container>
   );
 }
