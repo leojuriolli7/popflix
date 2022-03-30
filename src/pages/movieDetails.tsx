@@ -1,12 +1,12 @@
 import { Footer } from "../components/Footer";
 import { Header } from "../components/Header";
-import { MovieDetails } from "../components/Details/MovieDetails";
+import { MediaDetails } from "../components/Details/MediaDetails";
 
 export function MovieDetailsPage() {
   return (
     <>
       <Header />
-      <MovieDetails />
+      <MediaDetails mediaType="movie" />
       <Footer />
     </>
   );

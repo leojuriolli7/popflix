@@ -1,12 +1,12 @@
 import { Footer } from "../components/Footer";
 import { Header } from "../components/Header";
-import { ShowDetails } from "../components/Details/ShowDetails";
+import { MediaDetails } from "../components/Details/MediaDetails";
 
 export function ShowDetailsPage() {
   return (
     <>
       <Header />
-      <ShowDetails />
+      <MediaDetails mediaType="tv" />
       <Footer />
     </>
   );

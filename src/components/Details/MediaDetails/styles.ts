@@ -68,14 +68,14 @@ export const InfoContainer = styled.div`
   }
 `;
 
-export const ShowTitle = styled.h1`
+export const MediaTitle = styled.h1`
   font-size: 2.8rem;
   margin-bottom: 0;
   margin: 2.2rem 30px 0 30px;
   line-height: 45px;
 `;
 
-export const ShowGenresContainer = styled.div`
+export const MediaGenresContainer = styled.div`
   margin: 15px 10px 5px 10px;
   display: flex;
   justify-content: center;
@@ -87,7 +87,7 @@ export const ShowGenresContainer = styled.div`
   }
 `;
 
-export const ShowGenres = styled.p`
+export const MediaGenres = styled.p`
   font-size: 1.1rem;
   line-height: 25px;
   text-decoration: underline;
@@ -116,7 +116,7 @@ export const ReleaseAndRuntimeContainer = styled.div`
   }
 `;
 
-export const ShowReleaseDate = styled.p`
+export const MediaReleaseDate = styled.p`
   font-size: 1.1rem;
   margin: 0;
 
@@ -125,11 +125,11 @@ export const ShowReleaseDate = styled.p`
   }
 `;
 
-export const ShowRuntime = styled(ShowReleaseDate)``;
+export const MediaRuntime = styled(MediaReleaseDate)``;
 
-export const ShowProductionCompany = styled(ShowReleaseDate)``;
+export const MediaProductionCompany = styled(MediaReleaseDate)``;
 
-export const ShowOverview = styled.p`
+export const MediaOverview = styled.p`
   margin-top: 20px;
   font-size: 1.1rem;
   margin: 15px 40px 20px 40px;
