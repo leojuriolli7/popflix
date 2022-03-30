@@ -65,6 +65,8 @@ export function Review({ mediaType }: ReviewProps) {
       .then((response) => setMediaDetails(response.data));
   }, [id, mediaType]);
 
+  const reviewDate = (date: any) => new Date(date);
+
   return (
     <S.Container>
       <S.Content>
@@ -139,16 +141,22 @@ export function Review({ mediaType }: ReviewProps) {
                 )}
               </S.RatingContainer>
               <S.ReviewDatesContainer>
-                <S.ReviewDates>{`Published at ${review.created_at.slice(
-                  0,
-                  10
-                )}`}</S.ReviewDates>
+                <S.ReviewDates>{`Published at ${reviewDate(
+                  review.created_at
+                ).getDate()}/${
+                  reviewDate(review.created_at).getMonth() + 1
+                }/${reviewDate(
+                  review.created_at
+                ).getFullYear()}`}</S.ReviewDates>
                 {review.created_at.slice(0, 10) !==
                 review.updated_at.slice(0, 10) ? (
-                  <S.ReviewDates>{`Updated at ${review.updated_at.slice(
-                    0,
-                    10
-                  )}`}</S.ReviewDates>
+                  <S.ReviewDates>{`Updated at ${reviewDate(
+                    review.updated_at
+                  ).getDate()}/${
+                    reviewDate(review.updated_at).getMonth() + 1
+                  }/${reviewDate(
+                    review.updated_at
+                  ).getFullYear()}`}</S.ReviewDates>
                 ) : null}
               </S.ReviewDatesContainer>
               <S.ReviewTextContainer>

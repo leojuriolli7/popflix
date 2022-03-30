@@ -124,9 +124,9 @@ export function MovieDetails() {
           <S.ReleaseAndRuntimeContainer>
             <S.MovieReleaseDate>
               {movieDetails?.release_date
-                ? `${
+                ? `${date.getDate()}/${
                     date.getMonth() + 1
-                  }/${date.getDate()}/${date.getFullYear()}`
+                  }/${date.getFullYear()}`
                 : "Unknown Date"}
             </S.MovieReleaseDate>
             <S.MovieRuntime>

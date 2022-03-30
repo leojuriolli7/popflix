@@ -88,6 +88,8 @@ export function ShowDetails() {
     (Number(date) - Number(currentDate)) / (1000 * 60 * 60 * 24)
   );
 
+  const seasonDate = (date: any) => new Date(date);
+
   return showDetails?.id ? (
     <S.Container>
       <S.Content>
@@ -222,7 +224,12 @@ export function ShowDetails() {
               <S.SeasonTitle>{season.name}</S.SeasonTitle>
               <S.SeasonDetailsContainer>
                 <S.SeasonAirDate>
-                  Air Date: {season.air_date === null ? "?" : season.air_date}
+                  Air Date:{" "}
+                  {season.air_date === null
+                    ? "?"
+                    : `${seasonDate(season.air_date).getDate()}/${
+                        seasonDate(season.air_date).getMonth() + 1
+                      }/${seasonDate(season.air_date).getFullYear()}`}
                 </S.SeasonAirDate>
                 <S.SeasonEpisodeCount>
                   {season.episode_count} Episodes
