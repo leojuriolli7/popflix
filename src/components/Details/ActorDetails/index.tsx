@@ -56,6 +56,14 @@ export function ActorDetails() {
       .then((response) => setActorCredits(response.data.cast));
   }, [id]);
 
+  const birthdayDate = new Date(
+    actorDetails?.birthday ? actorDetails?.birthday : "1969-09-12"
+  );
+
+  const deathdayDate = new Date(
+    actorDetails?.deathday ? actorDetails?.deathday : "1969-09-12"
+  );
+
   return actorDetails?.name !== undefined ? (
     <S.Container>
       <S.MainInfoContainer>
@@ -74,9 +82,13 @@ export function ActorDetails() {
             {actorDetails?.place_of_birth}
           </S.ActorPlaceOfBirth>
           <S.ActorBirthdayContainer>
-            <S.ActorBirthday>{actorDetails?.birthday}</S.ActorBirthday>
+            <S.ActorBirthday>{`${birthdayDate.getDate()}/${
+              birthdayDate.getMonth() + 1
+            }/${birthdayDate.getFullYear()}`}</S.ActorBirthday>
             {actorDetails?.deathday && (
-              <S.ActorDeathday>{actorDetails?.deathday}</S.ActorDeathday>
+              <S.ActorDeathday>{`${deathdayDate.getDate()}/${
+                deathdayDate.getMonth() + 1
+              }/${deathdayDate.getFullYear()}`}</S.ActorDeathday>
             )}
           </S.ActorBirthdayContainer>
           <S.ActorBiographyContainer>
