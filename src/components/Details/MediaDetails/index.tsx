@@ -68,7 +68,11 @@ interface MediaCreditsInterface {
   cast: CastInterface[];
 }
 
-export function MediaDetails({ mediaType }: any) {
+interface MediaDetailsProps {
+  mediaType: "tv" | "movie";
+}
+
+export function MediaDetails({ mediaType }: MediaDetailsProps) {
   const { id } = useParams();
   const [mediaDetails, setMediaDetails] = useState<MediaDetailsInterface>();
   const [mediaCredits, setMediaCredits] = useState<MediaCreditsInterface>();
@@ -225,9 +229,9 @@ export function MediaDetails({ mediaType }: any) {
         </S.InfoContainer>
       </S.Content>
       {mediaDetails?.seasons && (
-        <S.SeasonsContent>
-          <S.SeasonOverview>Seasons Overview</S.SeasonOverview>
-          <S.SeasonsContainer>
+        <S.SeasonContainerWrap>
+          <S.SeasonSectionTitle>Seasons Overview</S.SeasonSectionTitle>
+          <S.SeasonListContainer>
             {mediaDetails?.seasons.map((season) => (
               <S.SeasonContainer key={season.id}>
                 <S.SeasonImageContainer>
@@ -240,9 +244,9 @@ export function MediaDetails({ mediaType }: any) {
                   />
                   {season.poster_path === null && (
                     <>
-                      <S.IconContainer>
-                        <S.Icon src={tvIcon} />
-                      </S.IconContainer>
+                      <S.NoPosterIconContainer>
+                        <S.NoPosterIcon src={tvIcon} />
+                      </S.NoPosterIconContainer>
                     </>
                   )}
                 </S.SeasonImageContainer>
@@ -262,8 +266,8 @@ export function MediaDetails({ mediaType }: any) {
                 </S.SeasonDetailsContainer>
               </S.SeasonContainer>
             ))}
-          </S.SeasonsContainer>
-        </S.SeasonsContent>
+          </S.SeasonListContainer>
+        </S.SeasonContainerWrap>
       )}
     </S.Container>
   ) : (

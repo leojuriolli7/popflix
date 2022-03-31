@@ -103,9 +103,9 @@ export function ActorDetails() {
           )}
         </S.ActorDetails>
       </S.MainInfoContainer>
-      <S.ActorCreditsContainer>
-        <S.ActorCreditsTitle>{`${actorDetails?.name}'s Credits`}</S.ActorCreditsTitle>
-        <S.ActorCreditContainer>
+      <S.CreditsListContainer>
+        <S.CreditsSectionTitle>{`${actorDetails?.name}'s Credits`}</S.CreditsSectionTitle>
+        <S.CreditContainer>
           {actorCredits?.map((credit) => (
             <S.MediaCreditContainer
               key={credit.id}
@@ -139,8 +139,8 @@ export function ActorDetails() {
               }`}</S.MediaCharacter>
             </S.MediaCreditContainer>
           ))}
-        </S.ActorCreditContainer>
-      </S.ActorCreditsContainer>
+        </S.CreditContainer>
+      </S.CreditsListContainer>
       <ActorBiographyModal
         show={show}
         setShow={setShow}

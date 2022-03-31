@@ -71,12 +71,12 @@ export const InfoContainer = styled.div`
 export const MediaTitle = styled.h1`
   font-size: 2.8rem;
   margin-bottom: 0;
-  margin: 2.2rem 30px 0 30px;
+  margin: 2.2rem 35px 0 35px;
   line-height: 45px;
 `;
 
 export const MediaGenresContainer = styled.div`
-  margin: 15px 10px 5px 10px;
+  margin: 15px 35px 5px 35px;
   display: flex;
   justify-content: center;
   gap: 0.75rem;
@@ -229,7 +229,7 @@ export const UnreleasedText = styled.p`
   }
 `;
 
-export const SeasonsContent = styled(Content)`
+export const SeasonContainerWrap = styled(Content)`
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
@@ -238,7 +238,7 @@ export const SeasonsContent = styled(Content)`
   margin-top: 3rem;
 `;
 
-export const SeasonOverview = styled.h2`
+export const SeasonSectionTitle = styled.h2`
   font-size: 3rem;
   color: ${(props) => props.theme.colors.sectionText};
 
@@ -251,7 +251,7 @@ export const SeasonOverview = styled.h2`
   }
 `;
 
-export const SeasonsContainer = styled.div`
+export const SeasonListContainer = styled.div`
   display: flex;
   box-shadow: 1px 5px 15px 5px rgba(0, 0, 0, 0.3);
   border-radius: 23px;
@@ -293,7 +293,7 @@ export const SeasonImage = styled.img`
   object-fit: cover;
 `;
 
-export const IconContainer = styled.div`
+export const NoPosterIconContainer = styled.div`
   position: absolute;
   bottom: 120px;
   left: 25px;
@@ -301,7 +301,7 @@ export const IconContainer = styled.div`
   text-align: center;
 `;
 
-export const Icon = styled.img`
+export const NoPosterIcon = styled.img`
   width: 45%;
 `;
 

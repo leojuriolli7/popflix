@@ -99,6 +99,11 @@ export const SectionTitle = styled.h1`
     margin-bottom: 0;
   }
 
+  @media (max-width: 375px) {
+    font-size: 1.9rem;
+    margin-bottom: 0;
+  }
+
   @media (max-width: 353px) {
     font-size: 1.8rem;
     margin-bottom: 0;

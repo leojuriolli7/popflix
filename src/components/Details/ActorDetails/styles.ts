@@ -104,6 +104,10 @@ export const ActorDeathday = styled(ActorBirthday)``;
 
 export const ActorBiographyContainer = styled.div`
   margin: 0.8rem 1rem 0.8rem 1rem;
+
+  @media (max-width: 1080px) {
+    margin: 0.8rem 2rem 0.8rem 2rem;
+  }
 `;
 
 export const ActorBiography = styled.p`
@@ -116,7 +120,7 @@ export const ActorBiography = styled.p`
 
   @media (max-width: 1080px) {
     font-size: 1.2rem;
-    -webkit-line-clamp: 15;
+    -webkit-line-clamp: 14;
   }
 
   @media (max-width: 800px) {
@@ -148,7 +152,7 @@ export const FullBiographyLink = styled.p`
   }
 `;
 
-export const ActorCreditsContainer = styled.div`
+export const CreditsListContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -167,7 +171,7 @@ export const ActorCreditsContainer = styled.div`
   }
 `;
 
-export const ActorCreditsTitle = styled.h2`
+export const CreditsSectionTitle = styled.h2`
   font-size: 2.1rem;
   margin: 0;
   margin: 2rem 1rem 0 1rem;
@@ -175,14 +179,14 @@ export const ActorCreditsTitle = styled.h2`
   text-align: center;
 `;
 
-export const ActorCreditContainer = styled.div`
+export const CreditContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
   margin-top: 2rem;
   padding: 0 2rem 2rem;
 
-  @media (max-width: 703px) {
+  @media (max-width: 730px) {
     padding: 0 1rem 2rem;
   }
 
