@@ -20,7 +20,7 @@ export function Header() {
           <S.Logo
             src={theme === "dark" ? logoDark : logoWhite}
             title="Go to TMDBd"
-            onClick={() => window.open("https://www.themoviedb.org/")}
+            onClick={() => navigate("/")}
           />
         </S.LogoContainer>
         <S.Navigation>

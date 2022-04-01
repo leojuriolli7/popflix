@@ -63,6 +63,11 @@ export const InfoContainer = styled.div`
     background-color: #df2935;
   }
 
+  .alice-carousel__dots-item:not(.__custom) {
+    background: ${(props) =>
+      props.theme.title === "dark" ? "#e0e4fb" : "grey"};
+  }
+
   @media (max-width: 845px) {
     width: 100%;
   }

@@ -8,6 +8,8 @@ import AliceCarousel from "react-alice-carousel";
 import defaultPoster from "../../../assets/defaultposter.png";
 import tvIcon from "../../../assets/tvicon.svg";
 import { DetailsError } from "../DetailsError";
+// import { useMutation } from "react-query";
+// import { getMediaDetails } from "../../../utils/requests";
 
 interface GenreInterface {
   name: string;
@@ -77,6 +79,13 @@ export function MediaDetails({ mediaType }: MediaDetailsProps) {
   const [mediaDetails, setMediaDetails] = useState<MediaDetailsInterface>();
   const [mediaCredits, setMediaCredits] = useState<MediaCreditsInterface>();
   const navigate = useNavigate();
+
+  // const { mutate } = useMutation(getMediaDetails(mediaType, id), {
+  //   onSuccess: (data) => {
+  //     setMediaDetails(data);
+  //   },
+  //   onError: () => {},
+  // });
 
   useEffect(() => {
     window.scrollTo(0, 0);

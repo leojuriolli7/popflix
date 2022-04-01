@@ -4,7 +4,7 @@ import { api } from "../../../services/api";
 import defaultPicture from "../../../assets/default2.png";
 import defaultPoster from "../../../assets/defaultposter.png";
 import * as S from "./styles";
-import { ActorBiographyModal } from "../../Modal/ActorBiographyModal";
+import { ActorBiographyModal } from "../../Modals/ActorBiographyModal";
 import tvIcon from "../../../assets/tvicon.svg";
 import movieIcon from "../../../assets/movieicon.svg";
 import { DetailsError } from "../DetailsError";
@@ -17,6 +17,7 @@ interface ActorDetailsInterface {
   profile_path: string;
   birthday: string;
   deathday?: string;
+  known_for_department: string;
 }
 
 interface ActorCreditsInterface {
@@ -91,6 +92,9 @@ export function ActorDetails() {
               }/${deathdayDate.getFullYear()}`}</S.ActorDeathday>
             )}
           </S.ActorBirthdayContainer>
+          {actorDetails?.known_for_department && (
+            <S.KnownFor>{`Known for: ${actorDetails?.known_for_department}`}</S.KnownFor>
+          )}
           <S.ActorBiographyContainer>
             <S.ActorBiography>{actorDetails?.biography}</S.ActorBiography>
           </S.ActorBiographyContainer>

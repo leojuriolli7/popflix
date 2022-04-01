@@ -88,7 +88,7 @@ export const ActorBirthdayContainer = styled.div`
   justify-content: center;
   align-items: center;
   gap: 0.5rem;
-  margin-top: 1rem;
+  margin-top: 0.5rem;
 `;
 
 export const ActorBirthday = styled.p`
@@ -101,6 +101,11 @@ export const ActorBirthday = styled.p`
 `;
 
 export const ActorDeathday = styled(ActorBirthday)``;
+
+export const KnownFor = styled(ActorBirthday)`
+  margin-top: 0.5rem;
+  text-align: center;
+`;
 
 export const ActorBiographyContainer = styled.div`
   margin: 0.8rem 1rem 0.8rem 1rem;
@@ -115,20 +120,16 @@ export const ActorBiography = styled.p`
   margin: 0;
   overflow: hidden;
   display: -webkit-box;
-  -webkit-line-clamp: 19;
+  -webkit-line-clamp: 17;
   -webkit-box-orient: vertical;
 
   @media (max-width: 1080px) {
     font-size: 1.2rem;
-    -webkit-line-clamp: 14;
+    -webkit-line-clamp: 13;
   }
 
   @media (max-width: 800px) {
-    -webkit-line-clamp: 10;
-  }
-
-  @media (max-width: 690px) {
-    -webkit-line-clamp: 10;
+    -webkit-line-clamp: 8;
   }
 `;
 
