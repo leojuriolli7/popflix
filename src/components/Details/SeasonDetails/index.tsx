@@ -35,6 +35,8 @@ export function SeasonDetails() {
   const [showDetails, setShowDetails] = useState<ShowDetailsInterface>();
   const navigate = useNavigate();
 
+  const episodeAirDate = (date: any) => new Date(date);
+
   useEffect(() => {
     window.scrollTo(0, 0);
     api
@@ -74,7 +76,13 @@ export function SeasonDetails() {
               <S.EpisodeTitle title={episode?.name}>
                 {episode?.name}
               </S.EpisodeTitle>
-              <S.EpisodeAirDate>{episode?.air_date}</S.EpisodeAirDate>
+              <S.EpisodeAirDate>{`${episodeAirDate(
+                episode?.air_date
+              ).getDate()}/${
+                episodeAirDate(episode?.air_date).getMonth() + 1
+              }/${episodeAirDate(
+                episode?.air_date
+              ).getFullYear()}`}</S.EpisodeAirDate>
             </S.EpisodeContainer>
           ))}
         </S.Content>
