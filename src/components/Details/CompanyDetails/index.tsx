@@ -3,19 +3,24 @@ import { useParams } from "react-router-dom";
 import { api } from "../../../services/api";
 import defaultCompanyPoster from "../../../assets/defaultCompanyPoster.png";
 import * as S from "./styles";
+import { DetailsError } from "../DetailsError";
 
 interface CompanyDetailsInterface {
-  description: string;
+  description?: string;
   headquarters: string;
   homepage: string;
   id: number;
   logo_path: string;
   origin_country: string;
   name: string;
-  parent_company: string;
+  parent_company?: string;
 }
 
-export function CompanyDetails() {
+interface CompanyDetailsProps {
+  type: "network" | "company";
+}
+
+export function CompanyDetails({ type }: CompanyDetailsProps) {
   const { id } = useParams();
   const [companyDetails, setCompanyDetails] =
     useState<CompanyDetailsInterface>();
@@ -23,11 +28,11 @@ export function CompanyDetails() {
   useEffect(() => {
     window.scrollTo(0, 0);
     api
-      .get(`company/${id}?api_key=24e0e0f71e0ac9cb9c5418459514eda9`)
+      .get(`${type}/${id}?api_key=24e0e0f71e0ac9cb9c5418459514eda9`)
       .then((response) => setCompanyDetails(response.data));
-  }, [id]);
+  }, [id, type]);
 
-  return (
+  return companyDetails?.id ? (
     <S.Container>
       <S.Content>
         <S.CompanyLogoAndNameContainer>
@@ -56,14 +61,16 @@ export function CompanyDetails() {
             </S.ParentCompany>
           )}
         </S.ParentCompanyAndOriginCountryContainer>
-        <S.CompanyHeadquarters>
-          Headquarters:{companyDetails?.headquarters || "Unknown"}
-        </S.CompanyHeadquarters>
-        {companyDetails?.description && (
-          <S.CompanyDescription>
-            {companyDetails?.description}
-          </S.CompanyDescription>
+        {companyDetails?.headquarters && (
+          <S.CompanyHeadquarters>
+            Headquarters: {companyDetails?.headquarters}
+          </S.CompanyHeadquarters>
         )}
+        <S.CompanyDescription>
+          {companyDetails?.description ||
+            `No description available for ${companyDetails?.name}`}
+        </S.CompanyDescription>
+
         {companyDetails?.homepage && (
           <S.CompanyHomepage href={companyDetails?.homepage} target="_blank">
             Go to their Homepage
@@ -71,5 +78,7 @@ export function CompanyDetails() {
         )}
       </S.CompanyInfoContainer>
     </S.Container>
+  ) : (
+    <DetailsError text="No Company with this id" />
   );
 }

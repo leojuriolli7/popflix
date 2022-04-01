@@ -1,12 +1,12 @@
-import { CompanyDetails } from "../components/Details/CompanyDetails";
+import { SeasonDetails } from "../components/Details/SeasonDetails";
 import { Footer } from "../components/Footer";
 import { Header } from "../components/Header";
 
-export function CompanyPage() {
+export function SeasonDetailsPage() {
   return (
     <>
       <Header />
-      <CompanyDetails type="company" />
+      <SeasonDetails />
       <Footer />
     </>
   );

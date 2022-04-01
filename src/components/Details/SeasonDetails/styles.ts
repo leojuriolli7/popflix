@@ -1,0 +1,159 @@
+import styled from "styled-components";
+import { IoMdArrowRoundBack } from "react-icons/io";
+
+export const Container = styled.main.attrs({
+  className: "animate__animated animate__fadeIn",
+})`
+  max-width: 1100px;
+  margin: 0 auto;
+  margin-top: 2rem;
+  min-height: 80vh;
+  margin-bottom: 2rem;
+
+  @media (max-width: 845px) {
+    margin-top: 2rem;
+  }
+`;
+
+export const ContainerWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const PageTitle = styled.h1`
+  margin: 0.5rem 1rem 0 1rem;
+  text-align: center;
+  color: ${(props) => props.theme.colors.sectionText};
+
+  @media (max-width: 770px) {
+    font-size: 2.5rem;
+  }
+`;
+
+export const Content = styled.div`
+  position: relative;
+  display: grid;
+  margin-top: 1.5rem;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  grid-template-columns: repeat(3, 1fr);
+  box-shadow: 1px 5px 15px 5px rgba(0, 0, 0, 0.3);
+  padding: 0 1rem 2rem 1rem;
+  border-radius: 23px;
+  background: ${(props) =>
+    props.theme.title === "dark" ? props.theme.colors.primary : "#fff"};
+
+  @media (max-width: 1150px) {
+    margin: 1.5rem 2rem 2rem 2rem;
+  }
+
+  @media (max-width: 738px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 425px) {
+    grid-template-columns: 1fr;
+    margin: 1.5rem 1rem 2rem 1rem;
+  }
+`;
+
+export const ArrowBackContainer = styled.div`
+  position: absolute;
+  padding: 0.5rem;
+  left: -5px;
+  top: -10px;
+  background: ${(props) =>
+    props.theme.title === "light"
+      ? props.theme.colors.primary
+      : props.theme.colors.background};
+  border-radius: 50%;
+  transition: 0.3s;
+
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+  }
+`;
+
+export const WhiteArrowBack = styled(IoMdArrowRoundBack).attrs({
+  size: 25,
+  color: "white",
+})``;
+
+export const EpisodeContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 2rem;
+  text-align: center;
+  transition: 0.3s;
+
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+  }
+`;
+
+export const PosterContainer = styled.div`
+  position: relative;
+  width: 200px;
+  height: 300px;
+
+  @media (max-width: 505px) {
+    width: 180px;
+    height: 270px;
+  }
+
+  @media (max-width: 485px) {
+    width: 160px;
+    height: 240px;
+  }
+`;
+
+export const NoPosterContainer = styled.div`
+  position: absolute;
+  top: 121px;
+  left: 71px;
+
+  @media (max-width: 505px) {
+    top: 106px;
+    left: 62px;
+  }
+
+  @media (max-width: 485px) {
+    top: 92px;
+    left: 51px;
+  }
+`;
+
+export const NoPosterIcon = styled.img`
+  width: 60px;
+`;
+
+export const PosterImage = styled.img`
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  box-shadow: 1px 5px 15px 5px rgba(0, 0, 0, 0.2);
+  object-fit: cover;
+`;
+
+export const EpisodeTitle = styled.h2`
+  margin: 0;
+  margin-top: 0.5rem;
+  color: ${(props) => props.theme.colors.sectionText};
+  font-size: 1.8rem;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+`;
+
+export const EpisodeAirDate = styled.p`
+  color: ${(props) => props.theme.colors.sectionText};
+  margin: 0;
+`;

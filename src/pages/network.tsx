@@ -2,11 +2,11 @@ import { CompanyDetails } from "../components/Details/CompanyDetails";
 import { Footer } from "../components/Footer";
 import { Header } from "../components/Header";
 
-export function CompanyPage() {
+export function NetworkPage() {
   return (
     <>
       <Header />
-      <CompanyDetails type="company" />
+      <CompanyDetails type="network" />
       <Footer />
     </>
   );

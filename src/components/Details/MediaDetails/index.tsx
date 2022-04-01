@@ -36,6 +36,7 @@ interface SeasonsInterface {
   episode_count: string;
   id: string;
   poster_path: string;
+  season_number: number;
 }
 
 interface MediaDetailsInterface {
@@ -192,7 +193,11 @@ export function MediaDetails({ mediaType }: MediaDetailsProps) {
             </S.MediaProductionCompany>
           </S.ReleaseAndRuntimeContainer>
           {mediaDetails?.networks && (
-            <S.MediaNetwork>
+            <S.MediaNetwork
+              onClick={() =>
+                navigate(`/network/${mediaDetails?.networks[0].id}`)
+              }
+            >
               Network: {mediaDetails?.networks[0]?.name}
             </S.MediaNetwork>
           )}
@@ -249,7 +254,14 @@ export function MediaDetails({ mediaType }: MediaDetailsProps) {
           <S.SeasonSectionTitle>Seasons Overview</S.SeasonSectionTitle>
           <S.SeasonListContainer>
             {mediaDetails?.seasons.map((season) => (
-              <S.SeasonContainer key={season.id}>
+              <S.SeasonContainer
+                key={season.id}
+                onClick={() => {
+                  navigate(
+                    `/show/${mediaDetails.id}/season/${season.season_number}`
+                  );
+                }}
+              >
                 <S.SeasonImageContainer>
                   <S.SeasonImage
                     src={

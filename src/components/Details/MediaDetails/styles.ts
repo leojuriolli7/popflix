@@ -143,6 +143,13 @@ export const MediaProductionCompany = styled(MediaReleaseDate)`
 
 export const MediaNetwork = styled(MediaReleaseDate)`
   margin: 0.7rem 0.7rem 0 0.7rem;
+
+  text-decoration: underline;
+
+  &:hover {
+    cursor: pointer;
+    color: #3772ff;
+  }
 `;
 
 export const MediaOverview = styled.p`
@@ -293,6 +300,12 @@ export const SeasonContainer = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  transition: 0.3s;
+
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.03);
+  }
 `;
 
 export const SeasonImageContainer = styled.div`
