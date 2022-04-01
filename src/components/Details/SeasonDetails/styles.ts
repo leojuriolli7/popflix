@@ -40,7 +40,7 @@ export const Content = styled.div`
   margin-bottom: 2rem;
   grid-template-columns: repeat(2, 1fr);
   box-shadow: 1px 5px 15px 5px rgba(0, 0, 0, 0.3);
-  padding: 0 1rem 2rem 1rem;
+  padding: 0 2rem 2rem 2rem;
   border-radius: 23px;
   background: ${(props) =>
     props.theme.title === "dark" ? props.theme.colors.primary : "#fff"};
@@ -52,6 +52,7 @@ export const Content = styled.div`
   @media (max-width: 594px) {
     grid-template-columns: 1fr;
     margin: 1.5rem 1rem 2rem 1rem;
+    padding: 0 1rem 2rem 1rem;
   }
 `;
 
@@ -90,7 +91,7 @@ export const EpisodeContainer = styled.div`
 
   &:hover {
     cursor: pointer;
-    transform: scale(1.05);
+    transform: scale(1.03);
   }
 `;
 
@@ -107,17 +108,12 @@ export const PosterContainer = styled.div`
 
 export const NoPosterContainer = styled.div`
   position: absolute;
-  top: 121px;
-  left: 71px;
+  top: 71px;
+  left: 121px;
 
-  @media (max-width: 505px) {
-    top: 106px;
-    left: 62px;
-  }
-
-  @media (max-width: 485px) {
-    top: 92px;
-    left: 51px;
+  @media (max-width: 720px) {
+    top: 48px;
+    left: 92px;
   }
 `;
 

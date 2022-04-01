@@ -132,6 +132,15 @@ export const MediaReleaseDate = styled.p`
 
 export const MediaRuntime = styled(MediaReleaseDate)``;
 
+export const MediaProductionCompaniesContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 0.5rem;
+`;
+
 export const MediaProductionCompany = styled(MediaReleaseDate)`
   text-decoration: underline;
 
@@ -143,8 +152,16 @@ export const MediaProductionCompany = styled(MediaReleaseDate)`
 
 export const MediaNetwork = styled(MediaReleaseDate)`
   margin: 0.7rem 0.7rem 0 0.7rem;
+`;
 
+export const MediaNetworkSpan = styled.span`
   text-decoration: underline;
+  font-size: 1.1rem;
+  margin: 0;
+
+  @media (max-width: 845px) {
+    font-size: 1.3rem;
+  }
 
   &:hover {
     cursor: pointer;

@@ -62,6 +62,7 @@ export const CompanyLogo = styled.img`
 export const CompanyNameContainer = styled.div`
   text-align: center;
   width: 50%;
+  padding-right: 1rem;
 
   @media (max-width: 675px) {
     width: 100%;
@@ -101,6 +102,17 @@ export const ParentCompany = styled.p`
 
   @media (max-width: 425px) {
     font-size: 1.4rem;
+  }
+`;
+
+export const ParentCompanySpan = styled.span`
+  font-size: 1.2rem;
+  margin: 0;
+  text-decoration: underline;
+
+  &:hover {
+    cursor: pointer;
+    color: #3772ff;
   }
 `;
 

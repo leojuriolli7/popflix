@@ -1,9 +1,15 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { api } from "../../../services/api";
 import defaultCompanyPoster from "../../../assets/defaultCompanyPoster.png";
 import * as S from "./styles";
 import { DetailsError } from "../DetailsError";
+
+interface ParentCompaniesInterface {
+  name: string;
+  id: number;
+  logo_path: string;
+}
 
 interface CompanyDetailsInterface {
   description?: string;
@@ -13,7 +19,7 @@ interface CompanyDetailsInterface {
   logo_path: string;
   origin_country: string;
   name: string;
-  parent_company?: string;
+  parent_company?: ParentCompaniesInterface;
 }
 
 interface CompanyDetailsProps {
@@ -22,6 +28,7 @@ interface CompanyDetailsProps {
 
 export function CompanyDetails({ type }: CompanyDetailsProps) {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [companyDetails, setCompanyDetails] =
     useState<CompanyDetailsInterface>();
 
@@ -57,7 +64,14 @@ export function CompanyDetails({ type }: CompanyDetailsProps) {
           </S.CompanyOriginCountry>
           {companyDetails?.parent_company && (
             <S.ParentCompany>
-              Parent Company: {companyDetails.parent_company}
+              Parent Company:{" "}
+              <S.ParentCompanySpan
+                onClick={() =>
+                  navigate(`/company/${companyDetails.parent_company?.id}`)
+                }
+              >
+                {companyDetails.parent_company.name}
+              </S.ParentCompanySpan>
             </S.ParentCompany>
           )}
         </S.ParentCompanyAndOriginCountryContainer>
@@ -73,7 +87,7 @@ export function CompanyDetails({ type }: CompanyDetailsProps) {
 
         {companyDetails?.homepage && (
           <S.CompanyHomepage href={companyDetails?.homepage} target="_blank">
-            Go to their Homepage
+            {`Go to ${companyDetails?.name} Homepage`}
           </S.CompanyHomepage>
         )}
       </S.CompanyInfoContainer>

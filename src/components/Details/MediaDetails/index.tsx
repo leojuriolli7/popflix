@@ -184,21 +184,31 @@ export function MediaDetails({ mediaType }: MediaDetailsProps) {
                 ? `${mediaDetails?.runtime}min`
                 : "Unknown Runtime"}
             </S.MediaRuntime>
-            <S.MediaProductionCompany
-              onClick={() =>
-                navigate(`/company/${mediaDetails?.production_companies[0].id}`)
-              }
-            >
-              {mediaDetails?.production_companies[0]?.name || "Unknown"}
-            </S.MediaProductionCompany>
           </S.ReleaseAndRuntimeContainer>
+          <S.MediaProductionCompaniesContainer>
+            {mediaDetails?.production_companies ? (
+              mediaDetails?.production_companies.map((company) => (
+                <S.MediaProductionCompany
+                  key={company.id}
+                  onClick={() => navigate(`/company/${company.id}`)}
+                >
+                  {company?.name}
+                </S.MediaProductionCompany>
+              ))
+            ) : (
+              <S.MediaProductionCompany>Unknown</S.MediaProductionCompany>
+            )}
+          </S.MediaProductionCompaniesContainer>
           {mediaDetails?.networks && (
-            <S.MediaNetwork
-              onClick={() =>
-                navigate(`/network/${mediaDetails?.networks[0].id}`)
-              }
-            >
-              Network: {mediaDetails?.networks[0]?.name}
+            <S.MediaNetwork>
+              Network:{" "}
+              <S.MediaNetworkSpan
+                onClick={() =>
+                  navigate(`/network/${mediaDetails?.networks[0].id}`)
+                }
+              >
+                {mediaDetails?.networks[0]?.name}
+              </S.MediaNetworkSpan>
             </S.MediaNetwork>
           )}
           <S.MediaOverview>
