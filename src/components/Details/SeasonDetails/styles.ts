@@ -38,7 +38,7 @@ export const Content = styled.div`
   margin-top: 1.5rem;
   gap: 1rem;
   margin-bottom: 2rem;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   box-shadow: 1px 5px 15px 5px rgba(0, 0, 0, 0.3);
   padding: 0 1rem 2rem 1rem;
   border-radius: 23px;
@@ -49,11 +49,7 @@ export const Content = styled.div`
     margin: 1.5rem 2rem 2rem 2rem;
   }
 
-  @media (max-width: 738px) {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  @media (max-width: 425px) {
+  @media (max-width: 594px) {
     grid-template-columns: 1fr;
     margin: 1.5rem 1rem 2rem 1rem;
   }
@@ -100,17 +96,12 @@ export const EpisodeContainer = styled.div`
 
 export const PosterContainer = styled.div`
   position: relative;
-  width: 200px;
-  height: 300px;
+  width: 300px;
+  height: 200px;
 
-  @media (max-width: 505px) {
-    width: 180px;
-    height: 270px;
-  }
-
-  @media (max-width: 485px) {
-    width: 160px;
-    height: 240px;
+  @media (max-width: 720px) {
+    width: 240px;
+    height: 160px;
   }
 `;
 
@@ -151,6 +142,11 @@ export const EpisodeTitle = styled.h2`
   display: -webkit-box;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
+
+  @media (max-width: 594px) {
+    overflow: visible;
+    -webkit-line-clamp: 10;
+  }
 `;
 
 export const EpisodeAirDate = styled.p`
