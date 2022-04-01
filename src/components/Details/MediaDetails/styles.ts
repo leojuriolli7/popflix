@@ -132,12 +132,23 @@ export const MediaReleaseDate = styled.p`
 
 export const MediaRuntime = styled(MediaReleaseDate)``;
 
-export const MediaProductionCompany = styled(MediaReleaseDate)``;
+export const MediaProductionCompany = styled(MediaReleaseDate)`
+  text-decoration: underline;
+
+  &:hover {
+    cursor: pointer;
+    color: #3772ff;
+  }
+`;
+
+export const MediaNetwork = styled(MediaReleaseDate)`
+  margin: 0.7rem 0.7rem 0 0.7rem;
+`;
 
 export const MediaOverview = styled.p`
   margin-top: 20px;
   font-size: 1.1rem;
-  margin: 15px 40px 20px 40px;
+  margin: 10px 40px 20px 40px;
 
   @media (max-width: 985px) {
     font-size: 1.3rem;
