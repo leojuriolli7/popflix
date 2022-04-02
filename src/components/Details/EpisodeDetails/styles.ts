@@ -22,6 +22,7 @@ export const Content = styled.div`
   align-items: center;
   flex-direction: column;
   box-shadow: 1px 5px 15px 5px rgba(0, 0, 0, 0.3);
+  padding-bottom: 2rem;
   margin-top: 2rem;
   border-radius: 23px;
   color: ${(props) => props.theme.colors.sectionText};
@@ -82,7 +83,8 @@ export const EpisodeTitle = styled.h1`
   font-size: 3rem;
   margin-bottom: 0;
   margin: 2.2rem 35px 0 35px;
-  line-height: 45px;
+  line-height: 50px;
+  text-align: center;
 
   @media (max-width: 485px) {
     font-size: 2.8rem;
@@ -102,6 +104,10 @@ export const EpisodeInfo = styled.p`
   margin: 0;
   margin-top: 1rem;
   font-size: 1.1rem;
+
+  @media (max-width: 1080px) {
+    font-size: 1.3rem;
+  }
 `;
 
 interface EpisodeAirDateProps {
@@ -148,7 +154,6 @@ export const EpisodeOverview = styled.p`
 
 export const UnreleasedMessage = styled(EpisodeInfo)`
   color: #df2935;
-  padding-bottom: 2rem;
   font-weight: bold;
 `;
 

@@ -257,17 +257,19 @@ export function MediaDetails({ mediaType }: MediaDetailsProps) {
                 : "Release Date to be Announced"}
             </S.UnreleasedText>
           )}
-          <S.FullCreditsLink
-            onClick={() =>
-              navigate(
-                `/${mediaType === "tv" ? "show" : "movie"}/${
-                  mediaDetails?.id
-                }/credits`
-              )
-            }
-          >
-            View Full Credits
-          </S.FullCreditsLink>
+          <S.FullCreditsLinkContainer>
+            <S.FullCreditsLink
+              onClick={() =>
+                navigate(
+                  `/${mediaType === "tv" ? "show" : "movie"}/${
+                    mediaDetails?.id
+                  }/credits`
+                )
+              }
+            >
+              View Full Credits
+            </S.FullCreditsLink>
+          </S.FullCreditsLinkContainer>
         </S.InfoContainer>
       </S.Content>
       {mediaDetails?.seasons && (
@@ -304,7 +306,7 @@ export function MediaDetails({ mediaType }: MediaDetailsProps) {
                   <S.SeasonAirDate>
                     Air Date:{" "}
                     {season.air_date === null
-                      ? "?"
+                      ? "Unknown"
                       : `${seasonDate(season.air_date).getDate()}/${
                           seasonDate(season.air_date).getMonth() + 1
                         }/${seasonDate(season.air_date).getFullYear()}`}

@@ -269,6 +269,12 @@ export const UnreleasedText = styled.p`
   }
 `;
 
+export const FullCreditsLinkContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 export const FullCreditsLink = styled.p`
   text-decoration: underline;
   font-size: 1.2rem;

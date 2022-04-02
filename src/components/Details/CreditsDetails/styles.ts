@@ -116,6 +116,7 @@ export const CastMemberPhoto = styled.img`
 export const CastMemberName = styled.h2`
   margin: 0;
   margin-top: 16px;
+  font-size: 2rem;
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 1;
@@ -125,8 +126,13 @@ export const CastMemberName = styled.h2`
 export const CastMemberRole = styled.p`
   margin: 0;
   margin-top: 4px;
+  font-size: 1.1rem;
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
+
+  @media (max-width: 470px) {
+    font-size: 1.3rem;
+  }
 `;
