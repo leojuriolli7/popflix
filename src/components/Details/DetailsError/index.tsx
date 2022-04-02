@@ -6,6 +6,7 @@ export function DetailsError({ text }: any) {
       {" "}
       <S.ErrorMessageContainer>
         <S.ErrorMessage>{text}</S.ErrorMessage>
+        <S.Link href="/">Click to go back to Home</S.Link>
       </S.ErrorMessageContainer>
     </S.Container>
   );

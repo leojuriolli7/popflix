@@ -20,7 +20,7 @@ interface ActorDetailsInterface {
   known_for_department: string;
 }
 
-interface ActorCreditsInterface {
+interface ActorCastInterface {
   adult: boolean;
   backdrop_path: string;
   original_title: string;
@@ -32,10 +32,24 @@ interface ActorCreditsInterface {
   id: number;
 }
 
+interface ActorCrewInterface {
+  id: number;
+  title?: string;
+  name?: string;
+  backdrop_path: string;
+  job: string;
+  media_type: string;
+}
+
+interface ActorCreditsInterface {
+  cast: ActorCastInterface[];
+  crew: ActorCrewInterface[];
+}
+
 export function ActorDetails() {
   const { id } = useParams();
   const [actorDetails, setActorDetails] = useState<ActorDetailsInterface>();
-  const [actorCredits, setActorCredits] = useState<ActorCreditsInterface[]>();
+  const [actorCredits, setActorCredits] = useState<ActorCreditsInterface>();
 
   const navigate = useNavigate();
 
@@ -54,7 +68,7 @@ export function ActorDetails() {
       .get(
         `person/${id}/combined_credits?api_key=24e0e0f71e0ac9cb9c5418459514eda9&language=en-US`
       )
-      .then((response) => setActorCredits(response.data.cast));
+      .then((response) => setActorCredits(response.data));
   }, [id]);
 
   const birthdayDate = new Date(
@@ -110,7 +124,7 @@ export function ActorDetails() {
       <S.CreditsListContainer>
         <S.CreditsSectionTitle>{`${actorDetails?.name}'s Credits`}</S.CreditsSectionTitle>
         <S.CreditContainer>
-          {actorCredits?.map((credit) => (
+          {actorCredits?.cast?.map((credit) => (
             <S.MediaCreditContainer
               key={credit.id}
               onClick={() =>
@@ -141,6 +155,40 @@ export function ActorDetails() {
               <S.MediaCharacter>{`as ${
                 credit.character ? credit.character : "Unknown Character/Self"
               }`}</S.MediaCharacter>
+            </S.MediaCreditContainer>
+          ))}
+
+          {actorCredits?.crew?.map((credit) => (
+            <S.MediaCreditContainer
+              key={credit.id}
+              onClick={() =>
+                navigate(
+                  credit.media_type === "tv"
+                    ? `/show/${credit.id}`
+                    : `/movie/${credit.id}`
+                )
+              }
+            >
+              <S.MediaPosterContainer>
+                <S.MediaPoster
+                  src={
+                    credit.backdrop_path
+                      ? `https://image.tmdb.org/t/p/w500/${credit.backdrop_path}`
+                      : defaultPoster
+                  }
+                />
+                {credit.backdrop_path === null && (
+                  <S.NoPosterIconContainer>
+                    <S.NoPosterIcon
+                      src={credit.media_type === "tv" ? tvIcon : movieIcon}
+                    />
+                  </S.NoPosterIconContainer>
+                )}
+              </S.MediaPosterContainer>
+              <S.MediaTitle>{credit.title || credit.name}</S.MediaTitle>
+              <S.MediaCharacter>
+                {credit.job ? credit.job : "Unknown"}
+              </S.MediaCharacter>
             </S.MediaCreditContainer>
           ))}
         </S.CreditContainer>

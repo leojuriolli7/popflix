@@ -88,6 +88,7 @@ export const EpisodeContainer = styled.div`
   margin-top: 2rem;
   text-align: center;
   transition: 0.3s;
+  color: ${(props) => props.theme.colors.sectionText};
 
   &:hover {
     cursor: pointer;
@@ -133,7 +134,7 @@ export const EpisodeTitle = styled.h2`
   margin: 0;
   margin-top: 0.5rem;
   color: ${(props) => props.theme.colors.sectionText};
-  font-size: 1.8rem;
+  font-size: 1.4rem;
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 1;
@@ -145,7 +146,11 @@ export const EpisodeTitle = styled.h2`
   }
 `;
 
-export const EpisodeAirDate = styled.p`
-  color: ${(props) => props.theme.colors.sectionText};
+interface EpisodeAirDateProps {
+  isReleased: boolean;
+}
+
+export const EpisodeAirDate = styled.p<EpisodeAirDateProps>`
+  color: ${(props) => !props.isReleased && "#DF2935"};
   margin: 0;
 `;

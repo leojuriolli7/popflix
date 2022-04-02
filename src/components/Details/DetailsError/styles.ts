@@ -18,6 +18,7 @@ export const ErrorMessageContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   border-radius: 23px;
   background: transparent;
 
@@ -42,5 +43,13 @@ export const ErrorMessage = styled.h1`
   line-height: 45px;
   color: ${(props) => props.theme.colors.sectionText};
   padding-bottom: 2rem;
+  text-align: center;
+`;
+
+export const Link = styled.a`
+  font-size: 1.4rem;
+  margin-bottom: 0;
+  margin: 20px 30px 0 30px;
+  color: ${(props) => props.theme.colors.sectionText};
   text-align: center;
 `;

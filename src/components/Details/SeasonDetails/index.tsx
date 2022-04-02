@@ -21,11 +21,12 @@ interface SeasonDetailsInterface {
   episodes: EpisodesInterface[];
   name: string;
   poster_path: string;
-  season_number: string;
+  season_number: number;
 }
 
 interface ShowDetailsInterface {
   name: string;
+  id: number;
 }
 
 export function SeasonDetails() {
@@ -34,8 +35,6 @@ export function SeasonDetails() {
   const [seasonDetails, setSeasonDetails] = useState<SeasonDetailsInterface>();
   const [showDetails, setShowDetails] = useState<ShowDetailsInterface>();
   const navigate = useNavigate();
-
-  const episodeAirDate = (date: any) => new Date(date);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -49,16 +48,34 @@ export function SeasonDetails() {
       .then((response) => setSeasonDetails(response.data));
   }, [id, number]);
 
+  const episodeAirDate = (date: any) => new Date(date);
+
+  const currentDate = new Date();
+
+  const diff = (date: any) =>
+    Math.floor((Number(date) - Number(currentDate)) / (1000 * 60 * 60 * 24));
+
   return seasonDetails?.id ? (
     <S.Container>
       <S.ContainerWrap>
-        <S.PageTitle>{`${showDetails?.name} Season ${number} Overview`}</S.PageTitle>
+        <S.PageTitle>
+          {seasonDetails?.season_number === 0
+            ? `${showDetails?.name} Specials Overview`
+            : `${showDetails?.name} Season ${number} Overview`}
+        </S.PageTitle>
         <S.Content>
           <S.ArrowBackContainer onClick={() => navigate(`/show/${id}`)}>
             <S.WhiteArrowBack />
           </S.ArrowBackContainer>
           {seasonDetails?.episodes.map((episode) => (
-            <S.EpisodeContainer key={episode?.id}>
+            <S.EpisodeContainer
+              key={episode?.id}
+              onClick={() =>
+                navigate(
+                  `/show/${showDetails?.id}/season/${seasonDetails.season_number}/episode/${episode.episode_number}`
+                )
+              }
+            >
               <S.PosterContainer>
                 <S.PosterImage
                   src={
@@ -76,9 +93,11 @@ export function SeasonDetails() {
               <S.EpisodeTitle title={episode?.name}>
                 {episode?.name}
               </S.EpisodeTitle>
-              <S.EpisodeAirDate>{`${episodeAirDate(
-                episode?.air_date
-              ).getDate()}/${
+              <S.EpisodeAirDate
+                isReleased={
+                  diff(episodeAirDate(episode?.air_date)) < 0 ? true : false
+                }
+              >{`${episodeAirDate(episode?.air_date).getDate()}/${
                 episodeAirDate(episode?.air_date).getMonth() + 1
               }/${episodeAirDate(
                 episode?.air_date

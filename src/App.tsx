@@ -17,6 +17,7 @@ import { ErrorPage } from "./pages/error";
 import { CompanyPage } from "./pages/company";
 import { SeasonDetailsPage } from "./pages/seasonDetails";
 import { NetworkPage } from "./pages/network";
+import { EpisodeDetailsPage } from "./pages/episodeDetails";
 
 function App() {
   const { theme } = useSelector((state: RootState) => state.theme);
@@ -34,6 +35,10 @@ function App() {
           <Route
             path="/show/:id/season/:number"
             element={<SeasonDetailsPage />}
+          />
+          <Route
+            path="/show/:id/season/:number/episode/:episodeNumber"
+            element={<EpisodeDetailsPage />}
           />
           <Route path="/show/:id/reviews" element={<ShowReviewsPage />} />
           <Route path="/actor/:id" element={<ActorPage />} />
