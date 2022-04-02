@@ -137,7 +137,12 @@ export function EpisodeDetails() {
             </S.RatingText>
           </S.RatingContainer>
         )}
-        <S.EpisodeOverview>{episodeDetails?.overview}</S.EpisodeOverview>
+        {episodeDetails?.overview && (
+          <S.EpisodeOverview>{episodeDetails?.overview}</S.EpisodeOverview>
+        )}
+        {diff >= 0 && (
+          <S.UnreleasedMessage>{`Releases in ${diff} days`}</S.UnreleasedMessage>
+        )}
       </S.Content>
       <S.CastListWrapper>
         <S.CastListSectionTitle>{`${showDetails?.name} S${number}E${episodeNumber} Credits`}</S.CastListSectionTitle>
@@ -158,7 +163,9 @@ export function EpisodeDetails() {
                 />
               </S.CastMemberPhotoContainer>
               <S.CastMemberName>{crewMember?.name}</S.CastMemberName>
-              <S.CastMemberRole>as {crewMember?.character}</S.CastMemberRole>
+              <S.CastMemberRole>{`as ${
+                crewMember?.character || "Unknown Character"
+              }`}</S.CastMemberRole>
             </S.CastMemberContainer>
           ))}
           {episodeCredits?.crew.map((crewMember) => (
@@ -177,7 +184,9 @@ export function EpisodeDetails() {
                 />
               </S.CastMemberPhotoContainer>
               <S.CastMemberName>{crewMember?.name}</S.CastMemberName>
-              <S.CastMemberRole>{crewMember?.job}</S.CastMemberRole>
+              <S.CastMemberRole>
+                {crewMember?.job || "Unknown Crew job"}
+              </S.CastMemberRole>
             </S.CastMemberContainer>
           ))}
           {episodeCredits?.guest_stars.map((star) => (
@@ -195,7 +204,9 @@ export function EpisodeDetails() {
                 />
               </S.CastMemberPhotoContainer>
               <S.CastMemberName>{star?.name}</S.CastMemberName>
-              <S.CastMemberRole>as {star?.character}</S.CastMemberRole>
+              <S.CastMemberRole>{`as ${
+                star?.character || "Unknown Character"
+              }`}</S.CastMemberRole>
             </S.CastMemberContainer>
           ))}
         </S.CastListContainer>

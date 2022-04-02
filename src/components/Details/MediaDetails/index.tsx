@@ -257,6 +257,17 @@ export function MediaDetails({ mediaType }: MediaDetailsProps) {
                 : "Release Date to be Announced"}
             </S.UnreleasedText>
           )}
+          <S.FullCreditsLink
+            onClick={() =>
+              navigate(
+                `/${mediaType === "tv" ? "show" : "movie"}/${
+                  mediaDetails?.id
+                }/credits`
+              )
+            }
+          >
+            View Full Credits
+          </S.FullCreditsLink>
         </S.InfoContainer>
       </S.Content>
       {mediaDetails?.seasons && (

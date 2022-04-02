@@ -269,6 +269,22 @@ export const UnreleasedText = styled.p`
   }
 `;
 
+export const FullCreditsLink = styled.p`
+  text-decoration: underline;
+  font-size: 1.2rem;
+  margin: 0;
+  padding-bottom: 1rem;
+
+  @media (max-width: 845px) {
+    font-size: 1.4rem;
+  }
+
+  &:hover {
+    cursor: pointer;
+    color: #3772ff;
+  }
+`;
+
 export const SeasonContainerWrap = styled(Content)`
   flex-wrap: wrap;
   justify-content: center;

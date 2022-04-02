@@ -97,11 +97,13 @@ export function SeasonDetails() {
                 isReleased={
                   diff(episodeAirDate(episode?.air_date)) < 0 ? true : false
                 }
-              >{`${episodeAirDate(episode?.air_date).getDate()}/${
-                episodeAirDate(episode?.air_date).getMonth() + 1
-              }/${episodeAirDate(
-                episode?.air_date
-              ).getFullYear()}`}</S.EpisodeAirDate>
+              >
+                {isNaN(diff(episodeAirDate(episode?.air_date)))
+                  ? "Unknown Air Date"
+                  : `${episodeAirDate(episode?.air_date).getDate()}/${
+                      episodeAirDate(episode?.air_date).getMonth() + 1
+                    }/${episodeAirDate(episode?.air_date).getFullYear()}`}
+              </S.EpisodeAirDate>
             </S.EpisodeContainer>
           ))}
         </S.Content>

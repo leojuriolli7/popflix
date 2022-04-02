@@ -18,6 +18,8 @@ import { CompanyPage } from "./pages/company";
 import { SeasonDetailsPage } from "./pages/seasonDetails";
 import { NetworkPage } from "./pages/network";
 import { EpisodeDetailsPage } from "./pages/episodeDetails";
+import { MovieCreditsPage } from "./pages/movieCredits";
+import { ShowCreditsPage } from "./pages/showCredits";
 
 function App() {
   const { theme } = useSelector((state: RootState) => state.theme);
@@ -30,6 +32,7 @@ function App() {
           <Route path="/movies" element={<Movies />} />
           <Route path="/movie/:id" element={<MovieDetailsPage />} />
           <Route path="/movie/:id/reviews" element={<MovieReviewsPage />} />
+          <Route path="/movie/:id/credits" element={<MovieCreditsPage />} />
           <Route path="/shows" element={<Shows />} />
           <Route path="/show/:id" element={<ShowDetailsPage />} />
           <Route
@@ -41,6 +44,7 @@ function App() {
             element={<EpisodeDetailsPage />}
           />
           <Route path="/show/:id/reviews" element={<ShowReviewsPage />} />
+          <Route path="/show/:id/credits" element={<ShowCreditsPage />} />
           <Route path="/actor/:id" element={<ActorPage />} />
           <Route path="/company/:id" element={<CompanyPage />} />
           <Route path="/network/:id" element={<NetworkPage />} />
