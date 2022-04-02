@@ -144,11 +144,11 @@ export const EpisodeOverview = styled.p`
   margin-top: 20px;
   text-align: center;
   font-size: 1.1rem;
-  margin: 10px 40px 20px 40px;
+  margin: 10px 40px 0 40px;
 
   @media (max-width: 985px) {
     font-size: 1.2rem;
-    margin: 10px 15px 30px 15px;
+    margin: 10px 15px 0 15px;
   }
 `;
 

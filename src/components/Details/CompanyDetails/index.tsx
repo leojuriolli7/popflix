@@ -52,38 +52,37 @@ export function CompanyDetails({ type }: CompanyDetailsProps) {
               }
             />
           </S.CompanyLogoContainer>
-          <S.CompanyNameContainer>
-            <S.CompanyName>{companyDetails?.name}</S.CompanyName>
-          </S.CompanyNameContainer>
         </S.CompanyLogoAndNameContainer>
       </S.Content>
       <S.CompanyInfoContainer>
-        <S.ParentCompanyAndOriginCountryContainer>
-          <S.CompanyOriginCountry>
-            Origin Country: {companyDetails?.origin_country || "Unknown"}
-          </S.CompanyOriginCountry>
-          {companyDetails?.parent_company && (
-            <S.ParentCompany>
-              Parent Company:{" "}
-              <S.ParentCompanySpan
-                onClick={() =>
-                  navigate(`/company/${companyDetails.parent_company?.id}`)
-                }
-              >
-                {companyDetails.parent_company.name}
-              </S.ParentCompanySpan>
-            </S.ParentCompany>
-          )}
-        </S.ParentCompanyAndOriginCountryContainer>
+        <S.CompanyNameContainer>
+          <S.CompanyName>{companyDetails?.name}</S.CompanyName>
+        </S.CompanyNameContainer>
+        <S.CompanyOriginCountry>
+          Origin Country: {companyDetails?.origin_country || "Unknown"}
+        </S.CompanyOriginCountry>
+        {companyDetails?.parent_company && (
+          <S.ParentCompany>
+            Parent Company:{" "}
+            <S.ParentCompanySpan
+              onClick={() =>
+                navigate(`/company/${companyDetails.parent_company?.id}`)
+              }
+            >
+              {companyDetails.parent_company.name}
+            </S.ParentCompanySpan>
+          </S.ParentCompany>
+        )}
         {companyDetails?.headquarters && (
           <S.CompanyHeadquarters>
             Headquarters: {companyDetails?.headquarters}
           </S.CompanyHeadquarters>
         )}
-        <S.CompanyDescription>
-          {companyDetails?.description ||
-            `No description available for ${companyDetails?.name}`}
-        </S.CompanyDescription>
+        {companyDetails?.description && (
+          <S.CompanyDescription>
+            {companyDetails?.description}
+          </S.CompanyDescription>
+        )}
 
         {companyDetails?.homepage && (
           <S.CompanyHomepage href={companyDetails?.homepage} target="_blank">

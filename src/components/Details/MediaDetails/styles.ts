@@ -138,7 +138,7 @@ export const MediaProductionCompaniesContainer = styled.div`
   align-items: center;
   flex-wrap: wrap;
   gap: 1rem;
-  margin-top: 0.5rem;
+  margin: 0.5rem 0.5rem 0 0.5rem;
 `;
 
 export const MediaProductionCompany = styled(MediaReleaseDate)`
@@ -273,6 +273,10 @@ export const FullCreditsLinkContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  @media (max-width: 845px) {
+    padding-bottom: 1rem;
+  }
 `;
 
 export const FullCreditsLink = styled.p`
