@@ -6,7 +6,6 @@ export const Container = styled.main.attrs({
   max-width: 1100px;
   margin: 0 auto;
   margin-top: 2rem;
-  min-height: 80vh;
   margin-bottom: 2rem;
 
   @media (max-width: 845px) {
@@ -143,6 +142,7 @@ export const MediaProductionCompaniesContainer = styled.div`
 
 export const MediaProductionCompany = styled(MediaReleaseDate)`
   text-decoration: underline;
+  margin: 0 0.5rem;
 
   &:hover {
     cursor: pointer;

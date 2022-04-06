@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { api } from "../../../services/api";
-import defaultCompanyPoster from "../../../assets/defaultCompanyPoster.png";
 import * as S from "./styles";
 import { DetailsError } from "../DetailsError";
 
@@ -44,13 +43,11 @@ export function CompanyDetails({ type }: CompanyDetailsProps) {
       <S.Content>
         <S.CompanyLogoAndNameContainer>
           <S.CompanyLogoContainer>
-            <S.CompanyLogo
-              src={
-                companyDetails?.logo_path
-                  ? `https://image.tmdb.org/t/p/w500/${companyDetails?.logo_path}`
-                  : defaultCompanyPoster
-              }
-            />
+            {companyDetails?.logo_path && (
+              <S.CompanyLogo
+                src={`https://image.tmdb.org/t/p/w500/${companyDetails?.logo_path}`}
+              />
+            )}
           </S.CompanyLogoContainer>
         </S.CompanyLogoAndNameContainer>
       </S.Content>

@@ -147,24 +147,24 @@ export function EpisodeDetails() {
       <S.CastListWrapper>
         <S.CastListSectionTitle>{`${showDetails?.name} S${number}E${episodeNumber} Credits`}</S.CastListSectionTitle>
         <S.CastListContainer>
-          {episodeCredits?.cast.map((crewMember) => (
+          {episodeCredits?.cast.map((castMember) => (
             <S.CastMemberContainer
-              key={crewMember?.id}
-              onClick={() => navigate(`/actor/${crewMember?.id}`)}
+              key={castMember?.id}
+              onClick={() => navigate(`/actor/${castMember?.id}`)}
             >
               <S.CastMemberPhotoContainer>
                 {" "}
                 <S.CastMemberPhoto
                   src={
-                    crewMember.profile_path
-                      ? `https://image.tmdb.org/t/p/w500/${crewMember.profile_path}`
+                    castMember.profile_path
+                      ? `https://image.tmdb.org/t/p/w500/${castMember.profile_path}`
                       : defaultPicture
                   }
                 />
               </S.CastMemberPhotoContainer>
-              <S.CastMemberName>{crewMember?.name}</S.CastMemberName>
+              <S.CastMemberName>{castMember?.name}</S.CastMemberName>
               <S.CastMemberRole>{`as ${
-                crewMember?.character || "Unknown Character"
+                castMember?.character || "Unknown Character"
               }`}</S.CastMemberRole>
             </S.CastMemberContainer>
           ))}
@@ -189,23 +189,23 @@ export function EpisodeDetails() {
               </S.CastMemberRole>
             </S.CastMemberContainer>
           ))}
-          {episodeCredits?.guest_stars.map((star) => (
+          {episodeCredits?.guest_stars.map((guest) => (
             <S.CastMemberContainer
-              key={star?.id}
-              onClick={() => navigate(`/actor/${star?.id}`)}
+              key={guest?.id}
+              onClick={() => navigate(`/actor/${guest?.id}`)}
             >
               <S.CastMemberPhotoContainer>
                 <S.CastMemberPhoto
                   src={
-                    star.profile_path
-                      ? `https://image.tmdb.org/t/p/w500/${star.profile_path}`
+                    guest.profile_path
+                      ? `https://image.tmdb.org/t/p/w500/${guest.profile_path}`
                       : defaultPicture
                   }
                 />
               </S.CastMemberPhotoContainer>
-              <S.CastMemberName>{star?.name}</S.CastMemberName>
+              <S.CastMemberName>{guest?.name}</S.CastMemberName>
               <S.CastMemberRole>{`as ${
-                star?.character || "Unknown Character"
+                guest?.character || "Unknown Character"
               }`}</S.CastMemberRole>
             </S.CastMemberContainer>
           ))}

@@ -32,6 +32,22 @@ export const PageTitle = styled.h1`
   }
 `;
 
+export const NoEpisodesMessage = styled.h2`
+  margin-top: 3rem;
+`;
+
+export const ReturnMessage = styled.p`
+  margin: 2rem 0 0 0;
+  text-decoration: underline;
+  font-size: 2rem;
+  font-weight: bold;
+
+  &:hover {
+    cursor: pointer;
+    color: #3772ff;
+  }
+`;
+
 export const Content = styled.div`
   position: relative;
   display: grid;
