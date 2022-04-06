@@ -149,7 +149,7 @@ export const MediaPoster = styled.img`
 export const MediaNameContainer = styled.div`
   position: absolute;
   bottom: 10px;
-  left: 17px;
+  left: 13px;
   width: 80%;
   text-align: center;
 `;
@@ -162,8 +162,8 @@ export const MediaName = styled.p`
 
 export const IconContainer = styled.div`
   position: absolute;
-  bottom: 120px;
-  left: 17px;
+  bottom: 110px;
+  left: 13px;
   width: 80%;
   text-align: center;
 `;

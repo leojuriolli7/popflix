@@ -89,7 +89,7 @@ export const GlobalStyle = createGlobalStyle`
       props.theme.title === "dark"
         ? lighten(0.06, props.theme.colors.primary)
         : darken(0.06, props.theme.colors.background)};
-    border-radius: 20px;
+    border-radius: 15px;
   }
 
   .popover-header {
@@ -97,8 +97,8 @@ export const GlobalStyle = createGlobalStyle`
       props.theme.title === "dark"
         ? lighten(0.06, props.theme.colors.primary)
         : darken(0.06, props.theme.colors.background)};
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
       }
 
 `;

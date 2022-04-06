@@ -30,7 +30,7 @@ export const ProductionCompanyName = styled.p`
   text-decoration: underline;
   color: ${(props) => props.theme.colors.sectionText};
   margin: 0 0 0.5rem 0;
-  font-size: 1rem;
+  font-size: 1.05rem;
 
   @media (max-width: 985px) {
     font-size: 1.3rem;

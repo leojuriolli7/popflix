@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { api } from "../../../services/api";
 import * as S from "./styles";
 import { DetailsError } from "../DetailsError";
+import { isoCountries } from "../../../utils/constants";
 
 interface ParentCompaniesInterface {
   name: string;
@@ -38,6 +39,14 @@ export function CompanyDetails({ type }: CompanyDetailsProps) {
       .then((response) => setCompanyDetails(response.data));
   }, [id, type]);
 
+  function getCountryName(countryCode: any) {
+    if (isoCountries.hasOwnProperty(countryCode)) {
+      return isoCountries[countryCode];
+    } else {
+      return countryCode;
+    }
+  }
+
   return companyDetails?.id ? (
     <S.Container>
       <S.Content>
@@ -56,7 +65,8 @@ export function CompanyDetails({ type }: CompanyDetailsProps) {
           <S.CompanyName>{companyDetails?.name}</S.CompanyName>
         </S.CompanyNameContainer>
         <S.CompanyOriginCountry>
-          Origin Country: {companyDetails?.origin_country || "Unknown"}
+          Origin Country:{" "}
+          {getCountryName(companyDetails?.origin_country) || "Unknown"}
         </S.CompanyOriginCountry>
         {companyDetails?.parent_company && (
           <S.ParentCompany>

@@ -59,7 +59,6 @@ export const CompanyInfoContainer = styled(Content)`
   flex-direction: column;
   background: ${(props) =>
     props.theme.title === "dark" ? props.theme.colors.primary : "#fff"};
-  box-shadow: 1px 5px 15px 5px rgba(0, 0, 0, 0.3);
   gap: 1rem;
   margin-top: 2rem;
   padding-top: 2rem;
