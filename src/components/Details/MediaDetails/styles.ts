@@ -135,8 +135,9 @@ export const MediaProductionCompaniesContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: 0.5rem;
   margin: 0.5rem 0.5rem 0 0.5rem;
 `;
 

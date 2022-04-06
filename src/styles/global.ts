@@ -1,4 +1,4 @@
-import { darken } from "polished";
+import { darken, lighten } from "polished";
 import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
@@ -83,5 +83,22 @@ export const GlobalStyle = createGlobalStyle`
       max-width: 688px;
     }
   }
+
+  .popover {
+    background-color: ${(props) =>
+      props.theme.title === "dark"
+        ? lighten(0.06, props.theme.colors.primary)
+        : darken(0.06, props.theme.colors.background)};
+    border-radius: 20px;
+  }
+
+  .popover-header {
+    background-color: ${(props) =>
+      props.theme.title === "dark"
+        ? lighten(0.06, props.theme.colors.primary)
+        : darken(0.06, props.theme.colors.background)};
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+      }
 
 `;

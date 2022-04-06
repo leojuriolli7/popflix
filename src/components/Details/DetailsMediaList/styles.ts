@@ -18,7 +18,7 @@ export const Container = styled.div`
   .alice-carousel__prev-btn-item {
     position: absolute;
     left: -15px;
-    top: 160px;
+    top: 150px;
     font-size: 30px;
     background-color: white;
     border-radius: 50%;
@@ -40,7 +40,7 @@ export const Container = styled.div`
     }
 
     @media (max-width: 1100px) {
-      top: 170px;
+      top: 180px;
       left: -10px;
     }
 
@@ -52,7 +52,7 @@ export const Container = styled.div`
   .alice-carousel__next-btn-item {
     position: absolute;
     right: -15px;
-    top: 160px;
+    top: 150px;
     font-size: 30px;
     background-color: white;
     border-radius: 50%;
@@ -74,7 +74,7 @@ export const Container = styled.div`
     }
 
     @media (max-width: 1100px) {
-      top: 170px;
+      top: 180px;
       right: -10px;
     }
 

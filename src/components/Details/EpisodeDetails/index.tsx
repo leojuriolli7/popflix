@@ -115,7 +115,7 @@ export function EpisodeDetails() {
               : "Unknown Air Date"}
           </S.EpisodeAirDate>
         </S.EpisodeInfoContainer>
-        {episodeDetails?.vote_average !== 0 && (
+        {diff <= 0 && (
           <S.RatingContainer>
             <Rating
               value={

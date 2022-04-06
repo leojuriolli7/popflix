@@ -8,6 +8,7 @@ import AliceCarousel from "react-alice-carousel";
 import defaultPoster from "../../../assets/defaultposter.png";
 import tvIcon from "../../../assets/tvicon.svg";
 import { DetailsError } from "../DetailsError";
+import { CompaniesPopover } from "../CompaniesPopover";
 // import { useMutation } from "react-query";
 // import { getMediaDetails } from "../../../utils/requests";
 
@@ -187,16 +188,23 @@ export function MediaDetails({ mediaType }: MediaDetailsProps) {
           </S.ReleaseAndRuntimeContainer>
           <S.MediaProductionCompaniesContainer>
             {mediaDetails?.production_companies ? (
-              mediaDetails?.production_companies.map((company) => (
-                <S.MediaProductionCompany
-                  key={company.id}
-                  onClick={() => navigate(`/company/${company.id}`)}
-                >
-                  {company?.name}
-                </S.MediaProductionCompany>
-              ))
+              <S.MediaProductionCompany
+                onClick={() =>
+                  navigate(
+                    `/company/${mediaDetails?.production_companies[0]?.id}`
+                  )
+                }
+              >
+                {mediaDetails?.production_companies[0]?.name}
+              </S.MediaProductionCompany>
             ) : (
               <S.MediaProductionCompany>Unknown</S.MediaProductionCompany>
+            )}
+            {mediaDetails?.production_companies[1] && (
+              <CompaniesPopover
+                mediaType={mediaType}
+                currentMedia={mediaDetails}
+              />
             )}
           </S.MediaProductionCompaniesContainer>
           {mediaDetails?.networks && (
