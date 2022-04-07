@@ -38,6 +38,8 @@ export const InputsContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
 
   label {
     color: ${(props) => props.theme.colors.sectionText};
@@ -51,6 +53,19 @@ export const InputsContainer = styled.div`
     color: #df2935;
   }
 `;
+
+export const SortText = styled.p`
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.5;
+  letter-spacing: 0.00938em;
+  font-weight: 400;
+  color: ${(props) => props.theme.colors.sectionText};
+`;
+
+export const Select = styled.select``;
+
+export const SelectOption = styled.option``;
 
 export const Content = styled.div`
   display: grid;
@@ -139,7 +154,7 @@ export const RatingNumber = styled.p`
 export const UnreleasedRatingTextContainer = styled.div`
   position: absolute;
   top: 17px;
-  left: 13px;
+  left: 15px;
 `;
 
 export const UnreleasedRatingText = styled.p`
