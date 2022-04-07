@@ -10,7 +10,7 @@ export const Container = styled.main.attrs({
   margin-bottom: 3rem;
 
   @media (max-width: 1080px) {
-    margin-top: 1rem;
+    margin-top: 2rem;
     margin-bottom: 1rem;
   }
 `;
@@ -26,12 +26,17 @@ export const MainHeadingContainer = styled.div`
 export const MainHeading = styled.h1`
   text-align: center;
   margin: 0;
+
+  @media (max-width: 405px) {
+    font-size: 2.5rem;
+    margin: 0 20px 0 20px;
+  }
 `;
 
 export const MainHeadingSubText = styled.p`
   text-align: center;
-  margin: 0;
   font-size: 1.5rem;
+  margin: 10px 20px 0 20px;
 `;
 
 export const InputsContainer = styled.div`
@@ -41,8 +46,16 @@ export const InputsContainer = styled.div`
   gap: 1rem;
   margin-top: 1rem;
 
+  @media (max-width: 610px) {
+    flex-direction: column;
+  }
+
   label {
     color: ${(props) => props.theme.colors.sectionText};
+  }
+
+  .css-qfz70r-MuiFormGroup-root {
+    justify-content: center;
   }
 
   .css-vqmohf-MuiButtonBase-root-MuiRadio-root {
@@ -56,25 +69,39 @@ export const InputsContainer = styled.div`
 
 export const SortText = styled.p`
   margin: 0;
-  font-size: 1rem;
+  font-size: 1.3rem;
   line-height: 1.5;
   letter-spacing: 0.00938em;
   font-weight: 400;
   color: ${(props) => props.theme.colors.sectionText};
 `;
 
-export const Select = styled.select``;
+export const Select = styled.select`
+  border-radius: 10px;
+  border: #ccc 1px solid;
+  background-color: white;
+`;
 
 export const SelectOption = styled.option``;
 
 export const Content = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 2rem;
   margin-top: 2rem;
+  gap: 0.5rem;
 
-  @media (max-width: 1310px) {
-    margin: 0 10px 0 10px;
+  @media (max-width: 1000px) {
+    margin: 2rem 10px 0 10px;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media (max-width: 760px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 345px) {
+    grid-template-columns: 1fr;
+    gap: 2rem;
   }
 `;
 
@@ -84,16 +111,34 @@ export const MediaPosterContainer = styled.div`
   width: 225px;
   height: 337.5px;
   transition: 0.3s;
+  border-radius: 23px;
+  margin-bottom: 1.5rem;
 
   &:hover {
     cursor: pointer;
     transform: scale(1.03);
+  }
+
+  @media (max-width: 512px) {
+    width: 191.25px;
+    height: 286.87px;
+  }
+
+  @media (max-width: 435px) {
+    width: calc(191.25px - 25%);
+    height: calc(286.87px - 25%);
+  }
+
+  @media (max-width: 345px) {
+    width: 225px;
+    height: 337.5px;
   }
 `;
 
 export const MediaPoster = styled.img`
   border-radius: 23px;
   width: 100%;
+  height: 100%;
   object-fit: cover;
   box-shadow: 1px 5px 15px 5px rgba(0, 0, 0, 0.2);
 `;
