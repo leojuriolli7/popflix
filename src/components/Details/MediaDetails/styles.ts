@@ -96,6 +96,7 @@ export const MediaGenres = styled.p`
   line-height: 25px;
   text-decoration: underline;
   margin: 0;
+  font-weight: 500;
 
   &:hover {
     cursor: pointer;
@@ -256,6 +257,7 @@ export const RatingText = styled.p`
   font-size: 1.25rem;
   margin: 0;
   margin-left: 0.5rem;
+  font-weight: 600;
 `;
 
 export const UnreleasedText = styled.p`

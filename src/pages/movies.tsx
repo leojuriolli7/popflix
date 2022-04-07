@@ -1,11 +1,13 @@
+import { Footer } from "../components/Footer";
 import { Header } from "../components/Header";
-import { MovieGrid } from "../components/MovieGrid";
+import { MediaGrid } from "../components/MediaGrid";
 
 export function Movies() {
   return (
     <>
       <Header />
-      <MovieGrid />
+      <MediaGrid mediaType="movie" />
+      <Footer />
     </>
   );
 }

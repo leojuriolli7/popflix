@@ -88,7 +88,7 @@ export const GlobalStyle = createGlobalStyle`
     background-color: ${(props) =>
       props.theme.title === "dark"
         ? lighten(0.06, props.theme.colors.primary)
-        : darken(0.06, props.theme.colors.background)};
+        : props.theme.colors.background};
     border-radius: 15px;
   }
 
@@ -96,9 +96,9 @@ export const GlobalStyle = createGlobalStyle`
     background-color: ${(props) =>
       props.theme.title === "dark"
         ? lighten(0.06, props.theme.colors.primary)
-        : darken(0.06, props.theme.colors.background)};
+        : props.theme.colors.background};
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
-      }
+  }
 
 `;
