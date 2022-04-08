@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { darken } from "polished";
 import { MdDarkMode } from "react-icons/md";
+import { BsSearch } from "react-icons/bs";
 import { FaSun } from "react-icons/fa";
 
 export const Container = styled.header`
@@ -10,7 +11,7 @@ export const Container = styled.header`
   .Menu {
     display: none;
 
-    @media (max-width: 770px) {
+    @media (max-width: 817px) {
       display: block;
     }
   }
@@ -56,7 +57,7 @@ export const UnorganizedList = styled.ul`
   justify-content: center;
   margin: 0;
 
-  @media (max-width: 770px) {
+  @media (max-width: 817px) {
     display: none;
   }
 `;
@@ -88,8 +89,22 @@ export const OptionsContainer = styled.div`
   justify-content: center;
   gap: 1rem;
 
-  @media (max-width: 770px) {
+  @media (max-width: 817px) {
     display: none;
+  }
+`;
+
+export const SearchIconContainer = styled.div``;
+
+export const SearchIcon = styled(BsSearch).attrs({
+  size: 25,
+  color: "white",
+})`
+  transition: 0.3s;
+
+  &:hover {
+    transform: scale(1.08);
+    cursor: pointer;
   }
 `;
 

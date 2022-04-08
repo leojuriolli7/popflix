@@ -53,6 +53,9 @@ export function Header() {
           </S.UnorganizedList>
         </S.Navigation>
         <S.OptionsContainer>
+          <S.SearchIconContainer>
+            <S.SearchIcon onClick={() => navigate("/search")} />
+          </S.SearchIconContainer>
           <S.ButtonContainer>
             <Button
               type="button"

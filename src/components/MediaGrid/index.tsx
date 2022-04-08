@@ -12,6 +12,7 @@ import {
   RadioGroup,
   Pagination,
 } from "@mui/material";
+import { MainHeading } from "../Details/MainHeading";
 
 interface MediaInterface {
   genre_ids: GenreInterface[];
@@ -135,14 +136,12 @@ export function MediaGrid({ mediaType }: MediaDetailsProps) {
 
   return (
     <S.Container>
-      <S.MainHeadingContainer>
-        <S.MainHeading>{`Complete ${
-          mediaType === "movie" ? "Movie" : "TV Show"
-        } List`}</S.MainHeading>
-        <S.MainHeadingSubText>{`Search and filter through more than a million ${
+      <MainHeading
+        text={`Complete ${mediaType === "movie" ? "Movie" : "TV Show"} List`}
+        subtext={`Search and filter through more than a million ${
           mediaType === "movie" ? "Movies" : "Shows"
-        }. Find your favorite!`}</S.MainHeadingSubText>
-      </S.MainHeadingContainer>
+        }. Find your favorite!`}
+      />
 
       <S.InputsContainer>
         {isNaN(Number(selectedGenre)) === true ? (

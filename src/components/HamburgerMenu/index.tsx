@@ -62,6 +62,14 @@ export function HamburguerMenu() {
                     Shows
                   </S.MenuOption>
                 </S.ListItem>
+                <S.ListItem>
+                  <S.MenuOption
+                    onClick={() => navigate("/search")}
+                    isSelected={history.pathname === "/search"}
+                  >
+                    Search
+                  </S.MenuOption>
+                </S.ListItem>
               </S.UnorganizedList>
             </S.Navigation>
             <S.ButtonContainer>

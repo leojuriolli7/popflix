@@ -10,6 +10,13 @@ export const MenuToggle = styled.div.attrs({
 })`
   width: 40px;
   height: 30px;
+
+  transition: 0.3s;
+
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+  }
 `;
 
 export const MenuToggleBar = styled.div`
@@ -30,19 +37,27 @@ export const CloseButtonLight = styled(BsXLg).attrs({
   size: 30,
   color: "black",
 })`
+  transition: 0.3s;
   margin: 0.5rem 0.5rem 0 0;
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+  }
 `;
 
 export const CloseButtonDark = styled(BsXLg).attrs({
   size: 30,
   color: "white",
 })`
+  transition: 0.3s;
   margin: 0.5rem 0.5rem 0 0;
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+  }
 `;
 
-export const Content = styled.div`
-  padding-top: 1rem;
-`;
+export const Content = styled.div``;
 
 export const Navigation = styled.nav``;
 
@@ -64,6 +79,7 @@ interface MenuOptionProps {
 
 export const MenuOption = styled.p<MenuOptionProps>`
   font-size: 3rem;
+  margin: 0;
   font-weight: ${(props) => (props.isSelected ? "bold" : "400")};
   color: ${(props) => props.theme.colors.sectionText};
 `;

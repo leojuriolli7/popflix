@@ -20,6 +20,7 @@ import { NetworkPage } from "./pages/network";
 import { EpisodeDetailsPage } from "./pages/episodeDetails";
 import { MovieCreditsPage } from "./pages/movieCredits";
 import { ShowCreditsPage } from "./pages/showCredits";
+import { FullSearchPage } from "./pages/search";
 
 function App() {
   const { theme } = useSelector((state: RootState) => state.theme);
@@ -48,6 +49,7 @@ function App() {
           <Route path="/actor/:id" element={<ActorPage />} />
           <Route path="/company/:id" element={<CompanyPage />} />
           <Route path="/network/:id" element={<NetworkPage />} />
+          <Route path="/search" element={<FullSearchPage />} />
           <Route path="/*" element={<ErrorPage />} />
         </Routes>
         <GlobalStyle />
