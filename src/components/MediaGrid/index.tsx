@@ -10,6 +10,7 @@ import {
   FormControl,
   FormControlLabel,
   RadioGroup,
+  Pagination,
 } from "@mui/material";
 
 interface MediaInterface {
@@ -28,37 +29,88 @@ interface GenreInterface {
   name: string;
 }
 
+interface MediaDetailsDataInterface {
+  page: number;
+  total_pages: number;
+}
+
 interface MediaDetailsProps {
   mediaType: "tv" | "movie";
 }
 
 export function MediaGrid({ mediaType }: MediaDetailsProps) {
   const [mediaDetails, setMediaDetails] = useState<MediaInterface[]>();
+  const [mediaDetailsData, setMediaDetailsData] =
+    useState<MediaDetailsDataInterface>();
   const [selectedValue, setSelectedValue] = useState("popular");
+  const [selectedSortBy, setSelectedSortby] = useState("popularity.desc");
   const [genres, setGenres] = useState<GenreInterface[]>();
   const [selectedGenre, setSelectedGenre] = useState();
+  const [selectedType, setSelectedType] = useState();
+  const [page, setPage] = useState(1);
   const navigate = useNavigate();
 
   const handleChange = (e: any) => {
     setSelectedGenre(e.target.value);
+    setPage(1);
+    window.scrollTo(0, 0);
   };
+
+  const handleTypeChange = (e: any) => {
+    setSelectedType(e.target.value);
+    setPage(1);
+    window.scrollTo(0, 0);
+  };
+
   const handleChangeRadio = (e: any) => {
     setSelectedValue(e.target.value);
+    setPage(1);
+    window.scrollTo(0, 0);
   };
+
+  const handleChangeDiscover = (e: any) => {
+    setSelectedSortby(e.target.value);
+    setPage(1);
+    window.scrollTo(0, 0);
+  };
+
+  async function fetchMediaWithoutGenres(value: number) {
+    await api
+      .get(
+        `${mediaType}/${selectedValue}?api_key=24e0e0f71e0ac9cb9c5418459514eda9&language=en-US&page=${value}`
+      )
+      .then((response) => setMediaDetails(response.data.results));
+
+    await api
+      .get(
+        `${mediaType}/${selectedValue}?api_key=24e0e0f71e0ac9cb9c5418459514eda9&language=en-US&page=${value}`
+      )
+      .then((response) => setMediaDetailsData(response.data));
+  }
+
+  async function fetchMediaWithGenres(value: number) {
+    await api
+      .get(
+        `discover/${mediaType}?api_key=24e0e0f71e0ac9cb9c5418459514eda9&language=en-US&sort_by=${selectedSortBy}&include_adult=false&include_video=false&page=${value}&with_genres=${selectedGenre}${
+          selectedType !== String && `&with_type=${selectedType}`
+        }`
+      )
+      .then((response) => setMediaDetails(response.data.results));
+
+    await api
+      .get(
+        `discover/${mediaType}?api_key=24e0e0f71e0ac9cb9c5418459514eda9&language=en-US&sort_by=${selectedSortBy}&include_adult=false&include_video=false&page=${value}&with_genres=${selectedGenre}${
+          selectedType !== String && `&with_type=${selectedType}`
+        }`
+      )
+      .then((response) => setMediaDetailsData(response.data));
+  }
 
   useEffect(() => {
     if (isNaN(Number(selectedGenre)) === true) {
-      api
-        .get(
-          `${mediaType}/${selectedValue}?api_key=24e0e0f71e0ac9cb9c5418459514eda9&language=en-US&page=1`
-        )
-        .then((response) => setMediaDetails(response.data.results));
+      fetchMediaWithoutGenres(page);
     } else {
-      api
-        .get(
-          `discover/${mediaType}?api_key=24e0e0f71e0ac9cb9c5418459514eda9&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=${selectedGenre}`
-        )
-        .then((response) => setMediaDetails(response.data.results));
+      fetchMediaWithGenres(page);
     }
 
     api
@@ -66,7 +118,18 @@ export function MediaGrid({ mediaType }: MediaDetailsProps) {
         `genre/${mediaType}/list?api_key=24e0e0f71e0ac9cb9c5418459514eda9&language=en-US`
       )
       .then((response) => setGenres(response.data.genres));
-  }, [mediaType, selectedValue, selectedGenre]);
+  }, [mediaType, selectedValue, selectedGenre, selectedSortBy, selectedType]);
+
+  function handlePaginationChange(e: any, value: any) {
+    setPage(value);
+    if (isNaN(Number(selectedGenre)) === true) {
+      navigate(`?page=${value}`);
+      fetchMediaWithoutGenres(value);
+    } else {
+      navigate(`?page=${value}`);
+      fetchMediaWithGenres(value);
+    }
+  }
 
   return (
     <S.Container>
@@ -111,7 +174,41 @@ export function MediaGrid({ mediaType }: MediaDetailsProps) {
             </RadioGroup>
           </FormControl>
         ) : (
-          <S.SortText>Sorting by Genre</S.SortText>
+          <>
+            <FormControl>
+              <RadioGroup
+                name="radio-buttons-discover"
+                onChange={handleChangeDiscover}
+                row
+                defaultValue={selectedSortBy}
+              >
+                <FormControlLabel
+                  value="popularity.desc"
+                  control={<Radio />}
+                  label="Popular"
+                />
+                <FormControlLabel
+                  value="vote_average.desc"
+                  control={<Radio />}
+                  label="Top Rated"
+                />
+              </RadioGroup>
+            </FormControl>
+
+            {mediaType === "tv" && (
+              <S.Select onChange={handleTypeChange}>
+                <S.SelectOption>Filter by Type</S.SelectOption>
+                <S.SelectOption>All</S.SelectOption>
+                <S.SelectOption value={0}>Documentary</S.SelectOption>
+                <S.SelectOption value={1}>News</S.SelectOption>
+                <S.SelectOption value={2}>Miniseries</S.SelectOption>
+                <S.SelectOption value={3}>Reality</S.SelectOption>
+                <S.SelectOption value={4}>Scripted</S.SelectOption>
+                <S.SelectOption value={5}>Talk Show</S.SelectOption>
+                <S.SelectOption value={6}>Video</S.SelectOption>
+              </S.Select>
+            )}
+          </>
         )}
 
         <S.Select onChange={handleChange}>
@@ -173,6 +270,15 @@ export function MediaGrid({ mediaType }: MediaDetailsProps) {
           </S.MediaPosterContainer>
         ))}
       </S.Content>
+      <S.PaginationContainer>
+        <Pagination
+          count={mediaDetailsData?.total_pages}
+          color="standard"
+          page={page}
+          size="large"
+          onChange={handlePaginationChange}
+        />
+      </S.PaginationContainer>
     </S.Container>
   );
 }

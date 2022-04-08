@@ -5,9 +5,9 @@ export const Container = styled.main.attrs({
   className: "animate__animated animate__fadeIn",
 })`
   max-width: 1200px;
+  min-height: 80vh;
   margin: 0 auto;
   margin-top: 3rem;
-  margin-bottom: 3rem;
 
   @media (max-width: 1080px) {
     margin-top: 2rem;
@@ -248,4 +248,12 @@ export const UnreleasedRatingText = styled.p`
   color: black;
   margin: 0;
   font-weight: bold;
+`;
+
+export const PaginationContainer = styled.div`
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
