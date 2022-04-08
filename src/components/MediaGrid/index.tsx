@@ -13,7 +13,7 @@ import {
 } from "@mui/material";
 
 interface MediaInterface {
-  genre_ids: [];
+  genre_ids: GenreInterface[];
   id: number;
   original_title?: string;
   overview: string;
@@ -41,7 +41,6 @@ export function MediaGrid({ mediaType }: MediaDetailsProps) {
 
   const handleChange = (e: any) => {
     setSelectedGenre(e.target.value);
-    console.log(selectedGenre);
   };
   const handleChangeRadio = (e: any) => {
     setSelectedValue(e.target.value);
@@ -157,6 +156,7 @@ export function MediaGrid({ mediaType }: MediaDetailsProps) {
             <S.RatingContainer>
               <S.RatingStarContainer>
                 <S.RatingStar />
+                <S.RatingStarSmaller />
                 {media?.vote_average !== 0 ? (
                   <S.RatingNumberContainer>
                     <S.RatingNumber>

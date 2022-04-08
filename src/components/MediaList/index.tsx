@@ -14,8 +14,13 @@ interface MediaListProps {
   title: string;
 }
 
+interface GenreInterface {
+  id: number;
+  name: string;
+}
+
 interface MediaInterface {
-  genre_ids: [];
+  genre_ids: GenreInterface[];
   id: number;
   original_title?: string;
   overview: string;
@@ -60,6 +65,7 @@ export function MediaList({ apiEndpoint, title }: MediaListProps) {
             },
           }}
           paddingRight={10}
+          paddingLeft={10}
           items={
             isLoading
               ? [1, 2, 3, 4, 5].map(() => <MediaPosterSkeleton />)

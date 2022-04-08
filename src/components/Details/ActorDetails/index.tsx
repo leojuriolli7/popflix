@@ -79,6 +79,11 @@ export function ActorDetails() {
     actorDetails?.deathday ? actorDetails?.deathday : "1969-09-12"
   );
 
+  const currentDate = new Date();
+
+  const actorAge = actorDetails?.deathday
+    ? Math.abs(deathdayDate.getTime() - birthdayDate.getTime()) / 3.154e10
+    : Math.abs(currentDate.getTime() - birthdayDate.getTime()) / 3.154e10;
   return actorDetails?.name !== undefined ? (
     <S.Container>
       <S.MainInfoContainer>
@@ -105,6 +110,9 @@ export function ActorDetails() {
                 deathdayDate.getMonth() + 1
               }/${deathdayDate.getFullYear()}`}</S.ActorDeathday>
             )}
+            <S.ActorBirthday>{`(${Math.floor(
+              actorAge
+            )} Years old)`}</S.ActorBirthday>
           </S.ActorBirthdayContainer>
           {actorDetails?.known_for_department && (
             <S.KnownFor>{`Known for: ${actorDetails?.known_for_department}`}</S.KnownFor>

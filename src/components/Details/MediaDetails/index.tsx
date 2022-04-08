@@ -283,7 +283,7 @@ export function MediaDetails({ mediaType }: MediaDetailsProps) {
       {mediaDetails?.seasons && (
         <S.SeasonContainerWrap>
           <S.SeasonSectionTitle>Seasons Overview</S.SeasonSectionTitle>
-          <S.SeasonListContainer>
+          <S.SeasonListContainer numberOfItems={mediaDetails?.seasons.length}>
             {mediaDetails?.seasons.map((season) => (
               <S.SeasonContainer
                 key={season.id}

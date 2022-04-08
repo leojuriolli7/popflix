@@ -320,16 +320,21 @@ export const SeasonSectionTitle = styled.h2`
   }
 `;
 
-export const SeasonListContainer = styled.div`
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+interface SeasonListContainerProps {
+  numberOfItems: number;
+}
+
+export const SeasonListContainer = styled.div<SeasonListContainerProps>`
+  ${(props) => (props.numberOfItems === 1 ? "display: flex" : "display: grid")};
+  ${(props) => props.numberOfItems === 1 && "align-items: center"};
+  ${(props) => props.numberOfItems === 1 && "justify-content: center"};
+  ${(props) =>
+    props.numberOfItems > 1 && "grid-template-columns: repeat(2, 1fr)"};
   box-shadow: 1px 5px 15px 5px rgba(0, 0, 0, 0.3);
   border-radius: 23px;
   background: ${(props) =>
     props.theme.title === "dark" ? props.theme.colors.primary : "#fff"};
-  flex-wrap: wrap;
   box-shadow: none;
-  justify-content: center;
   gap: 2.5rem;
   padding: 2rem 0;
 

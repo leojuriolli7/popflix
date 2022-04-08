@@ -185,8 +185,10 @@ export const Icon = styled.img`
 
 export const RatingContainer = styled.div`
   position: absolute;
-  bottom: -5px;
-  right: -10px;
+  top: -5px;
+  left: -10px;
+  background: #df2935;
+  border-radius: 50%;
 `;
 
 export const RatingStarContainer = styled.div`
@@ -195,13 +197,33 @@ export const RatingStarContainer = styled.div`
 
 export const RatingStar = styled(AiFillStar).attrs({
   size: 55,
-  color: "#fdca40",
-})``;
+  color: "#fff",
+})`
+  @media (max-width: 590px) {
+    display: none;
+  }
+`;
+
+export const RatingStarSmaller = styled(AiFillStar).attrs({
+  size: 45,
+  color: "#fff",
+})`
+  display: none;
+
+  @media (max-width: 590px) {
+    display: block;
+  }
+`;
 
 export const RatingNumberContainer = styled.div`
   position: absolute;
-  top: 16px;
+  top: 17px;
   left: 16px;
+
+  @media (max-width: 590px) {
+    top: 13px;
+    left: 13px;
+  }
 `;
 
 export const RatingNumber = styled.p`
@@ -209,6 +231,10 @@ export const RatingNumber = styled.p`
   color: black;
   margin: 0;
   font-weight: bold;
+
+  @media (max-width: 590px) {
+    font-size: 14px;
+  }
 `;
 
 export const UnreleasedRatingTextContainer = styled.div`

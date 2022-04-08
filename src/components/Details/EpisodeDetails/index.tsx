@@ -128,12 +128,9 @@ export function EpisodeDetails() {
               size="large"
             />
             <S.RatingText>
-              {`${
-                episodeDetails?.vote_average
-                  ? Number(episodeDetails.vote_average / 2)
-                  : 0
-              }
-            Stars`}
+              {episodeDetails?.vote_average
+                ? Number(episodeDetails.vote_average / 2) + " Stars"
+                : "No Reviews yet"}
             </S.RatingText>
           </S.RatingContainer>
         )}
