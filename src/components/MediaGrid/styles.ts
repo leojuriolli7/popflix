@@ -256,4 +256,20 @@ export const PaginationContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  .css-rppfq7-MuiButtonBase-root-MuiPaginationItem-root {
+    color: ${(props) => (props.theme.title === "dark" ? "#fff" : "black")};
+  }
+
+  .css-1scal0h-MuiPaginationItem-root {
+    color: ${(props) => (props.theme.title === "dark" ? "#fff" : "black")};
+  }
+
+  .css-rppfq7-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected {
+    background-color: rgba(223, 41, 53, 0.3);
+  }
+
+  .css-rppfq7-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected:hover {
+    background-color: rgba(223, 41, 53, 0.3);
+  }
 `;
