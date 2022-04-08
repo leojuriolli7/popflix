@@ -27,7 +27,7 @@ export const MainHeading = styled.h1`
   text-align: center;
   margin: 0;
 
-  @media (max-width: 405px) {
+  @media (max-width: 655px) {
     font-size: 2.5rem;
     margin: 0 20px 0 20px;
   }
@@ -52,6 +52,12 @@ export const InputsContainer = styled.div`
 
   label {
     color: ${(props) => props.theme.colors.sectionText};
+  }
+
+  .css-ahj2mt-MuiTypography-root {
+    @media (max-width: 610px) {
+      font-size: 1.25rem;
+    }
   }
 
   .css-qfz70r-MuiFormGroup-root {
@@ -80,6 +86,12 @@ export const Select = styled.select`
   border-radius: 10px;
   border: #ccc 1px solid;
   background-color: white;
+  padding: 2px 5px 2px 5px;
+
+  @media (max-width: 610px) {
+    padding: 5px 8px 5px 8px;
+    font-size: 1.1rem;
+  }
 `;
 
 export const SelectOption = styled.option``;
@@ -90,16 +102,16 @@ export const Content = styled.div`
   margin-top: 2rem;
   gap: 0.5rem;
 
-  @media (max-width: 1000px) {
+  @media (max-width: 1180px) {
     margin: 2rem 10px 0 10px;
     grid-template-columns: repeat(3, 1fr);
   }
 
-  @media (max-width: 760px) {
+  @media (max-width: 855px) {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  @media (max-width: 345px) {
+  @media (max-width: 360px) {
     grid-template-columns: 1fr;
     gap: 2rem;
   }
@@ -108,8 +120,10 @@ export const Content = styled.div`
 export const MediaPosterContainer = styled.div`
   position: relative;
   margin: 0 auto;
-  width: 225px;
-  height: 337.5px;
+  /* width: 225px; */
+  /* height: 337.5px; */
+  width: calc(225px + 15%);
+  height: calc(337.5px + 15%);
   transition: 0.3s;
   border-radius: 23px;
   margin-bottom: 1.5rem;
@@ -119,17 +133,17 @@ export const MediaPosterContainer = styled.div`
     transform: scale(1.03);
   }
 
-  @media (max-width: 512px) {
+  @media (max-width: 590px) {
     width: 191.25px;
     height: 286.87px;
   }
 
-  @media (max-width: 435px) {
-    width: calc(191.25px - 25%);
-    height: calc(286.87px - 25%);
+  @media (max-width: 420px) {
+    width: calc(191.25px - 15%);
+    height: calc(286.87px - 15%);
   }
 
-  @media (max-width: 345px) {
+  @media (max-width: 360px) {
     width: 225px;
     height: 337.5px;
   }
@@ -146,7 +160,7 @@ export const MediaPoster = styled.img`
 export const MediaNameContainer = styled.div`
   position: absolute;
   bottom: 10px;
-  left: 26px;
+  left: 24px;
   width: 80%;
   text-align: center;
 `;
@@ -178,6 +192,7 @@ export const RatingContainer = styled.div`
 export const RatingStarContainer = styled.div`
   position: relative;
 `;
+
 export const RatingStar = styled(AiFillStar).attrs({
   size: 55,
   color: "#fdca40",

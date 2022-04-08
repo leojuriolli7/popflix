@@ -321,7 +321,8 @@ export const SeasonSectionTitle = styled.h2`
 `;
 
 export const SeasonListContainer = styled.div`
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   box-shadow: 1px 5px 15px 5px rgba(0, 0, 0, 0.3);
   border-radius: 23px;
   background: ${(props) =>
@@ -334,6 +335,10 @@ export const SeasonListContainer = styled.div`
 
   @media (max-width: 1150px) {
     margin: 0 1.5rem 0 1.5rem;
+  }
+
+  @media (max-width: 573px) {
+    grid-template-columns: 1fr;
   }
 
   @media (max-width: 426px) {
@@ -381,9 +386,19 @@ export const NoPosterIcon = styled.img`
 `;
 
 export const SeasonTitle = styled.h3`
+  text-align: center;
   margin-top: 0.5rem;
   color: ${(props) => props.theme.colors.sectionText};
   font-size: 2.1rem;
+
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+
+  @media (max-width: 573px) {
+    -webkit-line-clamp: 10;
+  }
 `;
 
 export const SeasonDetailsContainer = styled.div`

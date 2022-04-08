@@ -87,7 +87,7 @@ export function MediaGrid({ mediaType }: MediaDetailsProps) {
               name="radio-buttons-group"
               onChange={handleChangeRadio}
               row
-              defaultValue={"popular"}
+              defaultValue={selectedValue}
             >
               <FormControlLabel
                 value="popular"
@@ -129,6 +129,7 @@ export function MediaGrid({ mediaType }: MediaDetailsProps) {
       <S.Content>
         {mediaDetails?.map((media) => (
           <S.MediaPosterContainer
+            title={media.name || media.title}
             key={media.id}
             onClick={() =>
               navigate(
