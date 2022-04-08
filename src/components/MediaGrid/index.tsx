@@ -109,8 +109,10 @@ export function MediaGrid({ mediaType }: MediaDetailsProps) {
   useEffect(() => {
     if (isNaN(Number(selectedGenre)) === true) {
       fetchMediaWithoutGenres(page);
+      navigate(`?page=${page}`);
     } else {
       fetchMediaWithGenres(page);
+      navigate(`?page=${page}`);
     }
 
     api

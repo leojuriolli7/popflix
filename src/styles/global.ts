@@ -101,4 +101,15 @@ export const GlobalStyle = createGlobalStyle`
     border-top-right-radius: 15px;
   }
 
+  .bs-popover-auto[data-popper-placement^=bottom]>.popover-arrow::after, .bs-popover-bottom>.popover-arrow::after {
+    border-bottom-color: ${(props) =>
+      props.theme.title === "dark"
+        ? lighten(0.06, props.theme.colors.primary)
+        : props.theme.colors.background};
+  }
+
+  .bs-popover-auto[data-popper-placement^=bottom] .popover-header::before, .bs-popover-bottom .popover-header::before {
+    border-bottom: transparent;
+  }
+
 `;

@@ -185,40 +185,31 @@ export function MediaDetails({ mediaType }: MediaDetailsProps) {
                 ? `${mediaDetails?.runtime}min`
                 : "Unknown Runtime"}
             </S.MediaRuntime>
+
+            {mediaDetails?.networks && (
+              <S.MediaNetwork>
+                Network:{" "}
+                <S.MediaNetworkSpan
+                  onClick={() =>
+                    navigate(`/network/${mediaDetails?.networks[0].id}`)
+                  }
+                >
+                  {mediaDetails?.networks[0]?.name}
+                </S.MediaNetworkSpan>
+              </S.MediaNetwork>
+            )}
           </S.ReleaseAndRuntimeContainer>
           <S.MediaProductionCompaniesContainer>
             {mediaDetails?.production_companies ? (
-              <S.MediaProductionCompany
-                onClick={() =>
-                  navigate(
-                    `/company/${mediaDetails?.production_companies[0]?.id}`
-                  )
-                }
-              >
-                {mediaDetails?.production_companies[0]?.name}
-              </S.MediaProductionCompany>
-            ) : (
-              <S.MediaProductionCompany>Unknown</S.MediaProductionCompany>
-            )}
-            {mediaDetails?.production_companies[1] && (
               <CompaniesPopover
                 mediaType={mediaType}
                 currentMedia={mediaDetails}
               />
+            ) : (
+              <S.MediaProductionCompany>Unknown</S.MediaProductionCompany>
             )}
           </S.MediaProductionCompaniesContainer>
-          {mediaDetails?.networks && (
-            <S.MediaNetwork>
-              Network:{" "}
-              <S.MediaNetworkSpan
-                onClick={() =>
-                  navigate(`/network/${mediaDetails?.networks[0].id}`)
-                }
-              >
-                {mediaDetails?.networks[0]?.name}
-              </S.MediaNetworkSpan>
-            </S.MediaNetwork>
-          )}
+
           <S.MediaOverview>
             {mediaDetails?.overview ? mediaDetails?.overview : "No Overview"}
           </S.MediaOverview>

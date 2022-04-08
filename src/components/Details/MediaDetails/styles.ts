@@ -94,14 +94,8 @@ export const MediaGenresContainer = styled.div`
 export const MediaGenres = styled.p`
   font-size: 1.1rem;
   line-height: 25px;
-  text-decoration: underline;
   margin: 0;
   font-weight: 500;
-
-  &:hover {
-    cursor: pointer;
-    color: #3772ff;
-  }
 
   @media (max-width: 845px) {
     font-size: 1.5rem;
@@ -152,9 +146,7 @@ export const MediaProductionCompany = styled(MediaReleaseDate)`
   }
 `;
 
-export const MediaNetwork = styled(MediaReleaseDate)`
-  margin: 0.7rem 0.7rem 0 0.7rem;
-`;
+export const MediaNetwork = styled(MediaReleaseDate)``;
 
 export const MediaNetworkSpan = styled.span`
   text-decoration: underline;
