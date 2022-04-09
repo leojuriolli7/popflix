@@ -167,7 +167,7 @@ export function FullSearch() {
         <S.Content>
           {(searchType === "tv" || searchType === "movie") &&
             mediaDetails?.map((media) => (
-              <S.MediaPosterContainer>
+              <S.MediaPosterContainer key={media.id}>
                 <S.MediaPoster
                   onClick={() =>
                     navigate(
@@ -197,7 +197,7 @@ export function FullSearch() {
 
           {searchType === "company" &&
             mediaDetails?.map((media) => (
-              <S.CompanyPosterContainer>
+              <S.CompanyPosterContainer key={media.id}>
                 {" "}
                 <S.CompanyPoster
                   onClick={() => navigate(`/company/${media.id}`)}
@@ -217,7 +217,7 @@ export function FullSearch() {
 
           {searchType === "person" &&
             mediaDetails?.map((media) => (
-              <S.ActorPosterContainer>
+              <S.ActorPosterContainer key={media.id}>
                 {" "}
                 <S.MediaPoster
                   onClick={() => navigate(`/actor/${media.id}`)}

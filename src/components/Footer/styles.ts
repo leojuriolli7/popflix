@@ -18,7 +18,7 @@ export const Content = styled.div`
   align-items: center;
   justify-content: space-between;
   text-align: center;
-  padding: 1rem 2rem 1rem 2rem;
+  padding: 1rem 2rem;
 `;
 
 export const FooterText = styled.p`
