@@ -1,6 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { api } from "../../services/api";
 import * as S from "./styles";
+import debounce from "lodash.debounce";
+
 import {
   Radio,
   FormControl,
@@ -23,7 +25,7 @@ interface MediaInterface {
 
 export function FullSearch() {
   const [searchType, setSearchType] = useState("movie");
-  const [searchTerm, setSearchTerm] = useState();
+  const [searchTerm, setSearchTerm] = useState("");
   const [mediaDetails, setMediaDetails] = useState<MediaInterface[]>();
   const { theme } = useSelector((state: RootState) => state.theme);
 
@@ -35,13 +37,25 @@ export function FullSearch() {
     setSearchTerm(e.target.value);
   };
 
+  const debouncedResults = useMemo(() => {
+    return debounce(handleChangeSearch, 300);
+  }, []);
+
   useEffect(() => {
-    api
-      .get(
-        `/search/${searchType}?api_key=24e0e0f71e0ac9cb9c5418459514eda9&language=en-US&query=${searchTerm}&page=1&include_adult=false`
-      )
-      .then((response) => setMediaDetails(response.data.results));
+    if (searchTerm !== "") {
+      api
+        .get(
+          `/search/${searchType}?api_key=24e0e0f71e0ac9cb9c5418459514eda9&language=en-US&query=${searchTerm}&page=1&include_adult=false`
+        )
+        .then((response) => setMediaDetails(response.data.results));
+    }
   }, [searchType, searchTerm]);
+
+  useEffect(() => {
+    return () => {
+      debouncedResults.cancel();
+    };
+  });
 
   return (
     <S.Container>
@@ -85,7 +99,7 @@ export function FullSearch() {
           <S.SearchInput
             placeholder="Search on Popflix"
             type="search"
-            onChange={handleChangeSearch}
+            onChange={debouncedResults}
           />
         </S.SearchInputContainer>
       </S.SearchInputAndIconContainer>

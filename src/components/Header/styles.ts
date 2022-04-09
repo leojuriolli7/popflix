@@ -11,7 +11,7 @@ export const Container = styled.header`
   .Menu {
     display: none;
 
-    @media (max-width: 817px) {
+    @media (max-width: 842px) {
       display: block;
     }
   }
@@ -57,7 +57,7 @@ export const UnorganizedList = styled.ul`
   justify-content: center;
   margin: 0;
 
-  @media (max-width: 817px) {
+  @media (max-width: 842px) {
     display: none;
   }
 `;
@@ -89,7 +89,7 @@ export const OptionsContainer = styled.div`
   justify-content: center;
   gap: 1rem;
 
-  @media (max-width: 817px) {
+  @media (max-width: 842px) {
     display: none;
   }
 `;

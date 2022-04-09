@@ -68,7 +68,7 @@ export const UnorganizedList = styled.ul`
   justify-content: center;
   align-items: center;
   padding: 0;
-  gap: 1rem;
+  gap: 1.5rem;
 `;
 
 export const ListItem = styled.li``;

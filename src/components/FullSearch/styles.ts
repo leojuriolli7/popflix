@@ -35,6 +35,10 @@ export const RadioInputContainer = styled.div`
 
   .css-vqmohf-MuiButtonBase-root-MuiRadio-root {
     color: ${(props) => props.theme.title === "dark" && "white"};
+
+    &:hover {
+      background-color: rgba(223, 41, 53, 0.05);
+    }
   }
 
   .css-vqmohf-MuiButtonBase-root-MuiRadio-root.Mui-checked {
@@ -57,16 +61,16 @@ export const SearchInputContainer = styled.div`
 export const SearchIconContainer = styled.div`
   position: absolute;
   left: 15px;
-  top: 13px;
+  top: 14px;
 `;
 
 export const SearchIconWhite = styled(BsSearch).attrs({
-  size: 25,
+  size: 23,
   color: "white",
 })``;
 
 export const SearchIconBlack = styled(BsSearch).attrs({
-  size: 25,
+  size: 23,
   color: "black",
 })``;
 

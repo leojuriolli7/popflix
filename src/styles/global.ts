@@ -49,6 +49,11 @@ export const GlobalStyle = createGlobalStyle`
             "inset 4px 4px 55px 14px rgb(0 0 0 / 84%)"};
   }
 
+  .offcanvas-header {
+    padding: 1rem 1rem 0 1rem;
+    
+  }
+
   .offcanvas-end {
     @media(max-width: 426px) {
       width: 100vw;

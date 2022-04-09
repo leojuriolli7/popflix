@@ -50,12 +50,17 @@ export function Header() {
                 TV Shows
               </S.ListItemText>
             </S.ListItem>
+            <S.ListItem>
+              <S.ListItemText
+                onClick={() => navigate("/search")}
+                isSelected={history.pathname === "/search"}
+              >
+                Search
+              </S.ListItemText>
+            </S.ListItem>
           </S.UnorganizedList>
         </S.Navigation>
         <S.OptionsContainer>
-          <S.SearchIconContainer>
-            <S.SearchIcon onClick={() => navigate("/search")} />
-          </S.SearchIconContainer>
           <S.ButtonContainer>
             <Button
               type="button"

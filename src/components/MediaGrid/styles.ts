@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { AiFillStar } from "react-icons/ai";
+import { lighten } from "polished";
 
 export const Container = styled.main.attrs({
   className: "animate__animated animate__fadeIn",
@@ -42,6 +43,10 @@ export const InputsContainer = styled.div`
 
   .css-vqmohf-MuiButtonBase-root-MuiRadio-root {
     color: ${(props) => props.theme.title === "dark" && "white"};
+
+    &:hover {
+      background-color: rgba(223, 41, 53, 0.05);
+    }
   }
 
   .css-vqmohf-MuiButtonBase-root-MuiRadio-root.Mui-checked {
@@ -61,7 +66,11 @@ export const SortText = styled.p`
 export const Select = styled.select`
   border-radius: 10px;
   border: #ccc 1px solid;
-  background-color: white;
+  background: ${(props) =>
+    props.theme.title === "light"
+      ? props.theme.colors.background
+      : lighten(0.06, props.theme.colors.background)};
+  color: ${(props) => props.theme.colors.sectionText};
   padding: 2px 5px 2px 5px;
 
   @media (max-width: 610px) {
