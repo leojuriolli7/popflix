@@ -108,6 +108,8 @@ export function FullSearch() {
     fetchSearch(value);
   }
 
+  console.log(searchType);
+
   return (
     <>
       <S.Container>
