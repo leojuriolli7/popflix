@@ -151,3 +151,125 @@ export const MediaPoster = styled.img`
   object-fit: cover;
   box-shadow: 1px 5px 15px 5px rgba(0, 0, 0, 0.2);
 `;
+
+export const MediaNameContainer = styled.div`
+  position: absolute;
+  bottom: 10px;
+  left: 25px;
+  width: 80%;
+  text-align: center;
+
+  @media (max-width: 590px) {
+    left: 20px;
+  }
+`;
+
+export const MediaName = styled.p`
+  margin: 0;
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: white;
+`;
+
+export const IconContainer = styled.div`
+  position: absolute;
+  bottom: 140px;
+  left: 28px;
+  width: 80%;
+  text-align: center;
+
+  @media (max-width: 590px) {
+    bottom: 120px;
+    left: 22px;
+  }
+`;
+
+export const Icon = styled.img`
+  width: 60%;
+`;
+
+export const CompanyPosterContainer = styled.div`
+  position: relative;
+  margin: 0 auto;
+  width: calc(225px + 15%);
+  height: calc(225px + 15%);
+  transition: 0.3s;
+  border-radius: 23px;
+  margin-bottom: 1.5rem;
+
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.03);
+  }
+
+  @media (max-width: 590px) {
+    width: 191.25px;
+    height: 191.25px;
+  }
+
+  @media (max-width: 420px) {
+    width: 167.25px;
+    height: 167.25px;
+  }
+
+  @media (max-width: 360px) {
+    width: 225px;
+    height: 225px;
+  }
+`;
+
+export const CompanyPoster = styled(MediaPoster)`
+  object-fit: contain;
+`;
+
+export const CompanyNameContainer = styled.div`
+  position: absolute;
+  bottom: 10px;
+  left: 30px;
+  text-align: center;
+  width: 80%;
+
+  @media (max-width: 590px) {
+    left: 20px;
+  }
+`;
+
+export const CompanyName = styled.p`
+  color: #fff;
+  margin: 0;
+  font-size: 1rem;
+`;
+
+export const ActorPosterContainer = styled(MediaPosterContainer)``;
+
+export const ActorNameContainer = styled.div`
+  position: absolute;
+  bottom: -10px;
+  width: 100%;
+  background: ${(props) => props.theme.colors.primary};
+  text-align: center;
+  padding: 1rem 0;
+  border-bottom-left-radius: 23px;
+  border-bottom-right-radius: 23px;
+
+  @media (max-width: 420px) {
+    padding: 0.7rem 0;
+  }
+
+  @media (max-width: 360px) {
+    padding: 1rem 0;
+  }
+`;
+
+export const ActorName = styled.p`
+  color: #fff;
+  margin: 0;
+  font-size: 1rem;
+`;
+
+export const PaginationContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2rem;
+`;
