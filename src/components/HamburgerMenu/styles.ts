@@ -104,3 +104,10 @@ export const LightModeIcon = styled(FaSun).attrs({
 })`
   margin: 1px 0 1px 2px;
 `;
+
+export const LanguageMenuContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+`;

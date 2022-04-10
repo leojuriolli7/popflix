@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import { RootState } from "../../store";
+import { LanguageMenuHamburguer } from "../LanguageMenuHamburguer";
 import { ThemeSwitch } from "../ThemeSwitch";
 import * as S from "./styles";
 
@@ -82,6 +83,9 @@ export function HamburguerMenu() {
                 uncheckedIcon={<S.LightModeIcon />}
               />
             </S.ThemeSwitchContainer>
+            <S.LanguageMenuContainer>
+              <LanguageMenuHamburguer />
+            </S.LanguageMenuContainer>
           </S.Content>
         </Offcanvas.Body>
       </Offcanvas>
