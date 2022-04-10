@@ -89,9 +89,7 @@ export function MediaList({ apiEndpoint, title }: MediaListProps) {
                           <S.Icon src={item.name ? tvIcon : movieIcon} />
                         </S.IconContainer>
                         <S.MediaNameContainer>
-                          <S.MediaName>
-                            {item?.name || item?.original_title}
-                          </S.MediaName>
+                          <S.MediaName>{item?.name || item?.title}</S.MediaName>
                         </S.MediaNameContainer>
                       </>
                     )}
