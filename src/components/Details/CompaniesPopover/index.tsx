@@ -28,7 +28,7 @@ export function CompaniesPopover({
   return (
     <OverlayTrigger
       placement="bottom"
-      trigger="click"
+      trigger="hover"
       overlay={
         <Popover>
           <Popover.Header>

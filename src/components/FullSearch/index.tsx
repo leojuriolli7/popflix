@@ -19,6 +19,7 @@ import { MainHeading } from "../Details/MainHeading";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { useNavigate } from "react-router-dom";
+import { RatingCircle } from "../RatingCircle";
 
 interface MediaInterface {
   id: number;
@@ -192,6 +193,7 @@ export function FullSearch() {
                     </S.MediaNameContainer>
                   </>
                 )}
+                <RatingCircle vote_average={media!.vote_average} />
               </S.MediaPosterContainer>
             ))}
 

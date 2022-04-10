@@ -13,6 +13,7 @@ import {
   Pagination,
 } from "@mui/material";
 import { MainHeading } from "../Details/MainHeading";
+import { RatingCircle } from "../RatingCircle";
 
 interface MediaInterface {
   genre_ids: GenreInterface[];
@@ -251,23 +252,7 @@ export function MediaGrid({ mediaType }: MediaDetailsProps) {
                 </S.MediaNameContainer>
               </>
             )}
-            <S.RatingContainer>
-              <S.RatingStarContainer>
-                <S.RatingStar />
-                <S.RatingStarSmaller />
-                {media?.vote_average !== 0 ? (
-                  <S.RatingNumberContainer>
-                    <S.RatingNumber>
-                      {(Number(media?.vote_average) / 2).toFixed(1)}
-                    </S.RatingNumber>
-                  </S.RatingNumberContainer>
-                ) : (
-                  <S.UnreleasedRatingTextContainer>
-                    <S.UnreleasedRatingText>N/A</S.UnreleasedRatingText>
-                  </S.UnreleasedRatingTextContainer>
-                )}
-              </S.RatingStarContainer>
-            </S.RatingContainer>
+            <RatingCircle vote_average={media!.vote_average} />
           </S.MediaPosterContainer>
         ))}
       </S.Content>
