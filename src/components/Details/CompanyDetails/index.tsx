@@ -4,6 +4,8 @@ import { api } from "../../../services/api";
 import * as S from "./styles";
 import { DetailsError } from "../DetailsError";
 import { isoCountries } from "../../../utils/constants";
+import { useTranslation } from "react-i18next";
+import i18n from "../../../i18n";
 
 interface ParentCompaniesInterface {
   name: string;
@@ -31,6 +33,7 @@ export function CompanyDetails({ type }: CompanyDetailsProps) {
   const navigate = useNavigate();
   const [companyDetails, setCompanyDetails] =
     useState<CompanyDetailsInterface>();
+  const { t }: { t: any } = useTranslation();
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -65,12 +68,12 @@ export function CompanyDetails({ type }: CompanyDetailsProps) {
           <S.CompanyName>{companyDetails?.name}</S.CompanyName>
         </S.CompanyNameContainer>
         <S.CompanyOriginCountry>
-          Origin Country:{" "}
-          {getCountryName(companyDetails?.origin_country) || "Unknown"}
+          {`${t("originCountry")}: `}
+          {getCountryName(companyDetails?.origin_country) || t("unknown")}
         </S.CompanyOriginCountry>
         {companyDetails?.parent_company && (
           <S.ParentCompany>
-            Parent Company:{" "}
+            {`${t("parentCompany")}: `}
             <S.ParentCompanySpan
               onClick={() =>
                 navigate(`/company/${companyDetails.parent_company?.id}`)
@@ -82,7 +85,7 @@ export function CompanyDetails({ type }: CompanyDetailsProps) {
         )}
         {companyDetails?.headquarters && (
           <S.CompanyHeadquarters>
-            Headquarters: {companyDetails?.headquarters}
+            {`${t("headquarters")}: ${companyDetails?.headquarters}`}
           </S.CompanyHeadquarters>
         )}
         {companyDetails?.description && (
@@ -93,12 +96,14 @@ export function CompanyDetails({ type }: CompanyDetailsProps) {
 
         {companyDetails?.homepage && (
           <S.CompanyHomepage href={companyDetails?.homepage} target="_blank">
-            {`Go to ${companyDetails?.name} Homepage`}
+            {i18n.language === "pt"
+              ? `Ir para o site de ${companyDetails.name}`
+              : `Go to ${companyDetails.name} Homepage`}
           </S.CompanyHomepage>
         )}
       </S.CompanyInfoContainer>
     </S.Container>
   ) : (
-    <DetailsError text="No Company with this id" />
+    <DetailsError text={t("noCompanyError")} />
   );
 }

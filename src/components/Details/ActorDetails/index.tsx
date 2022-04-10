@@ -8,6 +8,8 @@ import { ActorBiographyModal } from "../../Modals/ActorBiographyModal";
 import tvIcon from "../../../assets/tvicon.svg";
 import movieIcon from "../../../assets/movieicon.svg";
 import { DetailsError } from "../DetailsError";
+import { useTranslation } from "react-i18next";
+import i18n from "../../../i18n";
 
 interface ActorDetailsInterface {
   name: string;
@@ -50,11 +52,9 @@ export function ActorDetails() {
   const { id } = useParams();
   const [actorDetails, setActorDetails] = useState<ActorDetailsInterface>();
   const [actorCredits, setActorCredits] = useState<ActorCreditsInterface>();
-
+  const { t }: { t: any } = useTranslation();
   const navigate = useNavigate();
-
   const [show, setShow] = useState(false);
-
   const handleClose = () => setShow(false);
 
   useEffect(() => {
@@ -115,7 +115,9 @@ export function ActorDetails() {
             )} Years old)`}</S.ActorBirthday>
           </S.ActorBirthdayContainer>
           {actorDetails?.known_for_department && (
-            <S.KnownFor>{`Known for: ${actorDetails?.known_for_department}`}</S.KnownFor>
+            <S.KnownFor>{`${t("knownFor")} ${
+              actorDetails?.known_for_department
+            }`}</S.KnownFor>
           )}
           <S.ActorBiographyContainer>
             <S.ActorBiography>{actorDetails?.biography}</S.ActorBiography>
@@ -123,14 +125,18 @@ export function ActorDetails() {
           {actorDetails?.biography && (
             <S.FullBiographyLinkContainer>
               <S.FullBiographyLink onClick={() => setShow(true)}>
-                Read Full Biography
+                {t("readFullBiographyMessage")}
               </S.FullBiographyLink>
             </S.FullBiographyLinkContainer>
           )}
         </S.ActorDetails>
       </S.MainInfoContainer>
       <S.CreditsListContainer>
-        <S.CreditsSectionTitle>{`${actorDetails?.name}'s Credits`}</S.CreditsSectionTitle>
+        <S.CreditsSectionTitle>
+          {i18n.language === "pt"
+            ? `Créditos de ${actorDetails.name}`
+            : `${actorDetails.name} Credits`}
+        </S.CreditsSectionTitle>
         <S.CreditContainer>
           {actorCredits?.cast?.map((credit) => (
             <S.MediaCreditContainer
@@ -160,7 +166,7 @@ export function ActorDetails() {
                 )}
               </S.MediaPosterContainer>
               <S.MediaTitle>{credit.title || credit.name}</S.MediaTitle>
-              <S.MediaCharacter>{`as ${
+              <S.MediaCharacter>{`${t("as")} ${
                 credit.character ? credit.character : "Unknown Character/Self"
               }`}</S.MediaCharacter>
             </S.MediaCreditContainer>
@@ -195,7 +201,7 @@ export function ActorDetails() {
               </S.MediaPosterContainer>
               <S.MediaTitle>{credit.title || credit.name}</S.MediaTitle>
               <S.MediaCharacter>
-                {credit.job ? credit.job : "Unknown"}
+                {credit.job ? credit.job : t("unknown")}
               </S.MediaCharacter>
             </S.MediaCreditContainer>
           ))}
@@ -209,6 +215,6 @@ export function ActorDetails() {
       />
     </S.Container>
   ) : (
-    <DetailsError text="Error: No Actor with this id" />
+    <DetailsError text={t("noActorError")} />
   );
 }

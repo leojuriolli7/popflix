@@ -1,10 +1,10 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useState } from "react";
 import { Offcanvas } from "react-bootstrap";
+import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import { RootState } from "../../store";
-import { Button } from "../Button";
 import { ThemeSwitch } from "../ThemeSwitch";
 import * as S from "./styles";
 
@@ -15,6 +15,7 @@ export function HamburguerMenu() {
   const { theme } = useSelector((state: RootState) => state.theme);
   const navigate = useNavigate();
   const history = useLocation();
+  const { t }: { t: any } = useTranslation();
 
   return (
     <S.Container>
@@ -43,7 +44,7 @@ export function HamburguerMenu() {
                     onClick={() => navigate("/")}
                     isSelected={history.pathname === "/"}
                   >
-                    Home
+                    {t("home")}
                   </S.MenuOption>
                 </S.ListItem>
                 <S.ListItem>
@@ -51,7 +52,7 @@ export function HamburguerMenu() {
                     onClick={() => navigate("/movies")}
                     isSelected={history.pathname === "/movies"}
                   >
-                    Movies
+                    {t("movies")}
                   </S.MenuOption>
                 </S.ListItem>
                 <S.ListItem>
@@ -59,7 +60,7 @@ export function HamburguerMenu() {
                     onClick={() => navigate("/shows")}
                     isSelected={history.pathname === "/shows"}
                   >
-                    Shows
+                    {t("tvShows")}
                   </S.MenuOption>
                 </S.ListItem>
                 <S.ListItem>
@@ -67,27 +68,11 @@ export function HamburguerMenu() {
                     onClick={() => navigate("/search")}
                     isSelected={history.pathname === "/search"}
                   >
-                    Search
+                    {t("search")}
                   </S.MenuOption>
                 </S.ListItem>
               </S.UnorganizedList>
             </S.Navigation>
-            <S.ButtonContainer>
-              <Button
-                type="button"
-                color="#fdca40"
-                textColor="white"
-                borderColor="#fdca40"
-                text="Log In"
-              />
-              <Button
-                type="button"
-                color="#3772ff"
-                textColor="white"
-                borderColor="#3772ff"
-                text="Sign Up"
-              />
-            </S.ButtonContainer>
             <S.ThemeSwitchContainer>
               <ThemeSwitch
                 height={35}

@@ -84,20 +84,6 @@ export const MenuOption = styled.p<MenuOptionProps>`
   color: ${(props) => props.theme.colors.sectionText};
 `;
 
-export const ButtonContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-  gap: 2rem;
-
-  button {
-    font-size: 2rem;
-    padding: 14px 35px;
-    border-radius: 40px;
-  }
-`;
-
 export const ThemeSwitchContainer = styled.div`
   margin-top: 2rem;
   display: flex;

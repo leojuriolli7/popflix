@@ -4,6 +4,8 @@ import { api } from "../../services/api";
 import * as S from "./styles";
 import defaultProfileImage from "../../assets/default.png";
 import { Rating } from "@mui/material";
+import { useTranslation } from "react-i18next";
+import i18n from "../../i18n";
 
 interface AuthorDetailsInterface {
   name: string;
@@ -48,6 +50,7 @@ export function Review({ mediaType }: ReviewProps) {
   const { id } = useParams();
   const [reviews, setReviews] = useState<ReviewsInterface[]>();
   const [mediaDetails, setMediaDetails] = useState<MediaDetailsInterface>();
+  const { t }: { t: any } = useTranslation();
 
   const navigate = useNavigate();
 
@@ -76,14 +79,16 @@ export function Review({ mediaType }: ReviewProps) {
               onClick={() =>
                 navigate(`/${mediaType === "tv" ? "show" : "movie"}/${id}`)
               }
-              title="Go back"
+              title={t("goBack")}
             >
               <S.WhiteArrowBack />
             </S.ArrowBackContainer>
           )}
           <S.TitleTextContainer>
             <S.TitleText>
-              {mediaDetails?.title || mediaDetails?.name} Reviews
+              {i18n.language === "pt"
+                ? `Reviews de ${mediaDetails?.name || mediaDetails?.title}`
+                : `${mediaDetails?.name || mediaDetails?.title} Reviews`}
             </S.TitleText>
           </S.TitleTextContainer>
         </S.MediaInfoContainer>
@@ -93,12 +98,12 @@ export function Review({ mediaType }: ReviewProps) {
               onClick={() =>
                 navigate(`/${mediaType === "tv" ? "show" : "movie"}/${id}`)
               }
-              title="Go back"
+              title={t("goBack")}
             >
               <S.WhiteArrowBack />
             </S.NoReviewsArrowContainer>
             <S.NoReviewsMessageContainer>
-              <S.NoReviewsMessage>No Reviews Available</S.NoReviewsMessage>
+              <S.NoReviewsMessage>{t("noReviewsError")}</S.NoReviewsMessage>
             </S.NoReviewsMessageContainer>
           </S.NoReviewsContainer>
         ) : (
@@ -113,13 +118,13 @@ export function Review({ mediaType }: ReviewProps) {
                       ? String(review.author_details.avatar_path).substring(1)
                       : defaultProfileImage
                   }
-                  alt="User"
+                  alt={t("altUser")}
                 />
                 <S.Username>{review.author}</S.Username>
               </S.UserContainer>
               <S.RatingContainer>
                 {review.author_details.rating === null ? (
-                  <S.NoRatingMessage>No Rating given</S.NoRatingMessage>
+                  <S.NoRatingMessage>{t("noRatingMessage")}</S.NoRatingMessage>
                 ) : (
                   <>
                     <Rating
@@ -136,12 +141,12 @@ export function Review({ mediaType }: ReviewProps) {
                       review.author_details.rating
                         ? Number(review.author_details.rating / 2)
                         : 0
-                    } Stars`}</S.RatingText>
+                    } ${t("stars")}`}</S.RatingText>
                   </>
                 )}
               </S.RatingContainer>
               <S.ReviewDatesContainer>
-                <S.ReviewDates>{`Published at ${reviewDate(
+                <S.ReviewDates>{`${t("publishedAt")} ${reviewDate(
                   review.created_at
                 ).getDate()}/${
                   reviewDate(review.created_at).getMonth() + 1
@@ -150,7 +155,7 @@ export function Review({ mediaType }: ReviewProps) {
                 ).getFullYear()}`}</S.ReviewDates>
                 {review.created_at.slice(0, 10) !==
                 review.updated_at.slice(0, 10) ? (
-                  <S.ReviewDates>{`Updated at ${reviewDate(
+                  <S.ReviewDates>{`${t("updatedAt")} ${reviewDate(
                     review.updated_at
                   ).getDate()}/${
                     reviewDate(review.updated_at).getMonth() + 1

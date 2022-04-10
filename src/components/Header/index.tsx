@@ -6,11 +6,14 @@ import logoDark from "../../assets/logo-dark.svg";
 import { useLocation, useNavigate } from "react-router-dom";
 import { HamburguerMenu } from "../HamburgerMenu";
 import { ThemeSwitch } from "../ThemeSwitch";
+import { useTranslation } from "react-i18next";
+import { LanguageMenu } from "../LanguageMenu";
 
 export function Header() {
   const navigate = useNavigate();
   const history = useLocation();
   const { theme } = useSelector((state: RootState) => state.theme);
+  const { t }: { t: any } = useTranslation();
 
   return (
     <S.Container>
@@ -30,7 +33,7 @@ export function Header() {
                 onClick={() => navigate("/")}
                 isSelected={history.pathname === "/"}
               >
-                Home
+                {t("home")}
               </S.ListItemText>
             </S.ListItem>
             <S.ListItem>
@@ -38,7 +41,7 @@ export function Header() {
                 onClick={() => navigate("/movies")}
                 isSelected={history.pathname === "/movies"}
               >
-                Movies
+                {t("movies")}
               </S.ListItemText>
             </S.ListItem>
             <S.ListItem>
@@ -46,7 +49,7 @@ export function Header() {
                 onClick={() => navigate("/shows")}
                 isSelected={history.pathname === "/shows"}
               >
-                TV Shows
+                {t("tvShows")}
               </S.ListItemText>
             </S.ListItem>
             <S.ListItem>
@@ -54,12 +57,13 @@ export function Header() {
                 onClick={() => navigate("/search")}
                 isSelected={history.pathname === "/search"}
               >
-                Search
+                {t("search")}
               </S.ListItemText>
             </S.ListItem>
           </S.UnorganizedList>
         </S.Navigation>
         <S.OptionsContainer>
+          <LanguageMenu />
           <ThemeSwitch
             height={15}
             width={40}

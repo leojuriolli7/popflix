@@ -4,6 +4,8 @@ import * as S from "./styles";
 import { Button } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store";
+import { useTranslation } from "react-i18next";
+import i18n from "../../../i18n";
 
 interface ActorDetailsInterface {
   name: string;
@@ -29,12 +31,17 @@ export function ActorBiographyModal({
   setShow,
 }: ActorBiographyModalProps) {
   const { theme } = useSelector((state: RootState) => state.theme);
+  const { t }: { t: any } = useTranslation();
 
   return (
     <Modal show={show} onHide={handleClose}>
       <Modal.Header>
         <S.ModalHeaderContainer>
-          <S.TitleText>{actorDetails?.name} Biography</S.TitleText>
+          <S.TitleText>
+            {i18n.language === "pt"
+              ? `${t("ActorBiographyModalTitle")} de ${actorDetails?.name}`
+              : `${actorDetails?.name} ${t("ActorBiographyModalTitle")}`}
+          </S.TitleText>
           <S.CloseButtonContainer onClick={() => setShow(false)}>
             {theme === "light" ? (
               <S.CloseButtonBlack />

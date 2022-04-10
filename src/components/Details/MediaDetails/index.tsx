@@ -9,6 +9,7 @@ import defaultPoster from "../../../assets/defaultposter.png";
 import tvIcon from "../../../assets/tvicon.svg";
 import { DetailsError } from "../DetailsError";
 import { CompaniesPopover } from "../CompaniesPopover";
+import { useTranslation } from "react-i18next";
 // import { useMutation } from "react-query";
 // import { getMediaDetails } from "../../../utils/requests";
 
@@ -78,6 +79,7 @@ interface MediaDetailsProps {
 
 export function MediaDetails({ mediaType }: MediaDetailsProps) {
   const { id } = useParams();
+  const { t }: { t: any } = useTranslation();
   const [mediaDetails, setMediaDetails] = useState<MediaDetailsInterface>();
   const [mediaCredits, setMediaCredits] = useState<MediaCreditsInterface>();
   const navigate = useNavigate();
@@ -161,7 +163,7 @@ export function MediaDetails({ mediaType }: MediaDetailsProps) {
                       ? Number(mediaDetails.vote_average / 2)
                       : 0
                   }
-              Stars`}
+              ${t("stars")}`}
                 </S.RatingText>
               </S.RatingContainer>
             </S.ReleasedContainer>
@@ -178,12 +180,14 @@ export function MediaDetails({ mediaType }: MediaDetailsProps) {
               {mediaDetails.number_of_seasons
                 ? mediaDetails?.number_of_seasons
                   ? `${mediaDetails?.number_of_seasons} ${
-                      mediaDetails.number_of_seasons > 1 ? "Seasons" : "Season"
+                      mediaDetails.number_of_seasons > 1
+                        ? t("seasons")
+                        : t("season")
                     }`
-                  : "Unknown/No Seasons"
+                  : t("unknownSeasons")
                 : mediaDetails?.runtime
                 ? `${mediaDetails?.runtime}min`
-                : "Unknown Runtime"}
+                : t("unknownRuntime")}
             </S.MediaRuntime>
 
             {mediaDetails?.networks && (
@@ -206,12 +210,14 @@ export function MediaDetails({ mediaType }: MediaDetailsProps) {
                 currentMedia={mediaDetails}
               />
             ) : (
-              <S.MediaProductionCompany>Unknown</S.MediaProductionCompany>
+              <S.MediaProductionCompany>
+                {t("unknown")}
+              </S.MediaProductionCompany>
             )}
           </S.MediaProductionCompaniesContainer>
 
           <S.MediaOverview>
-            {mediaDetails?.overview ? mediaDetails?.overview : "No Overview"}
+            {mediaDetails?.overview ? mediaDetails?.overview : t("noOverview")}
           </S.MediaOverview>
           <S.CastContainer>
             <AliceCarousel
@@ -242,7 +248,7 @@ export function MediaDetails({ mediaType }: MediaDetailsProps) {
                     />
                     <S.CastMemberName>
                       {cast.character !== ""
-                        ? `${cast.name} as ${cast.character}`
+                        ? `${cast.name} ${t("as")} ${cast.character}`
                         : `${cast.name}`}
                     </S.CastMemberName>
                   </S.CastMemberContainer>
@@ -252,8 +258,8 @@ export function MediaDetails({ mediaType }: MediaDetailsProps) {
           {(diff > 0 || isNaN(diff) === true) && (
             <S.UnreleasedText>
               {mediaDetails?.first_air_date || mediaDetails?.release_date
-                ? `Releases in ${diff} days`
-                : "Release Date to be Announced"}
+                ? `${t("releasesIn")} ${diff} ${t("days")}`
+                : t("releaseDateTBA")}
             </S.UnreleasedText>
           )}
           <S.FullCreditsLinkContainer>
@@ -266,14 +272,16 @@ export function MediaDetails({ mediaType }: MediaDetailsProps) {
                 )
               }
             >
-              View Full Credits
+              {t("viewFullCredits")}
             </S.FullCreditsLink>
           </S.FullCreditsLinkContainer>
         </S.InfoContainer>
       </S.Content>
       {mediaDetails?.seasons && (
         <S.SeasonContainerWrap>
-          <S.SeasonSectionTitle>Seasons Overview</S.SeasonSectionTitle>
+          <S.SeasonSectionTitle>
+            {t("seasonsOverviewTitle")}
+          </S.SeasonSectionTitle>
           <S.SeasonListContainer numberOfItems={mediaDetails?.seasons.length}>
             {mediaDetails?.seasons.map((season) => (
               <S.SeasonContainer
@@ -303,15 +311,15 @@ export function MediaDetails({ mediaType }: MediaDetailsProps) {
                 <S.SeasonTitle>{season.name}</S.SeasonTitle>
                 <S.SeasonDetailsContainer>
                   <S.SeasonAirDate>
-                    Air Date:{" "}
+                    {t("airDate")}
                     {season.air_date === null
-                      ? "Unknown"
+                      ? t("unknownAirDate")
                       : `${seasonDate(season.air_date).getDate()}/${
                           seasonDate(season.air_date).getMonth() + 1
                         }/${seasonDate(season.air_date).getFullYear()}`}
                   </S.SeasonAirDate>
                   <S.SeasonEpisodeCount>
-                    {season.episode_count} Episodes
+                    {`${season.episode_count} ${t("episodes")}`}
                   </S.SeasonEpisodeCount>
                 </S.SeasonDetailsContainer>
               </S.SeasonContainer>
@@ -322,7 +330,9 @@ export function MediaDetails({ mediaType }: MediaDetailsProps) {
     </S.Container>
   ) : (
     <DetailsError
-      text={`Error: No ${mediaType === "tv" ? "Show" : "Movie"} with this id`}
+      text={`${t("errorNoMedia1")} ${
+        mediaType === "tv" ? "Show" : t("movie")
+      } ${t("errorNoMedia2")}`}
     />
   );
 }

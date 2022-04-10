@@ -21,6 +21,7 @@ import { EpisodeDetailsPage } from "./pages/episodeDetails";
 import { MovieCreditsPage } from "./pages/movieCredits";
 import { ShowCreditsPage } from "./pages/showCredits";
 import { FullSearchPage } from "./pages/search";
+import "./i18n";
 
 function App() {
   const { theme } = useSelector((state: RootState) => state.theme);

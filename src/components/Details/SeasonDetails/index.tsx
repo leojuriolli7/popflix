@@ -5,6 +5,7 @@ import defaultPoster from "../../../assets/defaultposter.png";
 import * as S from "./styles";
 import { DetailsError } from "../DetailsError";
 import tvIcon from "../../../assets/tvicon.svg";
+import { useTranslation } from "react-i18next";
 
 interface EpisodesInterface {
   air_date: string;
@@ -32,6 +33,7 @@ interface ShowDetailsInterface {
 export function SeasonDetails() {
   const { id } = useParams();
   const { number } = useParams();
+  const { t }: { t: any } = useTranslation();
   const [seasonDetails, setSeasonDetails] = useState<SeasonDetailsInterface>();
   const [showDetails, setShowDetails] = useState<ShowDetailsInterface>();
   const navigate = useNavigate();
@@ -61,7 +63,7 @@ export function SeasonDetails() {
         <S.PageTitle>
           {seasonDetails?.season_number === 0
             ? `${showDetails?.name} Specials Overview`
-            : `${showDetails?.name} Season ${number} Overview`}
+            : `${showDetails?.name} ${t("season")} ${number} Overview`}
         </S.PageTitle>
         {seasonDetails.episodes[0] ? (
           <S.Content>
@@ -100,7 +102,7 @@ export function SeasonDetails() {
                   }
                 >
                   {isNaN(diff(episodeAirDate(episode?.air_date)))
-                    ? "Unknown Air Date"
+                    ? t("unknownAirDate")
                     : `${episodeAirDate(episode?.air_date).getDate()}/${
                         episodeAirDate(episode?.air_date).getMonth() + 1
                       }/${episodeAirDate(episode?.air_date).getFullYear()}`}
@@ -110,15 +112,17 @@ export function SeasonDetails() {
           </S.Content>
         ) : (
           <>
-            <S.NoEpisodesMessage>No Episodes avaiable</S.NoEpisodesMessage>
+            <S.NoEpisodesMessage>
+              {t("noEpisodesAvailable")}
+            </S.NoEpisodesMessage>
             <S.ReturnMessage onClick={() => navigate(`/show/${id}`)}>
-              Go Back
+              {t("goBack")}
             </S.ReturnMessage>
           </>
         )}
       </S.ContainerWrap>
     </S.Container>
   ) : (
-    <DetailsError text="No Season Found" />
+    <DetailsError text={t("noSeasonError")} />
   );
 }

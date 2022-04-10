@@ -4,8 +4,6 @@ import * as S from "./styles";
 import debounce from "lodash.debounce";
 import defaultPoster from "../../assets/defaultposter.png";
 import defaultPersonPicture from "../../assets/default2.png";
-import tvIcon from "../../assets/tvicon.svg";
-import movieIcon from "../../assets/movieicon.svg";
 import defaultCompanyPoster from "../../assets/defaultcompanyposter.png";
 
 import {
@@ -21,6 +19,7 @@ import { RootState } from "../../store";
 import { useNavigate } from "react-router-dom";
 import { RatingCircle } from "../RatingCircle";
 import { PlaceholderPoster } from "../PlaceholderPoster";
+import { useTranslation } from "react-i18next";
 
 interface MediaInterface {
   id: number;
@@ -49,6 +48,7 @@ export function FullSearch() {
   const [page, setPage] = useState(1);
   const { theme } = useSelector((state: RootState) => state.theme);
   const navigate = useNavigate();
+  const { t }: { t: any } = useTranslation();
 
   const handleChangeRadio = (e: any) => {
     setSearchType(e.target.value);
@@ -62,6 +62,7 @@ export function FullSearch() {
   const handleChangeSearch = (e: any) => {
     setSearchTerm(e.target.value);
     navigate(`?query=${e.target.value}`);
+    navigate(`/search`);
 
     if (
       (document.getElementById("search-input") as HTMLInputElement).value === ""
@@ -114,8 +115,8 @@ export function FullSearch() {
     <>
       <S.Container>
         <MainHeading
-          text={"Complete Search"}
-          subtext={"Search through Movies, TV Shows, People and Companies"}
+          text={t("completeSearch")}
+          subtext={t("completeSearchSubtext")}
         />
         <S.RadioInputContainer>
           <FormControl>
@@ -128,22 +129,22 @@ export function FullSearch() {
               <FormControlLabel
                 value="movie"
                 control={<Radio />}
-                label="Movies"
+                label={t("movies")}
               />
               <FormControlLabel
                 value="tv"
                 control={<Radio />}
-                label="TV Shows"
+                label={t("tvShows")}
               />
               <FormControlLabel
                 value="person"
                 control={<Radio />}
-                label="People"
+                label={t("people")}
               />
               <FormControlLabel
                 value="company"
                 control={<Radio />}
-                label="Companies"
+                label={t("companies")}
               />
             </RadioGroup>
           </FormControl>
@@ -160,7 +161,7 @@ export function FullSearch() {
             </S.SearchIconContainer>
             <S.SearchInput
               id="search-input"
-              placeholder="Search on Popflix"
+              placeholder={t("searchInputPlaceholder")}
               type="search"
               onChange={debouncedResults}
             />

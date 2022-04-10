@@ -1,36 +1,39 @@
 import { MediaList } from "../MediaList";
 import * as S from "./styles";
 import "animate.css";
+import { useTranslation } from "react-i18next";
 
 export function HomepageWrapper() {
+  const { t }: { t: any } = useTranslation();
+
   return (
     <S.PageWrapper>
       <MediaList
-        title="Current Popular Movies"
+        title={t("popularMoviesTitle")}
         apiEndpoint={
           "movie/popular?api_key=24e0e0f71e0ac9cb9c5418459514eda9&language=en-US&page=1"
         }
       />
       <MediaList
-        title="Highest Rated Movies"
+        title={t("highestRatedMoviesTitle")}
         apiEndpoint={
           "movie/top_rated?api_key=24e0e0f71e0ac9cb9c5418459514eda9&language=en-US&page=1"
         }
       />
       <MediaList
-        title="Upcoming Movies"
+        title={t("upcomingMoviesTitle")}
         apiEndpoint={
           "movie/upcoming?api_key=24e0e0f71e0ac9cb9c5418459514eda9&language=en-US&page=1"
         }
       />
       <MediaList
-        title="Current Popular TV Shows"
+        title={t("currentPopularShowsTitle")}
         apiEndpoint={
           "tv/popular?api_key=24e0e0f71e0ac9cb9c5418459514eda9&language=en-US&page=1"
         }
       />
       <MediaList
-        title="Highest Rated TV Shows"
+        title={t("highestRatedShowsTitle")}
         apiEndpoint={
           "tv/top_rated?api_key=24e0e0f71e0ac9cb9c5418459514eda9&language=en-US&page=1"
         }

@@ -2,8 +2,6 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { api } from "../../services/api";
 import defaultPoster from "../../assets/defaultposter.png";
-import tvIcon from "../../assets/tvicon.svg";
-import movieIcon from "../../assets/movieicon.svg";
 import * as S from "./styles";
 import {
   Radio,
@@ -15,6 +13,7 @@ import {
 import { MainHeading } from "../Details/MainHeading";
 import { RatingCircle } from "../RatingCircle";
 import { PlaceholderPoster } from "../PlaceholderPoster";
+import { useTranslation } from "react-i18next";
 
 interface MediaInterface {
   genre_ids: GenreInterface[];
@@ -52,6 +51,7 @@ export function MediaGrid({ mediaType }: MediaDetailsProps) {
   const [selectedType, setSelectedType] = useState();
   const [page, setPage] = useState(1);
   const navigate = useNavigate();
+  const { t }: { t: any } = useTranslation();
 
   const handleChange = (e: any) => {
     setSelectedGenre(e.target.value);
@@ -139,10 +139,16 @@ export function MediaGrid({ mediaType }: MediaDetailsProps) {
   return (
     <S.Container>
       <MainHeading
-        text={`Complete ${mediaType === "movie" ? "Movie" : "TV Show"} List`}
-        subtext={`Search and filter through more than a million ${
-          mediaType === "movie" ? "Movies" : "Shows"
-        }. Find your favorite!`}
+        text={
+          mediaType === "movie"
+            ? t("completeMoviesList")
+            : t("completeShowsList")
+        }
+        subtext={
+          mediaType === "movie"
+            ? t("completeMoviesListSubtext")
+            : t("completeShowsListSubtext")
+        }
       />
 
       <S.InputsContainer>
@@ -157,22 +163,30 @@ export function MediaGrid({ mediaType }: MediaDetailsProps) {
               <FormControlLabel
                 value="popular"
                 control={<Radio />}
-                label="Popular"
+                label={t("inputRadioPopularLabel")}
               />
               <FormControlLabel
                 value="top_rated"
                 control={<Radio />}
-                label="Top Rated"
+                label={t("inputRadioTopRatedLabel")}
               />
               <FormControlLabel
                 value={mediaType === "movie" ? "upcoming" : "airing_today"}
                 control={<Radio />}
-                label={mediaType === "movie" ? "Upcoming" : "Airing today"}
+                label={
+                  mediaType === "movie"
+                    ? t("inputRadioUpcomingLabel")
+                    : t("inputRadioAiringTodayLabel")
+                }
               />
               <FormControlLabel
                 value={mediaType === "movie" ? "now_playing" : "on_the_air"}
                 control={<Radio />}
-                label={mediaType === "movie" ? "Now Playing" : "On the air"}
+                label={
+                  mediaType === "movie"
+                    ? t("inputRadioNowPlayingLabel")
+                    : t("inputRadioOnTheAirLabel")
+                }
               />
             </RadioGroup>
           </FormControl>
@@ -188,12 +202,12 @@ export function MediaGrid({ mediaType }: MediaDetailsProps) {
                 <FormControlLabel
                   value="popularity.desc"
                   control={<Radio />}
-                  label="Popular"
+                  label={t("inputRadioPopularLabel")}
                 />
                 <FormControlLabel
                   value="vote_average.desc"
                   control={<Radio />}
-                  label="Top Rated"
+                  label={t("inputRadioTopRatedLabel")}
                 />
               </RadioGroup>
             </FormControl>
@@ -202,13 +216,13 @@ export function MediaGrid({ mediaType }: MediaDetailsProps) {
               <S.Select onChange={handleTypeChange}>
                 <S.SelectOption>Filter by Type</S.SelectOption>
                 <S.SelectOption>All</S.SelectOption>
-                <S.SelectOption value={0}>Documentary</S.SelectOption>
-                <S.SelectOption value={1}>News</S.SelectOption>
-                <S.SelectOption value={2}>Miniseries</S.SelectOption>
-                <S.SelectOption value={3}>Reality</S.SelectOption>
-                <S.SelectOption value={4}>Scripted</S.SelectOption>
-                <S.SelectOption value={5}>Talk Show</S.SelectOption>
-                <S.SelectOption value={6}>Video</S.SelectOption>
+                <S.SelectOption value={0}>{t("genre0")}</S.SelectOption>
+                <S.SelectOption value={1}>{t("genre1")}</S.SelectOption>
+                <S.SelectOption value={2}>{t("genre2")}</S.SelectOption>
+                <S.SelectOption value={3}>{t("genre3")}</S.SelectOption>
+                <S.SelectOption value={4}>{t("genre4")}</S.SelectOption>
+                <S.SelectOption value={5}>{t("genre5")}</S.SelectOption>
+                <S.SelectOption value={6}>{t("genre6")}</S.SelectOption>
               </S.Select>
             )}
           </>

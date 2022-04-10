@@ -170,18 +170,12 @@ export const UserContainer = styled.div`
   gap: 1.5rem;
   margin: 1rem 3rem 0 3rem;
   max-width: 25rem;
-  transition: 0.3s;
   padding: 0.5rem 1.5rem;
   border-radius: 50px;
   background: ${(props) =>
     props.theme.title === "light"
       ? props.theme.colors.primary
       : props.theme.colors.background};
-
-  &:hover {
-    transform: scale(1.07);
-    cursor: pointer;
-  }
 `;
 
 export const Username = styled.p`

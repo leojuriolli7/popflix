@@ -4,6 +4,8 @@ import { api } from "../../../services/api";
 import defaultPicture from "../../../assets/default2.png";
 import * as S from "./styles";
 import { DetailsError } from "../DetailsError";
+import { useTranslation } from "react-i18next";
+import i18n from "../../../i18n";
 
 interface CreditsDetailsProps {
   mediaType: "tv" | "movie";
@@ -49,6 +51,7 @@ interface MediaDetailsInterface {
 
 export function CreditsDetails({ mediaType }: CreditsDetailsProps) {
   const { id } = useParams();
+  const { t }: { t: any } = useTranslation();
   const [mediaCredits, setMediaCredits] = useState<MediaCreditsInterface>();
   const [mediaDetails, setMediaDetails] = useState<MediaDetailsInterface>();
   const navigate = useNavigate();
@@ -78,9 +81,11 @@ export function CreditsDetails({ mediaType }: CreditsDetailsProps) {
 
   return mediaDetails?.id ? (
     <S.Container>
-      <S.CastListSectionTitle>{`${
-        mediaDetails?.name || mediaDetails?.title
-      } Full Credits`}</S.CastListSectionTitle>
+      <S.CastListSectionTitle>
+        {i18n.language === "pt"
+          ? `Créditos de ${mediaDetails.name || mediaDetails.title}`
+          : `${mediaDetails.name || mediaDetails.title} Full Credits`}
+      </S.CastListSectionTitle>
       <S.Content>
         <S.ArrowBackContainer
           onClick={() =>
@@ -105,7 +110,7 @@ export function CreditsDetails({ mediaType }: CreditsDetailsProps) {
                 />
               </S.CastMemberPhotoContainer>
               <S.CastMemberName>{castMember?.name}</S.CastMemberName>
-              <S.CastMemberRole>{`as ${
+              <S.CastMemberRole>{`${t("as")} ${
                 castMember?.roles
                   ? castMember.roles[0].character
                   : castMember?.character
@@ -136,6 +141,6 @@ export function CreditsDetails({ mediaType }: CreditsDetailsProps) {
       </S.Content>
     </S.Container>
   ) : (
-    <DetailsError text="No Credits found" />
+    <DetailsError text={t("noCreditsError")} />
   );
 }

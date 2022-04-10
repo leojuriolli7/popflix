@@ -6,6 +6,8 @@ import defaultPicture from "../../../assets/default2.png";
 import * as S from "./styles";
 import { Rating } from "@mui/material";
 import { DetailsError } from "../DetailsError";
+import { useTranslation } from "react-i18next";
+import i18n from "../../../i18n";
 
 interface ShowDetailsInterface {
   name: string;
@@ -52,6 +54,7 @@ interface EpisodeDetailsInterface {
 
 export function EpisodeDetails() {
   const { id } = useParams();
+  const { t }: { t: any } = useTranslation();
   const { number } = useParams();
   const { episodeNumber } = useParams();
   const [episodeDetails, setEpisodeDetails] =
@@ -112,7 +115,7 @@ export function EpisodeDetails() {
               ? `${airDate.getDate()}/${
                   airDate.getMonth() + 1
                 }/${airDate.getFullYear()}`
-              : "Unknown Air Date"}
+              : t("unknownAirDate")}
           </S.EpisodeAirDate>
         </S.EpisodeInfoContainer>
         {diff <= 0 && (
@@ -143,6 +146,11 @@ export function EpisodeDetails() {
       </S.Content>
       <S.CastListWrapper>
         <S.CastListSectionTitle>{`${showDetails?.name} S${number}E${episodeNumber} Credits`}</S.CastListSectionTitle>
+        <S.CastListSectionTitle>
+          {i18n.language === "pt"
+            ? `Créditos de ${showDetails?.name} S${number}E${episodeNumber}`
+            : `${showDetails?.name} S${number}E${episodeNumber} Credits`}
+        </S.CastListSectionTitle>
         <S.CastListContainer>
           {episodeCredits?.cast.map((castMember) => (
             <S.CastMemberContainer
@@ -160,8 +168,8 @@ export function EpisodeDetails() {
                 />
               </S.CastMemberPhotoContainer>
               <S.CastMemberName>{castMember?.name}</S.CastMemberName>
-              <S.CastMemberRole>{`as ${
-                castMember?.character || "Unknown Character"
+              <S.CastMemberRole>{`${t("as")} ${
+                castMember?.character || t("unknownCharacter")
               }`}</S.CastMemberRole>
             </S.CastMemberContainer>
           ))}
@@ -182,7 +190,7 @@ export function EpisodeDetails() {
               </S.CastMemberPhotoContainer>
               <S.CastMemberName>{crewMember?.name}</S.CastMemberName>
               <S.CastMemberRole>
-                {crewMember?.job || "Unknown Crew job"}
+                {crewMember?.job || t("unknownCrewJob")}
               </S.CastMemberRole>
             </S.CastMemberContainer>
           ))}
@@ -202,7 +210,7 @@ export function EpisodeDetails() {
               </S.CastMemberPhotoContainer>
               <S.CastMemberName>{guest?.name}</S.CastMemberName>
               <S.CastMemberRole>{`as ${
-                guest?.character || "Unknown Character"
+                guest?.character || t("unknownCharacter")
               }`}</S.CastMemberRole>
             </S.CastMemberContainer>
           ))}
@@ -210,6 +218,6 @@ export function EpisodeDetails() {
       </S.CastListWrapper>
     </S.Container>
   ) : (
-    <DetailsError text="No Episode with this id" />
+    <DetailsError text={t("noEpisodeError")} />
   );
 }
