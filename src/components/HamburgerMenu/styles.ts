@@ -78,10 +78,14 @@ interface MenuOptionProps {
 }
 
 export const MenuOption = styled.p<MenuOptionProps>`
-  font-size: 3rem;
+  font-size: 2.5rem;
   margin: 0;
   font-weight: ${(props) => (props.isSelected ? "bold" : "400")};
   color: ${(props) => props.theme.colors.sectionText};
+
+  @media (max-width: 426px) {
+    font-size: 3rem;
+  }
 `;
 
 export const ThemeSwitchContainer = styled.div`

@@ -10,6 +10,10 @@ export const Container = styled.div`
   border: 1px solid transparent;
   border-radius: 46px;
   background-color: white;
+
+  @media (max-width: 320px) {
+    width: 60%;
+  }
 `;
 
 interface ImageContainerProps {
