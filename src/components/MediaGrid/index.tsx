@@ -14,6 +14,7 @@ import {
 } from "@mui/material";
 import { MainHeading } from "../Details/MainHeading";
 import { RatingCircle } from "../RatingCircle";
+import { PlaceholderPoster } from "../PlaceholderPoster";
 
 interface MediaInterface {
   genre_ids: GenreInterface[];
@@ -243,14 +244,7 @@ export function MediaGrid({ mediaType }: MediaDetailsProps) {
               }
             />
             {media.poster_path === null && (
-              <>
-                <S.IconContainer>
-                  <S.Icon src={media.name ? tvIcon : movieIcon} />
-                </S.IconContainer>
-                <S.MediaNameContainer>
-                  <S.MediaName>{media.name || media.title}</S.MediaName>
-                </S.MediaNameContainer>
-              </>
+              <PlaceholderPoster name={media.name} title={media.title} />
             )}
             <RatingCircle vote_average={media!.vote_average} />
           </S.MediaPosterContainer>

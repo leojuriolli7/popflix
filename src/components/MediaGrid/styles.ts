@@ -141,32 +141,6 @@ export const MediaPoster = styled.img`
   box-shadow: 1px 5px 15px 5px rgba(0, 0, 0, 0.2);
 `;
 
-export const MediaNameContainer = styled.div`
-  position: absolute;
-  bottom: 10px;
-  left: 24px;
-  width: 80%;
-  text-align: center;
-`;
-
-export const MediaName = styled.p`
-  margin: 0;
-  font-weight: bold;
-  font-size: 1.2rem;
-`;
-
-export const IconContainer = styled.div`
-  position: absolute;
-  bottom: 120px;
-  left: 26px;
-  width: 80%;
-  text-align: center;
-`;
-
-export const Icon = styled.img`
-  width: 60%;
-`;
-
 export const PaginationContainer = styled.div`
   margin-top: 1rem;
   margin-bottom: 1rem;

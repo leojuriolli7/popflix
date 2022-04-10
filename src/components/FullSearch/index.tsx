@@ -20,6 +20,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { useNavigate } from "react-router-dom";
 import { RatingCircle } from "../RatingCircle";
+import { PlaceholderPoster } from "../PlaceholderPoster";
 
 interface MediaInterface {
   id: number;
@@ -182,16 +183,7 @@ export function FullSearch() {
                   }
                 />
                 {media.poster_path === null && (
-                  <>
-                    <S.IconContainer>
-                      <S.Icon
-                        src={searchType === "movie" ? movieIcon : tvIcon}
-                      />
-                    </S.IconContainer>
-                    <S.MediaNameContainer>
-                      <S.MediaName>{media.name || media.title}</S.MediaName>
-                    </S.MediaNameContainer>
-                  </>
+                  <PlaceholderPoster name={media.name} title={media.title} />
                 )}
                 <RatingCircle vote_average={media!.vote_average} />
               </S.MediaPosterContainer>

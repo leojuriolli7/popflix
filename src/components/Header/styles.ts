@@ -108,13 +108,6 @@ export const SearchIcon = styled(BsSearch).attrs({
   }
 `;
 
-export const ButtonContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.8rem;
-`;
-
 export const DarkModeIcon = styled(MdDarkMode).attrs({
   size: 22,
   color: "black",

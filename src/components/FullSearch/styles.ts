@@ -152,42 +152,6 @@ export const MediaPoster = styled.img`
   box-shadow: 1px 5px 15px 5px rgba(0, 0, 0, 0.2);
 `;
 
-export const MediaNameContainer = styled.div`
-  position: absolute;
-  bottom: 10px;
-  left: 25px;
-  width: 80%;
-  text-align: center;
-
-  @media (max-width: 590px) {
-    left: 20px;
-  }
-`;
-
-export const MediaName = styled.p`
-  margin: 0;
-  font-weight: bold;
-  font-size: 1.2rem;
-  color: white;
-`;
-
-export const IconContainer = styled.div`
-  position: absolute;
-  bottom: 140px;
-  left: 28px;
-  width: 80%;
-  text-align: center;
-
-  @media (max-width: 590px) {
-    bottom: 120px;
-    left: 22px;
-  }
-`;
-
-export const Icon = styled.img`
-  width: 60%;
-`;
-
 export const CompanyPosterContainer = styled.div`
   position: relative;
   margin: 0 auto;
@@ -272,4 +236,20 @@ export const PaginationContainer = styled.div`
   align-items: center;
   justify-content: center;
   margin-bottom: 2rem;
+
+  .css-rppfq7-MuiButtonBase-root-MuiPaginationItem-root {
+    color: ${(props) => (props.theme.title === "dark" ? "#fff" : "black")};
+  }
+
+  .css-1scal0h-MuiPaginationItem-root {
+    color: ${(props) => (props.theme.title === "dark" ? "#fff" : "black")};
+  }
+
+  .css-rppfq7-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected {
+    background-color: rgba(223, 41, 53, 0.3);
+  }
+
+  .css-rppfq7-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected:hover {
+    background-color: rgba(223, 41, 53, 0.3);
+  }
 `;

@@ -4,7 +4,6 @@ import { useSelector } from "react-redux";
 import logoWhite from "../../assets/logo-white.svg";
 import logoDark from "../../assets/logo-dark.svg";
 import { useLocation, useNavigate } from "react-router-dom";
-import { Button } from "../Button";
 import { HamburguerMenu } from "../HamburgerMenu";
 import { ThemeSwitch } from "../ThemeSwitch";
 
@@ -61,22 +60,6 @@ export function Header() {
           </S.UnorganizedList>
         </S.Navigation>
         <S.OptionsContainer>
-          <S.ButtonContainer>
-            <Button
-              type="button"
-              color="transparent"
-              textColor="white"
-              borderColor="white"
-              text="Log In"
-            />
-            <Button
-              type="button"
-              color="transparent"
-              textColor="white"
-              borderColor="white"
-              text="Sign Up"
-            />
-          </S.ButtonContainer>
           <ThemeSwitch
             height={15}
             width={40}

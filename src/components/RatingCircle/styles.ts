@@ -59,6 +59,11 @@ export const UnreleasedRatingTextContainer = styled.div`
   position: absolute;
   top: 17px;
   left: 15px;
+
+  @media (max-width: 590px) {
+    top: 13px;
+    left: 11px;
+  }
 `;
 
 export const UnreleasedRatingText = styled.p`
@@ -66,4 +71,8 @@ export const UnreleasedRatingText = styled.p`
   color: black;
   margin: 0;
   font-weight: bold;
+
+  @media (max-width: 590px) {
+    font-size: 13px;
+  }
 `;
