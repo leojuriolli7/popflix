@@ -63,13 +63,13 @@ export function FullSearch() {
   const handleChangeSearch = (e: any) => {
     setSearchTerm(e.target.value);
     navigate(`?query=${e.target.value}`);
-    navigate(`/search`);
 
     if (
       (document.getElementById("search-input") as HTMLInputElement).value === ""
     ) {
       setMediaDetails(undefined);
       setMediaData(undefined);
+      navigate(`/search`);
     }
   };
 

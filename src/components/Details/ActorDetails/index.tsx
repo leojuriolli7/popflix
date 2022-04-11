@@ -61,7 +61,9 @@ export function ActorDetails() {
     window.scrollTo(0, 0);
     api
       .get(
-        `person/${id}?api_key=24e0e0f71e0ac9cb9c5418459514eda9&language=en-US`
+        `person/${id}?api_key=24e0e0f71e0ac9cb9c5418459514eda9&language=${
+          i18n.language === "pt" ? "pt-BR" : "en-US"
+        }`
       )
       .then((response) => setActorDetails(response.data));
     api
@@ -69,7 +71,7 @@ export function ActorDetails() {
         `person/${id}/combined_credits?api_key=24e0e0f71e0ac9cb9c5418459514eda9&language=en-US`
       )
       .then((response) => setActorCredits(response.data));
-  }, [id]);
+  }, [id, i18n.language]);
 
   const birthdayDate = new Date(
     actorDetails?.birthday ? actorDetails?.birthday : "1969-09-12"

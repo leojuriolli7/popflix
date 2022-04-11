@@ -6,6 +6,7 @@ import * as S from "./styles";
 import { DetailsError } from "../DetailsError";
 import tvIcon from "../../../assets/tvicon.svg";
 import { useTranslation } from "react-i18next";
+import i18n from "../../../i18n";
 
 interface EpisodesInterface {
   air_date: string;
@@ -41,14 +42,20 @@ export function SeasonDetails() {
   useEffect(() => {
     window.scrollTo(0, 0);
     api
-      .get(`tv/${id}?api_key=24e0e0f71e0ac9cb9c5418459514eda9&language=en-US`)
+      .get(
+        `tv/${id}?api_key=24e0e0f71e0ac9cb9c5418459514eda9&language=${
+          i18n.language === "pt" ? "pt-BR" : "en-US"
+        }`
+      )
       .then((response) => setShowDetails(response.data));
     api
       .get(
-        `tv/${id}/season/${number}?api_key=24e0e0f71e0ac9cb9c5418459514eda9&language=en-US`
+        `tv/${id}/season/${number}?api_key=24e0e0f71e0ac9cb9c5418459514eda9&language=${
+          i18n.language === "pt" ? "pt-BR" : "en-US"
+        }`
       )
       .then((response) => setSeasonDetails(response.data));
-  }, [id, number]);
+  }, [id, number, i18n.language]);
 
   const episodeAirDate = (date: any) => new Date(date);
 

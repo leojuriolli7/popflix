@@ -213,6 +213,7 @@ export const NoRatingMessage = styled.p`
 export const RatingText = styled.p`
   font-size: 1.25rem;
   margin: 0;
+  font-weight: bold;
 `;
 
 export const ReviewDatesContainer = styled.div`
@@ -220,7 +221,7 @@ export const ReviewDatesContainer = styled.div`
   align-items: center;
   justify-content: center;
   gap: 1rem;
-  margin-top: 1rem;
+  margin: 1rem 20px 0 20px;
 
   @media (max-width: 413px) {
     gap: 0.6rem;
@@ -235,8 +236,8 @@ export const ReviewDates = styled(NoRatingMessage)`
   font-weight: 400;
   font-size: 1.1rem;
 
-  @media (max-width: 413px) {
-    font-size: 1rem;
+  @media (max-width: 720px) {
+    font-size: 1.2rem;
   }
 `;
 

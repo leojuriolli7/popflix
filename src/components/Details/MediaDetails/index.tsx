@@ -10,6 +10,7 @@ import tvIcon from "../../../assets/tvicon.svg";
 import { DetailsError } from "../DetailsError";
 import { CompaniesPopover } from "../CompaniesPopover";
 import { useTranslation } from "react-i18next";
+import i18n from "../../../i18n";
 // import { useMutation } from "react-query";
 // import { getMediaDetails } from "../../../utils/requests";
 
@@ -95,7 +96,9 @@ export function MediaDetails({ mediaType }: MediaDetailsProps) {
     window.scrollTo(0, 0);
     api
       .get(
-        `${mediaType}/${id}?api_key=24e0e0f71e0ac9cb9c5418459514eda9&language=en-US`
+        `${mediaType}/${id}?api_key=24e0e0f71e0ac9cb9c5418459514eda9&language=${
+          i18n.language === "pt" ? "pt-BR" : "en-US"
+        }`
       )
       .then((response) => setMediaDetails(response.data));
     api
@@ -103,7 +106,7 @@ export function MediaDetails({ mediaType }: MediaDetailsProps) {
         `${mediaType}/${id}/credits?api_key=24e0e0f71e0ac9cb9c5418459514eda9&language=en-US`
       )
       .then((response) => setMediaCredits(response.data));
-  }, [id, mediaType]);
+  }, [id, mediaType, i18n.language]);
 
   const date = new Date(
     mediaDetails?.first_air_date

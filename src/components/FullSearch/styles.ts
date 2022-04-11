@@ -55,7 +55,7 @@ export const SearchInputAndIconContainer = styled.div`
 
 export const SearchInputContainer = styled.div`
   position: relative;
-  width: clamp(260px, 76%, 500px);
+  width: clamp(260px, 83%, 500px);
 `;
 
 export const SearchIconContainer = styled.div`

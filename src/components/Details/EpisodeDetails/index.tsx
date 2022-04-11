@@ -68,7 +68,9 @@ export function EpisodeDetails() {
     window.scrollTo(0, 0);
     api
       .get(
-        `tv/${id}/season/${number}/episode/${episodeNumber}?api_key=24e0e0f71e0ac9cb9c5418459514eda9&language=en-US`
+        `tv/${id}/season/${number}/episode/${episodeNumber}?api_key=24e0e0f71e0ac9cb9c5418459514eda9&language=${
+          i18n.language === "pt" ? "pt-BR" : "en-US"
+        }`
       )
       .then((response) => setEpisodeDetails(response.data));
     api
@@ -80,7 +82,7 @@ export function EpisodeDetails() {
         `tv/${id}/season/${number}/episode/${episodeNumber}/credits?api_key=24e0e0f71e0ac9cb9c5418459514eda9&language=en-US`
       )
       .then((response) => setEpisodeCredits(response.data));
-  }, [id, number, episodeNumber]);
+  }, [id, number, episodeNumber, i18n.language]);
 
   const airDate = new Date(
     episodeDetails?.air_date ? episodeDetails?.air_date : "1969-09-12"
@@ -145,7 +147,6 @@ export function EpisodeDetails() {
         )}
       </S.Content>
       <S.CastListWrapper>
-        <S.CastListSectionTitle>{`${showDetails?.name} S${number}E${episodeNumber} Credits`}</S.CastListSectionTitle>
         <S.CastListSectionTitle>
           {i18n.language === "pt"
             ? `Créditos de ${showDetails?.name} S${number}E${episodeNumber}`

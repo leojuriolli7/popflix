@@ -227,13 +227,13 @@ export function MediaGrid({ mediaType }: MediaDetailsProps) {
               <S.Select onChange={handleTypeChange}>
                 <S.SelectOption>{t("filterByType")}</S.SelectOption>
                 <S.SelectOption>{t("all")}</S.SelectOption>
-                <S.SelectOption value={0}>{t("genre0")}</S.SelectOption>
-                <S.SelectOption value={1}>{t("genre1")}</S.SelectOption>
-                <S.SelectOption value={2}>{t("genre2")}</S.SelectOption>
-                <S.SelectOption value={3}>{t("genre3")}</S.SelectOption>
-                <S.SelectOption value={4}>{t("genre4")}</S.SelectOption>
-                <S.SelectOption value={5}>{t("genre5")}</S.SelectOption>
-                <S.SelectOption value={6}>{t("genre6")}</S.SelectOption>
+                <S.SelectOption value={0}>{t("type0")}</S.SelectOption>
+                <S.SelectOption value={1}>{t("type1")}</S.SelectOption>
+                <S.SelectOption value={2}>{t("type2")}</S.SelectOption>
+                <S.SelectOption value={3}>{t("type3")}</S.SelectOption>
+                <S.SelectOption value={4}>{t("type4")}</S.SelectOption>
+                <S.SelectOption value={5}>{t("type5")}</S.SelectOption>
+                <S.SelectOption value={6}>{t("type6")}</S.SelectOption>
               </S.Select>
             )}
           </>
