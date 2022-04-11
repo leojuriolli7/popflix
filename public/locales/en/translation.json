@@ -60,7 +60,7 @@
   "releaseDateTBA": "Release Date to be Announced",
   "episodes": "Episodes",
   "errorNoMedia1": "Error: No",
-  "errorNomedia2": "with this id",
+  "errorNoMedia2": "with this id",
   "movie": "Movie",
   "airDate": "Air Date: ",
   "viewFullCredits": "View Full Credits",
@@ -74,5 +74,10 @@
   "completeSearchSubtext": "Search through Movies, TV Shows, People and Companies",
   "people": "People",
   "companies": "Companies",
-  "searchInputPlaceholder": "Search on Popflix"
+  "searchInputPlaceholder": "Search on Popflix",
+  "goHome": "Go to Home",
+  "noResults": "No Results",
+  "filterByType": "Filter by Type",
+  "filterByGenre": "Filter by Genre",
+  "all": "All"
 }

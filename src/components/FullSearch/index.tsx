@@ -5,6 +5,7 @@ import debounce from "lodash.debounce";
 import defaultPoster from "../../assets/defaultposter.png";
 import defaultPersonPicture from "../../assets/default2.png";
 import defaultCompanyPoster from "../../assets/defaultcompanyposter.png";
+import { NoResults } from "../NoResults";
 
 import {
   Radio,
@@ -167,68 +168,74 @@ export function FullSearch() {
             />
           </S.SearchInputContainer>
         </S.SearchInputAndIconContainer>
-        <S.Content>
-          {(searchType === "tv" || searchType === "movie") &&
-            mediaDetails?.map((media) => (
-              <S.MediaPosterContainer key={media.id}>
-                <S.MediaPoster
-                  onClick={() =>
-                    navigate(
-                      `/${searchType === "tv" ? "show" : "movie"}/${media.id}`
-                    )
-                  }
-                  src={
-                    media.poster_path !== null
-                      ? `https://image.tmdb.org/t/p/w500/${media?.poster_path}`
-                      : defaultPoster
-                  }
-                />
-                {media.poster_path === null && (
-                  <PlaceholderPoster name={media.name} title={media.title} />
-                )}
-                <RatingCircle vote_average={media!.vote_average} />
-              </S.MediaPosterContainer>
-            ))}
+        {mediaDetails?.length === 0 ? (
+          <NoResults />
+        ) : (
+          <S.Content>
+            {(searchType === "tv" || searchType === "movie") &&
+              mediaDetails?.map((media) => (
+                <S.MediaPosterContainer key={media.id}>
+                  <S.MediaPoster
+                    title={media.title || media.name}
+                    onClick={() =>
+                      navigate(
+                        `/${searchType === "tv" ? "show" : "movie"}/${media.id}`
+                      )
+                    }
+                    src={
+                      media.poster_path !== null
+                        ? `https://image.tmdb.org/t/p/w500/${media?.poster_path}`
+                        : defaultPoster
+                    }
+                  />
+                  {media.poster_path === null && (
+                    <PlaceholderPoster name={media.name} title={media.title} />
+                  )}
+                  <RatingCircle vote_average={media!.vote_average} />
+                </S.MediaPosterContainer>
+              ))}
 
-          {searchType === "company" &&
-            mediaDetails?.map((media) => (
-              <S.CompanyPosterContainer key={media.id}>
-                {" "}
-                <S.CompanyPoster
-                  onClick={() => navigate(`/company/${media.id}`)}
-                  src={
-                    media.logo_path !== null
-                      ? `https://image.tmdb.org/t/p/w500/${media?.logo_path}`
-                      : defaultCompanyPoster
-                  }
-                />
-                {media.logo_path === null && (
-                  <S.CompanyNameContainer>
-                    <S.CompanyName>{media.name}</S.CompanyName>
-                  </S.CompanyNameContainer>
-                )}
-              </S.CompanyPosterContainer>
-            ))}
+            {searchType === "company" &&
+              mediaDetails?.map((media) => (
+                <S.CompanyPosterContainer key={media.id}>
+                  {" "}
+                  <S.CompanyPoster
+                    onClick={() => navigate(`/company/${media.id}`)}
+                    src={
+                      media.logo_path !== null
+                        ? `https://image.tmdb.org/t/p/w500/${media?.logo_path}`
+                        : defaultCompanyPoster
+                    }
+                  />
+                  {media.logo_path === null && (
+                    <S.CompanyNameContainer>
+                      <S.CompanyName>{media.name}</S.CompanyName>
+                    </S.CompanyNameContainer>
+                  )}
+                </S.CompanyPosterContainer>
+              ))}
 
-          {searchType === "person" &&
-            mediaDetails?.map((media) => (
-              <S.ActorPosterContainer key={media.id}>
-                {" "}
-                <S.MediaPoster
-                  onClick={() => navigate(`/actor/${media.id}`)}
-                  src={
-                    media.profile_path !== null
-                      ? `https://image.tmdb.org/t/p/w500/${media?.profile_path}`
-                      : defaultPersonPicture
-                  }
-                />
-                <S.ActorNameContainer>
-                  <S.ActorName>{media.name}</S.ActorName>
-                </S.ActorNameContainer>
-              </S.ActorPosterContainer>
-            ))}
-        </S.Content>
+            {searchType === "person" &&
+              mediaDetails?.map((media) => (
+                <S.ActorPosterContainer key={media.id}>
+                  {" "}
+                  <S.MediaPoster
+                    onClick={() => navigate(`/actor/${media.id}`)}
+                    src={
+                      media.profile_path !== null
+                        ? `https://image.tmdb.org/t/p/w500/${media?.profile_path}`
+                        : defaultPersonPicture
+                    }
+                  />
+                  <S.ActorNameContainer>
+                    <S.ActorName>{media.name}</S.ActorName>
+                  </S.ActorNameContainer>
+                </S.ActorPosterContainer>
+              ))}
+          </S.Content>
+        )}
       </S.Container>
+
       {mediaDetails !== undefined && (
         <S.PaginationContainer>
           <Pagination

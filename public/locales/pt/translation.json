@@ -60,7 +60,7 @@
   "releaseDateTBA": "Data de lançamento a ser anunciada",
   "episodes": "Episódios",
   "errorNoMedia1": "Erro: Nenhum",
-  "errorNomedia2": "com este id",
+  "errorNoMedia2": "com este id",
   "movie": "Filme",
   "airDate": "Lançamento: ",
   "viewFullCredits": "Ver Créditos Completos",
@@ -74,5 +74,10 @@
   "completeSearchSubtext": "Busque por Filmes, Séries, Pessoas e Empresas",
   "people": "Pessoas",
   "companies": "Empresas",
-  "searchInputPlaceholder": "Pesquise no Popfix"
+  "searchInputPlaceholder": "Pesquise no Popfix",
+  "goHome": "Ir para Início",
+  "noResults": "Nenhum Resultado",
+  "filterByType": "Fitrar por tipo",
+  "filterByGenre": "Filtrar por gênero",
+  "all": "Todos"
 }

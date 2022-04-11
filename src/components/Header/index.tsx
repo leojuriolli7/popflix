@@ -20,8 +20,8 @@ export function Header() {
       <S.Content>
         <S.LogoContainer>
           <S.Logo
+            title={t("goHome")}
             src={theme === "dark" ? logoDark : logoWhite}
-            title="Go to TMDBd"
             onClick={() => navigate("/")}
           />
         </S.LogoContainer>

@@ -14,6 +14,8 @@ import { MainHeading } from "../Details/MainHeading";
 import { RatingCircle } from "../RatingCircle";
 import { PlaceholderPoster } from "../PlaceholderPoster";
 import { useTranslation } from "react-i18next";
+import { NoResults } from "../NoResults";
+import i18n from "../../i18n";
 
 interface MediaInterface {
   genre_ids: GenreInterface[];
@@ -120,10 +122,19 @@ export function MediaGrid({ mediaType }: MediaDetailsProps) {
 
     api
       .get(
-        `genre/${mediaType}/list?api_key=24e0e0f71e0ac9cb9c5418459514eda9&language=en-US`
+        `genre/${mediaType}/list?api_key=24e0e0f71e0ac9cb9c5418459514eda9&language=${
+          i18n.language === "pt" ? "pt-BR" : "en-US"
+        }`
       )
       .then((response) => setGenres(response.data.genres));
-  }, [mediaType, selectedValue, selectedGenre, selectedSortBy, selectedType]);
+  }, [
+    mediaType,
+    selectedValue,
+    selectedGenre,
+    selectedSortBy,
+    selectedType,
+    i18n.language,
+  ]);
 
   function handlePaginationChange(e: any, value: any) {
     setPage(value);
@@ -214,8 +225,8 @@ export function MediaGrid({ mediaType }: MediaDetailsProps) {
 
             {mediaType === "tv" && (
               <S.Select onChange={handleTypeChange}>
-                <S.SelectOption>Filter by Type</S.SelectOption>
-                <S.SelectOption>All</S.SelectOption>
+                <S.SelectOption>{t("filterByType")}</S.SelectOption>
+                <S.SelectOption>{t("all")}</S.SelectOption>
                 <S.SelectOption value={0}>{t("genre0")}</S.SelectOption>
                 <S.SelectOption value={1}>{t("genre1")}</S.SelectOption>
                 <S.SelectOption value={2}>{t("genre2")}</S.SelectOption>
@@ -229,8 +240,8 @@ export function MediaGrid({ mediaType }: MediaDetailsProps) {
         )}
 
         <S.Select onChange={handleChange}>
-          <S.SelectOption>Filter by Genre</S.SelectOption>
-          <S.SelectOption>All</S.SelectOption>
+          <S.SelectOption>{t("filterByGenre")}</S.SelectOption>
+          <S.SelectOption>{t("all")}</S.SelectOption>
           {genres?.map((genre) => (
             <S.SelectOption value={genre.id} key={genre.id}>
               {genre.name}
@@ -264,15 +275,18 @@ export function MediaGrid({ mediaType }: MediaDetailsProps) {
           </S.MediaPosterContainer>
         ))}
       </S.Content>
-      <S.PaginationContainer>
-        <Pagination
-          count={mediaDetailsData?.total_pages}
-          color="standard"
-          page={page}
-          size="large"
-          onChange={handlePaginationChange}
-        />
-      </S.PaginationContainer>
+      {mediaDetails?.length === 0 && <NoResults />}
+      {mediaDetails?.length !== 0 && (
+        <S.PaginationContainer>
+          <Pagination
+            count={mediaDetailsData?.total_pages}
+            color="standard"
+            page={page}
+            size="large"
+            onChange={handlePaginationChange}
+          />
+        </S.PaginationContainer>
+      )}
     </S.Container>
   );
 }

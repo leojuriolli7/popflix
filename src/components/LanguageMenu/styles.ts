@@ -1,4 +1,4 @@
-import { lighten, shade } from "polished";
+import { lighten } from "polished";
 import styled from "styled-components";
 
 export const Container = styled.div`
@@ -27,7 +27,7 @@ export const ImageContainer = styled.div<ImageContainerProps>`
   border: ${(props) =>
     props.isActive
       ? props.theme.title === "light"
-        ? `${shade(0.3, props.theme.colors.primary)} 2px solid`
+        ? "black 2px solid"
         : "white 2px solid"
       : "0px"};
   border-radius: 50%;

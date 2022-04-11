@@ -77,6 +77,7 @@ export function DetailsMediaList({
               : media.map((item) => (
                   <S.MediaPosterContainer>
                     <S.MediaPoster
+                      title={item.name || item.title}
                       key={item.id}
                       src={
                         item.poster_path === null
