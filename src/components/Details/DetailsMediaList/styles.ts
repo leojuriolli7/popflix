@@ -114,10 +114,24 @@ export const SectionTitle = styled.h1`
 export const MediaPosterContainer = styled.div`
   position: relative;
   transition: 0.3s;
-  /* width: 220.61px;
-  height: 330.92px; */
 
-  // width: 12rem;
+  width: clamp(10rem, 29vw, 187.76px);
+  height: clamp(15rem, 44vw, 276.64px);
+
+  @media (max-width: 1035px) {
+    min-width: 22vw;
+    min-height: 33vw;
+  }
+
+  @media (max-width: 835px) {
+    min-width: 30vw;
+    min-height: 45vw;
+  }
+
+  @media (max-width: 580px) {
+    min-width: 42vw;
+    min-height: 63vw;
+  }
 
   &:hover {
     transform: scale(1.05);
@@ -126,24 +140,12 @@ export const MediaPosterContainer = styled.div`
 `;
 
 export const MediaPoster = styled.img`
-  width: 90%;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   transform: scale(1.03);
   box-shadow: 2px 4px 7px 0px rgb(0 0 0 / 50%);
   border-radius: 20px;
-
-  @media (max-width: 750px) {
-    width: 95%;
-    padding: 0 5px 0 5px;
-    box-shadow: none;
-  }
-
-  @media (max-width: 405px) {
-    width: 99%;
-    &:hover {
-      transform: scale(1.1);
-    }
-  }
 `;
 
 export const MediaNameContainer = styled.div`

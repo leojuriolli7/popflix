@@ -59,13 +59,13 @@ export function DetailsMediaList({
             0: {
               items: 2,
             },
-            680: {
+            580: {
               items: 3,
             },
-            960: {
+            835: {
               items: 4,
             },
-            1300: {
+            1035: {
               items: 5,
             },
           }}
