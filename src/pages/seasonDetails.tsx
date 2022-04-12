@@ -1,13 +1,6 @@
 import { SeasonDetails } from "../components/Details/SeasonDetails";
-import { Footer } from "../components/Footer";
-import { Header } from "../components/Header";
+import { PageWrapper } from "./pageWrapper";
 
 export function SeasonDetailsPage() {
-  return (
-    <>
-      <Header />
-      <SeasonDetails />
-      <Footer />
-    </>
-  );
+  return <PageWrapper children={<SeasonDetails />} />;
 }

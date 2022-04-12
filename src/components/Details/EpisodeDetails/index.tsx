@@ -8,6 +8,7 @@ import { Rating } from "@mui/material";
 import { DetailsError } from "../DetailsError";
 import { useTranslation } from "react-i18next";
 import i18n from "../../../i18n";
+import { LanguageSwitch } from "../../../utils/constants";
 
 interface ShowDetailsInterface {
   name: string;
@@ -68,9 +69,7 @@ export function EpisodeDetails() {
     window.scrollTo(0, 0);
     api
       .get(
-        `tv/${id}/season/${number}/episode/${episodeNumber}?api_key=24e0e0f71e0ac9cb9c5418459514eda9&language=${
-          i18n.language === "pt" ? "pt-BR" : "en-US"
-        }`
+        `tv/${id}/season/${number}/episode/${episodeNumber}?api_key=24e0e0f71e0ac9cb9c5418459514eda9&language=${LanguageSwitch()}`
       )
       .then((response) => setEpisodeDetails(response.data));
     api
@@ -148,9 +147,10 @@ export function EpisodeDetails() {
       </S.Content>
       <S.CastListWrapper>
         <S.CastListSectionTitle>
-          {i18n.language === "pt"
-            ? `Créditos de ${showDetails?.name} S${number}E${episodeNumber}`
-            : `${showDetails?.name} S${number}E${episodeNumber} Credits`}
+          {t("episodeCreditsTitle", {
+            name: showDetails?.name,
+            seasonAndEpisodeNumber: `S${number}E${episodeNumber}`,
+          })}
         </S.CastListSectionTitle>
         <S.CastListContainer>
           {episodeCredits?.cast.map((castMember) => (

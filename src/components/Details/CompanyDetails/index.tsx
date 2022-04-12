@@ -5,7 +5,6 @@ import * as S from "./styles";
 import { DetailsError } from "../DetailsError";
 import { isoCountries } from "../../../utils/constants";
 import { useTranslation } from "react-i18next";
-import i18n from "../../../i18n";
 
 interface ParentCompaniesInterface {
   name: string;
@@ -96,9 +95,7 @@ export function CompanyDetails({ type }: CompanyDetailsProps) {
 
         {companyDetails?.homepage && (
           <S.CompanyHomepage href={companyDetails?.homepage} target="_blank">
-            {i18n.language === "pt"
-              ? `Ir para o site de ${companyDetails.name}`
-              : `Go to ${companyDetails.name} Homepage`}
+            {t("companyHomepage", { name: companyDetails.name })}
           </S.CompanyHomepage>
         )}
       </S.CompanyInfoContainer>

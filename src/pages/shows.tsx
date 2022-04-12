@@ -1,13 +1,6 @@
-import { Footer } from "../components/Footer";
-import { Header } from "../components/Header";
 import { MediaGrid } from "../components/MediaGrid";
+import { PageWrapper } from "./pageWrapper";
 
 export function Shows() {
-  return (
-    <>
-      <Header />
-      <MediaGrid mediaType="tv" />
-      <Footer />
-    </>
-  );
+  return <PageWrapper children={<MediaGrid mediaType="tv" />} />;
 }

@@ -1,13 +1,6 @@
 import { ActorDetails } from "../components/Details/ActorDetails";
-import { Footer } from "../components/Footer";
-import { Header } from "../components/Header";
+import { PageWrapper } from "./pageWrapper";
 
 export function ActorPage() {
-  return (
-    <>
-      <Header />
-      <ActorDetails />
-      <Footer />
-    </>
-  );
+  return <PageWrapper children={<ActorDetails />} />;
 }

@@ -10,6 +10,7 @@ import movieIcon from "../../../assets/movieicon.svg";
 import { DetailsError } from "../DetailsError";
 import { useTranslation } from "react-i18next";
 import i18n from "../../../i18n";
+import { LanguageSwitch } from "../../../utils/constants";
 
 interface ActorDetailsInterface {
   name: string;
@@ -61,9 +62,7 @@ export function ActorDetails() {
     window.scrollTo(0, 0);
     api
       .get(
-        `person/${id}?api_key=24e0e0f71e0ac9cb9c5418459514eda9&language=${
-          i18n.language === "pt" ? "pt-BR" : "en-US"
-        }`
+        `person/${id}?api_key=24e0e0f71e0ac9cb9c5418459514eda9&language=${LanguageSwitch()}`
       )
       .then((response) => setActorDetails(response.data));
     api
@@ -135,9 +134,7 @@ export function ActorDetails() {
       </S.MainInfoContainer>
       <S.CreditsListContainer>
         <S.CreditsSectionTitle>
-          {i18n.language === "pt"
-            ? `Créditos de ${actorDetails.name}`
-            : `${actorDetails.name} Credits`}
+          {t("actorCreditsTitle", { name: actorDetails.name })}
         </S.CreditsSectionTitle>
         <S.CreditContainer>
           {actorCredits?.cast?.map((credit) => (

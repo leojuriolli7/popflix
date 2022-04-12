@@ -1,13 +1,6 @@
-import { Footer } from "../components/Footer";
-import { Header } from "../components/Header";
 import { HomepageWrapper } from "../components/HomepageWrapper";
+import { PageWrapper } from "./pageWrapper";
 
 export function Home() {
-  return (
-    <>
-      <Header />
-      <HomepageWrapper />
-      <Footer />
-    </>
-  );
+  return <PageWrapper children={<HomepageWrapper />} />;
 }

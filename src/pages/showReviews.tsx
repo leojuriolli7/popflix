@@ -1,13 +1,6 @@
-import { Footer } from "../components/Footer";
-import { Header } from "../components/Header";
 import { Review } from "../components/Review";
+import { PageWrapper } from "./pageWrapper";
 
 export function ShowReviewsPage() {
-  return (
-    <>
-      <Header />
-      <Review mediaType="tv" />
-      <Footer />
-    </>
-  );
+  return <PageWrapper children={<Review mediaType="tv" />} />;
 }

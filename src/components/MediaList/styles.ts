@@ -128,7 +128,7 @@ export const MediaPoster = styled.img`
   width: 90%;
   object-fit: cover;
   transform: scale(1.03);
-  box-shadow: 2px 4px 7px 0px rgb(0 0 0 / 50%);
+  box-shadow: 0px 0px 4px 0px rgb(0 0 0 / 50%);
   border-radius: 20px;
 
   @media (max-width: 750px) {

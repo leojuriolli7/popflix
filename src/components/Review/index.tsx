@@ -5,7 +5,6 @@ import * as S from "./styles";
 import defaultProfileImage from "../../assets/default.png";
 import { Rating } from "@mui/material";
 import { useTranslation } from "react-i18next";
-import i18n from "../../i18n";
 
 interface AuthorDetailsInterface {
   name: string;
@@ -86,9 +85,10 @@ export function Review({ mediaType }: ReviewProps) {
           )}
           <S.TitleTextContainer>
             <S.TitleText>
-              {i18n.language === "pt"
-                ? `Reviews de ${mediaDetails?.name || mediaDetails?.title}`
-                : `${mediaDetails?.name || mediaDetails?.title} Reviews`}
+              {t("reviewsPageTitle", {
+                name: mediaDetails?.name,
+                title: mediaDetails?.title,
+              })}
             </S.TitleText>
           </S.TitleTextContainer>
         </S.MediaInfoContainer>

@@ -16,6 +16,7 @@ import { PlaceholderPoster } from "../PlaceholderPoster";
 import { useTranslation } from "react-i18next";
 import { NoResults } from "../NoResults";
 import i18n from "../../i18n";
+import { LanguageSwitch } from "../../utils/constants";
 
 interface MediaInterface {
   genre_ids: GenreInterface[];
@@ -122,9 +123,7 @@ export function MediaGrid({ mediaType }: MediaDetailsProps) {
 
     api
       .get(
-        `genre/${mediaType}/list?api_key=24e0e0f71e0ac9cb9c5418459514eda9&language=${
-          i18n.language === "pt" ? "pt-BR" : "en-US"
-        }`
+        `genre/${mediaType}/list?api_key=24e0e0f71e0ac9cb9c5418459514eda9&language=${LanguageSwitch()}`
       )
       .then((response) => setGenres(response.data.genres));
   }, [

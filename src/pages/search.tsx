@@ -1,13 +1,6 @@
-import { Footer } from "../components/Footer";
 import { FullSearch } from "../components/FullSearch";
-import { Header } from "../components/Header";
+import { PageWrapper } from "./pageWrapper";
 
 export function FullSearchPage() {
-  return (
-    <>
-      <Header />
-      <FullSearch />
-      <Footer />
-    </>
-  );
+  return <PageWrapper children={<FullSearch />} />;
 }

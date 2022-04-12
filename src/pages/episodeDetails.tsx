@@ -1,13 +1,6 @@
 import { EpisodeDetails } from "../components/Details/EpisodeDetails";
-import { Footer } from "../components/Footer";
-import { Header } from "../components/Header";
+import { PageWrapper } from "./pageWrapper";
 
 export function EpisodeDetailsPage() {
-  return (
-    <>
-      <Header />
-      <EpisodeDetails />
-      <Footer />
-    </>
-  );
+  return <PageWrapper children={<EpisodeDetails />} />;
 }

@@ -1,13 +1,6 @@
-import { Footer } from "../components/Footer";
-import { Header } from "../components/Header";
 import { MediaGrid } from "../components/MediaGrid";
+import { PageWrapper } from "./pageWrapper";
 
 export function Movies() {
-  return (
-    <>
-      <Header />
-      <MediaGrid mediaType="movie" />
-      <Footer />
-    </>
-  );
+  return <PageWrapper children={<MediaGrid mediaType="movie" />} />;
 }

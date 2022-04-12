@@ -1,13 +1,6 @@
-import { Footer } from "../components/Footer";
-import { Header } from "../components/Header";
 import { CreditsDetails } from "../components/Details/CreditsDetails";
+import { PageWrapper } from "./pageWrapper";
 
 export function ShowCreditsPage() {
-  return (
-    <>
-      <Header />
-      <CreditsDetails mediaType="tv" />
-      <Footer />
-    </>
-  );
+  return <PageWrapper children={<CreditsDetails mediaType="tv" />} />;
 }

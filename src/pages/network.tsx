@@ -1,13 +1,6 @@
 import { CompanyDetails } from "../components/Details/CompanyDetails";
-import { Footer } from "../components/Footer";
-import { Header } from "../components/Header";
+import { PageWrapper } from "./pageWrapper";
 
 export function NetworkPage() {
-  return (
-    <>
-      <Header />
-      <CompanyDetails type="network" />
-      <Footer />
-    </>
-  );
+  return <PageWrapper children={<CompanyDetails type="network" />} />;
 }

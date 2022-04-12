@@ -1,7 +1,6 @@
 import { OverlayTrigger, Popover } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-import i18n from "../../../i18n";
 import * as S from "./styles";
 
 interface ProductionCompaniesInterface {
@@ -36,13 +35,10 @@ export function CompaniesPopover({
         <Popover>
           <Popover.Header>
             <S.PopoverTitle>
-              {i18n.language === "pt"
-                ? `Empresas de Produção de ${
-                    currentMedia.name || currentMedia.title
-                  }`
-                : `${
-                    currentMedia.name || currentMedia.title
-                  } Production Companies`}
+              {t("productionCompanies", {
+                name: currentMedia.name,
+                title: currentMedia.title,
+              })}
             </S.PopoverTitle>
           </Popover.Header>
           <Popover.Body>

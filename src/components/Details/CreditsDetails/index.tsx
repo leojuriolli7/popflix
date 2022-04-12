@@ -5,7 +5,6 @@ import defaultPicture from "../../../assets/default2.png";
 import * as S from "./styles";
 import { DetailsError } from "../DetailsError";
 import { useTranslation } from "react-i18next";
-import i18n from "../../../i18n";
 
 interface CreditsDetailsProps {
   mediaType: "tv" | "movie";
@@ -82,9 +81,10 @@ export function CreditsDetails({ mediaType }: CreditsDetailsProps) {
   return mediaDetails?.id ? (
     <S.Container>
       <S.CastListSectionTitle>
-        {i18n.language === "pt"
-          ? `Créditos de ${mediaDetails.name || mediaDetails.title}`
-          : `${mediaDetails.name || mediaDetails.title} Full Credits`}
+        {t("mediaCreditsPageTitle", {
+          name: mediaDetails.name,
+          title: mediaDetails.title,
+        })}
       </S.CastListSectionTitle>
       <S.Content>
         <S.ArrowBackContainer

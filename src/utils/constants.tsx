@@ -1,3 +1,5 @@
+import i18n from "../i18n";
+
 export const isoCountries: any = {
   AF: "Afghanistan",
   AX: "Aland Islands",
@@ -244,4 +246,15 @@ export const isoCountries: any = {
   YE: "Yemen",
   ZM: "Zambia",
   ZW: "Zimbabwe",
+};
+
+export const LanguageSwitch = () => {
+  switch (i18n.language) {
+    case "pt":
+      return "pt-br";
+    case "en":
+      return "en-US";
+    default:
+      return "pt-br";
+  }
 };
