@@ -302,6 +302,7 @@ export const SeasonContainerWrap = styled(Content)`
 export const SeasonSectionTitle = styled.h2`
   font-size: 3rem;
   color: ${(props) => props.theme.colors.sectionText};
+  text-align: center;
 
   @media (max-width: 455px) {
     font-size: 2.6rem;

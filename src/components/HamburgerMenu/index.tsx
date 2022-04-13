@@ -7,6 +7,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { RootState } from "../../store";
 import { LanguageMenuHamburguer } from "../LanguageMenuHamburguer";
 import { ThemeSwitch } from "../ThemeSwitch";
+import { UserPopover } from "../UserPopover";
 import * as S from "./styles";
 
 export function HamburguerMenu() {
@@ -14,6 +15,7 @@ export function HamburguerMenu() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const { theme } = useSelector((state: RootState) => state.theme);
+  const isUserLogged = useSelector((state: RootState) => state.user.isLogged);
   const navigate = useNavigate();
   const history = useLocation();
   const { t }: { t: any } = useTranslation();
@@ -74,6 +76,11 @@ export function HamburguerMenu() {
                 </S.ListItem>
               </S.UnorganizedList>
             </S.Navigation>
+            {isUserLogged && (
+              <S.UserPopoverContainer>
+                <UserPopover type="mobile" />
+              </S.UserPopoverContainer>
+            )}
             <S.ThemeSwitchContainer>
               <ThemeSwitch
                 height={35}

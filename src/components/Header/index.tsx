@@ -8,12 +8,14 @@ import { HamburguerMenu } from "../HamburgerMenu";
 import { ThemeSwitch } from "../ThemeSwitch";
 import { useTranslation } from "react-i18next";
 import { LanguageMenu } from "../LanguageMenu";
+import { UserPopover } from "../UserPopover";
 
 export function Header() {
   const navigate = useNavigate();
   const history = useLocation();
   const { theme } = useSelector((state: RootState) => state.theme);
   const { t }: { t: any } = useTranslation();
+  const isUserLogged = useSelector((state: RootState) => state.user.isLogged);
 
   return (
     <S.Container>
@@ -63,6 +65,7 @@ export function Header() {
           </S.UnorganizedList>
         </S.Navigation>
         <S.OptionsContainer>
+          {isUserLogged && <UserPopover type="desktop" />}
           <LanguageMenu />
           <ThemeSwitch
             height={15}
