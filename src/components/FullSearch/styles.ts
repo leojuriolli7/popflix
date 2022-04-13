@@ -23,18 +23,18 @@ export const RadioInputContainer = styled.div`
   justify-content: center;
   margin-top: 1rem;
 
-  label {
+  .css-9l3uo3 {
     color: ${(props) => props.theme.colors.sectionText};
     @media (max-width: 610px) {
       font-size: 1.25rem;
     }
   }
 
-  .css-qfz70r-MuiFormGroup-root {
+  .css-p58oka {
     justify-content: center;
   }
 
-  .css-vqmohf-MuiButtonBase-root-MuiRadio-root {
+  .css-hyxlzm {
     color: ${(props) => props.theme.title === "dark" && "white"};
 
     &:hover {
@@ -42,12 +42,8 @@ export const RadioInputContainer = styled.div`
     }
   }
 
-  .css-vqmohf-MuiButtonBase-root-MuiRadio-root.Mui-checked {
+  .css-1a5icme.Mui-checked {
     color: #df2935;
-  }
-
-  .TuztK .css-qfz70r-MuiFormGroup-root {
-    justify-content: center;
   }
 `;
 

@@ -26,18 +26,18 @@ export const InputsContainer = styled.div`
     flex-direction: column;
   }
 
-  label {
+  .css-9l3uo3 {
     color: ${(props) => props.theme.colors.sectionText};
     @media (max-width: 610px) {
       font-size: 1.25rem;
     }
   }
 
-  .css-qfz70r-MuiFormGroup-root {
+  .css-p58oka {
     justify-content: center;
   }
 
-  .css-vqmohf-MuiButtonBase-root-MuiRadio-root {
+  .css-hyxlzm {
     color: ${(props) => props.theme.title === "dark" && "white"};
 
     &:hover {
@@ -45,7 +45,7 @@ export const InputsContainer = styled.div`
     }
   }
 
-  .css-vqmohf-MuiButtonBase-root-MuiRadio-root.Mui-checked {
+  .css-1a5icme.Mui-checked {
     color: #df2935;
   }
 `;
