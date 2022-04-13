@@ -18,7 +18,6 @@ export function SignupForm() {
   const navigate = useNavigate();
   const { t }: { t: any } = useTranslation();
   const dispatch = useDispatch();
-  console.log("~ SignupSchema", SignupSchema);
   const [passwordVisible, setPasswordVisible] = useState(false);
 
   const { mutate } = useMutation(userSignUp, {
@@ -46,6 +45,8 @@ export function SignupForm() {
         firstName: "",
         lastName: "",
         passwordConfirm: "",
+        birthday: "",
+        accountCreatedAt: new Date(),
       }}
       validationSchema={SignupSchema()}
       onSubmit={handleSubmit}
@@ -124,6 +125,14 @@ export function SignupForm() {
             />
             {touched.passwordConfirm && errors.passwordConfirm && (
               <InputValidationMessage text={errors.passwordConfirm} />
+            )}
+          </S.FieldContainer>
+
+          <S.FieldContainer>
+            <S.InputLabel htmlFor="date">{t("birthdate")}</S.InputLabel>
+            <Field id="birthday" name="birthday" type="date" />
+            {touched.birthday && errors.birthday && (
+              <InputValidationMessage text={errors.birthday} />
             )}
           </S.FieldContainer>
 

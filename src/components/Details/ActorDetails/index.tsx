@@ -21,6 +21,7 @@ interface ActorDetailsInterface {
   birthday: string;
   deathday?: string;
   known_for_department: string;
+  id: number;
 }
 
 interface ActorCastInterface {
@@ -85,7 +86,7 @@ export function ActorDetails() {
   const actorAge = actorDetails?.deathday
     ? Math.abs(deathdayDate.getTime() - birthdayDate.getTime()) / 3.154e10
     : Math.abs(currentDate.getTime() - birthdayDate.getTime()) / 3.154e10;
-  return actorDetails?.name !== undefined ? (
+  return actorDetails?.id ? (
     <S.Container>
       <S.MainInfoContainer>
         <S.PictureContainer>

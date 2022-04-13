@@ -8,11 +8,7 @@ import DefaultUserImage from "../../assets/default-user-image.png";
 import * as S from "./styles";
 import { useTranslation } from "react-i18next";
 
-interface UserPopoverProps {
-  type: "mobile" | "desktop";
-}
-
-export function UserPopover({ type }: UserPopoverProps) {
+export function UserPopover() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { t }: { t: any } = useTranslation();
@@ -47,9 +43,9 @@ export function UserPopover({ type }: UserPopoverProps) {
                   <S.ProfileLink>{t("goToProfile")}</S.ProfileLink>
                 </S.UserNameContainer>
               </S.UserContainer>
-              <S.UnorganizedList type={type}>
-                <S.ListItem type={type}>
-                  <S.MenuLink type={type} onClick={() => handleClick()}>
+              <S.UnorganizedList>
+                <S.ListItem>
+                  <S.MenuLink onClick={() => handleClick()}>
                     {t("logout")}
                   </S.MenuLink>
                 </S.ListItem>
@@ -58,10 +54,7 @@ export function UserPopover({ type }: UserPopoverProps) {
           </Popover>
         }
       >
-        <S.ProfileContainer
-          type={type}
-          src={profileImage || DefaultUserImage}
-        />
+        <S.ProfileContainer src={profileImage || DefaultUserImage} />
       </OverlayTrigger>
     </S.Container>
   );

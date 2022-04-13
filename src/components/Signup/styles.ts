@@ -36,7 +36,7 @@ export const Content = styled.div.attrs({
   box-shadow: 1px 1px 6px 3px rgba(0, 0, 0, 0.3);
   padding: 4rem 4rem 3rem 4rem;
   width: 92vw;
-  max-width: 528px;
+  max-width: 488px;
 
   @media (max-width: 420px) {
     padding: 3rem 2rem;
@@ -92,11 +92,7 @@ export const AnimationContainer = styled.div.attrs({
 `;
 
 export const Animation = styled.img`
-  width: 126px;
-
-  @media (max-width: 525px) {
-    width: 100px;
-  }
+  width: 100px;
 
   @media (max-width: 460px) {
     width: 90px;
@@ -110,7 +106,7 @@ export const Animation = styled.img`
     width: 70px;
   }
 
-  @media (max-width: 320px) {
+  @media (max-width: 384px) {
     width: 60px;
   }
 

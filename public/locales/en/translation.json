@@ -118,5 +118,6 @@
   "lastNameMinErrorMessage": "Your surname has to have atleast 3 characters.",
   "lastNameMaxErrorMessage": "Your surname can't excede 40 characters.",
   "signUpMessage": "Don't have an account? Click here to Sign Up",
-  "loginMessage": "Already have an account? Click here to Log In"
+  "loginMessage": "Already have an account? Click here to Log In",
+  "birthdate": "Birth Date"
 }

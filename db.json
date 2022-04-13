@@ -2,18 +2,12 @@
   "users": [
     {
       "email": "testAccount@email.com",
-      "password": "$2a$10$DXBN7CSLOYf9jM/hoOYAb..G6nB0guR4uEG1PtQUbKZYi3gsGj8j.",
+      "password": "$2a$10$l5wc9EHuWe8iYwVgTAR4cO7p60x5Ura9oj7y1J76INhDdclf9LkdC",
       "firstName": "Leonardo",
-      "lastName": "Juriolli",
-      "profileImage": "https://i.imgur.com/YL3A8fy.jpg",
+      "lastName": "Dias Juriolli",
+      "birthday": "2005-02-17",
+      "accountCreatedAt": "2022-04-13T15:50:26.617Z",
       "id": 1
-    },
-    {
-      "email": "leojuriolli@gmail.com",
-      "password": "$2a$10$hR5uft0ZCebF.4cnc2xL5.1qRqhAFawmG5sHu4AzHL4pqTI.ocV8m",
-      "firstName": "Leonardo",
-      "lastName": "Dias",
-      "id": 2
     }
   ]
 }

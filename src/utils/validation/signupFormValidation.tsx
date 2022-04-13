@@ -9,6 +9,8 @@ import { useTranslation } from "react-i18next";
 export const SignupSchema = () => {
   const { t }: { t: any } = useTranslation();
 
+  const minBirthday = new Date("12-01-1930");
+
   return Yup.object().shape({
     email: Yup.string()
       .required(t("required"))
@@ -30,5 +32,8 @@ export const SignupSchema = () => {
     passwordConfirm: Yup.string()
       .required(t("required"))
       .oneOf([Yup.ref("password"), null], t("passwordsDontMatchMessage")),
+    birthday: Yup.date()
+      .required(t("required"))
+      .min(minBirthday, "Birthdate not allowed"),
   });
 };

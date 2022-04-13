@@ -65,7 +65,7 @@ export function Header() {
           </S.UnorganizedList>
         </S.Navigation>
         <S.OptionsContainer>
-          {isUserLogged && <UserPopover type="desktop" />}
+          {isUserLogged && <UserPopover />}
           <LanguageMenu />
           <ThemeSwitch
             height={15}

@@ -8,6 +8,8 @@ const initialState = {
   token: null,
   profileImage: null,
   isLogged: false,
+  birthday: null,
+  accountCreatedAt: null,
 };
 
 const userSlice = createSlice({
@@ -22,6 +24,8 @@ const userSlice = createSlice({
       state.token = payload.accessToken;
       state.profileImage = payload.user.profileImage;
       state.isLogged = true;
+      state.birthday = payload.user.birthday;
+      state.accountCreatedAt = payload.user.accountCreatedAt;
     },
     logout: () => initialState,
   },

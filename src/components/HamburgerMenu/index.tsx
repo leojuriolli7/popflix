@@ -78,7 +78,7 @@ export function HamburguerMenu() {
             </S.Navigation>
             {isUserLogged && (
               <S.UserPopoverContainer>
-                <UserPopover type="mobile" />
+                <UserPopover />
               </S.UserPopoverContainer>
             )}
             <S.ThemeSwitchContainer>

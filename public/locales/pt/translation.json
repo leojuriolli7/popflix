@@ -119,5 +119,6 @@
   "lastNameMinErrorMessage": "Seu sobrenome precisa ter no mínimo 3 caracteres.",
   "lastNameMaxErrorMessage": "Seu sobrenome não pode ter mais de 40 caracteres.",
   "signUpMessage": "Não possui uma conta? Clique aqui para criar",
-  "loginMessage": "Já possui uma conta? Clique aqui para entrar"
+  "loginMessage": "Já possui uma conta? Clique aqui para entrar",
+  "birthdate": "Data de Nascimento"
 }

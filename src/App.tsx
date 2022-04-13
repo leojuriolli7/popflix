@@ -29,6 +29,7 @@ import { FullSearchPage } from "./pages/search";
 import "./i18n";
 import { LoginPage } from "./pages/loginPage";
 import { SignupPage } from "./pages/signupPage";
+import { ProfilePage } from "./pages/profilePage";
 
 function App() {
   const { theme } = useSelector((state: RootState) => state.theme);
@@ -163,6 +164,14 @@ function App() {
             element={
               <ProtectedRoute>
                 <FullSearchPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/profile"
+            element={
+              <ProtectedRoute>
+                <ProfilePage />
               </ProtectedRoute>
             }
           />
