@@ -44,6 +44,10 @@ export const RadioInputContainer = styled.div`
   .css-vqmohf-MuiButtonBase-root-MuiRadio-root.Mui-checked {
     color: #df2935;
   }
+
+  .TuztK .css-qfz70r-MuiFormGroup-root {
+    justify-content: center;
+  }
 `;
 
 export const SearchInputAndIconContainer = styled.div`
