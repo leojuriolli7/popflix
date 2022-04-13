@@ -12,6 +12,7 @@ import { CompaniesPopover } from "../CompaniesPopover";
 import { useTranslation } from "react-i18next";
 import i18n from "../../../i18n";
 import { LanguageSwitch } from "../../../utils/constants";
+import { DetailsReturnArrow } from "../DetailsReturnArrow";
 // import { useMutation } from "react-query";
 // import { getMediaDetails } from "../../../utils/requests";
 
@@ -117,6 +118,7 @@ export function MediaDetails({ mediaType }: MediaDetailsProps) {
   return mediaDetails?.id ? (
     <S.Container>
       <S.Content>
+        <DetailsReturnArrow />
         <S.Poster
           src={
             mediaDetails?.poster_path === null

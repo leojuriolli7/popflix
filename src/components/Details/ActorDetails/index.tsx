@@ -11,6 +11,7 @@ import { DetailsError } from "../DetailsError";
 import { useTranslation } from "react-i18next";
 import i18n from "../../../i18n";
 import { LanguageSwitch } from "../../../utils/constants";
+import { DetailsReturnArrow } from "../DetailsReturnArrow";
 
 interface ActorDetailsInterface {
   name: string;
@@ -89,6 +90,7 @@ export function ActorDetails() {
   return actorDetails?.id ? (
     <S.Container>
       <S.MainInfoContainer>
+        <DetailsReturnArrow />
         <S.PictureContainer>
           <S.ActorPicture
             src={

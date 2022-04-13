@@ -5,6 +5,7 @@ import * as S from "./styles";
 import { DetailsError } from "../DetailsError";
 import { isoCountries } from "../../../utils/constants";
 import { useTranslation } from "react-i18next";
+import { DetailsReturnArrow } from "../DetailsReturnArrow";
 
 interface ParentCompaniesInterface {
   name: string;
@@ -63,6 +64,8 @@ export function CompanyDetails({ type }: CompanyDetailsProps) {
         </S.CompanyLogoAndNameContainer>
       </S.Content>
       <S.CompanyInfoContainer>
+        {" "}
+        <DetailsReturnArrow />
         <S.CompanyNameContainer>
           <S.CompanyName>{companyDetails?.name}</S.CompanyName>
         </S.CompanyNameContainer>
@@ -92,7 +95,6 @@ export function CompanyDetails({ type }: CompanyDetailsProps) {
             {companyDetails?.description}
           </S.CompanyDescription>
         )}
-
         {companyDetails?.homepage && (
           <S.CompanyHomepage href={companyDetails?.homepage} target="_blank">
             {t("companyHomepage", { name: companyDetails.name })}

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { IoMdArrowRoundBack } from "react-icons/io";
 
 export const Container = styled.main.attrs({
   className: "animate__animated animate__fadeIn",
@@ -14,6 +15,7 @@ export const Container = styled.main.attrs({
 `;
 
 export const Content = styled.div`
+  position: relative;
   display: flex;
   justify-content: space-between;
   box-shadow: 1px 5px 15px 5px rgba(0, 0, 0, 0.3);
