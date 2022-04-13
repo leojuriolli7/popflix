@@ -1,7 +1,9 @@
 import { darken, lighten } from "polished";
 import styled from "styled-components";
 
-export const Container = styled.div`
+export const Container = styled.div.attrs({
+  className: "animate__animated animate__fadeIn",
+})`
   max-width: 1100px;
   min-height: 90vh;
   margin: auto;
