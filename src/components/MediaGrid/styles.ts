@@ -28,9 +28,6 @@ export const InputsContainer = styled.div`
 
   label {
     color: ${(props) => props.theme.colors.sectionText};
-  }
-
-  .css-ahj2mt-MuiTypography-root {
     @media (max-width: 610px) {
       font-size: 1.25rem;
     }
@@ -148,19 +145,19 @@ export const PaginationContainer = styled.div`
   align-items: center;
   justify-content: center;
 
-  .css-rppfq7-MuiButtonBase-root-MuiPaginationItem-root {
+  .css-1qpp9n8 {
     color: ${(props) => (props.theme.title === "dark" ? "#fff" : "black")};
   }
 
-  .css-1scal0h-MuiPaginationItem-root {
+  .css-ezc4fw {
     color: ${(props) => (props.theme.title === "dark" ? "#fff" : "black")};
   }
 
-  .css-rppfq7-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected {
+  .css-1qpp9n8.Mui-selected {
     background-color: rgba(223, 41, 53, 0.3);
   }
 
-  .css-rppfq7-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected:hover {
+  .css-1qpp9n8:hover {
     background-color: rgba(223, 41, 53, 0.3);
   }
 `;
