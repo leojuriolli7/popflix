@@ -33,148 +33,33 @@ import { ProfilePage } from "./pages/profilePage";
 
 function App() {
   const { theme } = useSelector((state: RootState) => state.theme);
-  const isLogged = useSelector((state: RootState) => state.user.isLogged);
-
-  const ProtectedRoute = ({ children }: any) => {
-    if (!isLogged) {
-      return <Navigate to="/login" replace />;
-    }
-
-    return children;
-  };
 
   return (
     <ThemeProvider theme={theme === "light" ? light : dark}>
       <Router>
         <Routes>
-          <Route
-            path="/"
-            element={
-              <ProtectedRoute>
-                <Home />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/movies"
-            element={
-              <ProtectedRoute>
-                <Movies />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/movie/:id"
-            element={
-              <ProtectedRoute>
-                <MovieDetailsPage />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/movie/:id/reviews"
-            element={
-              <ProtectedRoute>
-                <MovieReviewsPage />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/movie/:id/credits"
-            element={
-              <ProtectedRoute>
-                <MovieCreditsPage />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/shows"
-            element={
-              <ProtectedRoute>
-                <Shows />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/show/:id"
-            element={
-              <ProtectedRoute>
-                <ShowDetailsPage />
-              </ProtectedRoute>
-            }
-          />
+          <Route path="/" element={<Home />} />
+          <Route path="/movies" element={<Movies />} />
+          <Route path="/movie/:id" element={<MovieDetailsPage />} />
+          <Route path="/movie/:id/reviews" element={<MovieReviewsPage />} />
+          <Route path="/movie/:id/credits" element={<MovieCreditsPage />} />
+          <Route path="/shows" element={<Shows />} />
+          <Route path="/show/:id" element={<ShowDetailsPage />} />
           <Route
             path="/show/:id/season/:number"
-            element={
-              <ProtectedRoute>
-                <SeasonDetailsPage />
-              </ProtectedRoute>
-            }
+            element={<SeasonDetailsPage />}
           />
           <Route
             path="/show/:id/season/:number/episode/:episodeNumber"
-            element={
-              <ProtectedRoute>
-                <EpisodeDetailsPage />
-              </ProtectedRoute>
-            }
+            element={<EpisodeDetailsPage />}
           />
-          <Route
-            path="/show/:id/reviews"
-            element={
-              <ProtectedRoute>
-                <ShowReviewsPage />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/show/:id/credits"
-            element={
-              <ProtectedRoute>
-                <ShowCreditsPage />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/actor/:id"
-            element={
-              <ProtectedRoute>
-                <ActorPage />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/company/:id"
-            element={
-              <ProtectedRoute>
-                <CompanyPage />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/network/:id"
-            element={
-              <ProtectedRoute>
-                <NetworkPage />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/search"
-            element={
-              <ProtectedRoute>
-                <FullSearchPage />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/profile"
-            element={
-              <ProtectedRoute>
-                <ProfilePage />
-              </ProtectedRoute>
-            }
-          />
+          <Route path="/show/:id/reviews" element={<ShowReviewsPage />} />
+          <Route path="/show/:id/credits" element={<ShowCreditsPage />} />
+          <Route path="/actor/:id" element={<ActorPage />} />
+          <Route path="/company/:id" element={<CompanyPage />} />
+          <Route path="/network/:id" element={<NetworkPage />} />
+          <Route path="/search" element={<FullSearchPage />} />
+          <Route path="/profile" element={<ProfilePage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/*" element={<ErrorPage />} />
