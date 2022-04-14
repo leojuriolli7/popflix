@@ -1,24 +1,20 @@
 import styled from "styled-components";
 
-export const MediaPosterSkeleton = styled.div`
-  position: relative;
-  width: clamp(7rem, 18.5vw, 218.76px);
-  height: clamp(11rem, 27.75vw, 328.14px);
+export const PosterSkeleton = styled.div`
+  width: 115px;
+  height: 172.5px;
   border-radius: 20px;
+  box-shadow: 2px 4px 7px 0px rgb(0 0 0 / 20%);
+  margin-bottom: 10px;
 
-  @media (max-width: 1035px) {
-    min-width: 22vw;
-    min-height: 33vw;
+  @media (max-width: 845px) {
+    width: 140px;
+    height: 210px;
   }
 
-  @media (max-width: 835px) {
-    min-width: 29vw;
-    min-height: 43.5vw;
-  }
-
-  @media (max-width: 580px) {
-    min-width: 42vw;
-    min-height: 63vw;
+  @media (max-width: 361px) {
+    width: 120px;
+    height: 180px;
   }
 
   background-image: linear-gradient(

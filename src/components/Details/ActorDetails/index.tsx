@@ -12,6 +12,7 @@ import { useTranslation } from "react-i18next";
 import i18n from "../../../i18n";
 import { LanguageSwitch } from "../../../utils/constants";
 import { DetailsReturnArrow } from "../DetailsReturnArrow";
+import { PictureContainerSkeleton } from "../../Skeleton/ActorDetailsSkeleton/PictureContainerSkeleton";
 
 interface ActorDetailsInterface {
   name: string;
@@ -55,23 +56,31 @@ export function ActorDetails() {
   const { id } = useParams();
   const [actorDetails, setActorDetails] = useState<ActorDetailsInterface>();
   const [actorCredits, setActorCredits] = useState<ActorCreditsInterface>();
+  const [loading, setLoading] = useState(true);
   const { t }: { t: any } = useTranslation();
   const navigate = useNavigate();
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-    api
+  async function fetchDetailsAndCredits() {
+    await api
       .get(
         `person/${id}?api_key=24e0e0f71e0ac9cb9c5418459514eda9&language=${LanguageSwitch()}`
       )
       .then((response) => setActorDetails(response.data));
-    api
+
+    await api
       .get(
         `person/${id}/combined_credits?api_key=24e0e0f71e0ac9cb9c5418459514eda9&language=en-US`
       )
       .then((response) => setActorCredits(response.data));
+
+    setLoading(false);
+  }
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    fetchDetailsAndCredits();
   }, [id, i18n.language]);
 
   const birthdayDate = new Date(
@@ -91,15 +100,19 @@ export function ActorDetails() {
     <S.Container>
       <S.MainInfoContainer>
         <DetailsReturnArrow />
-        <S.PictureContainer>
-          <S.ActorPicture
-            src={
-              actorDetails?.profile_path
-                ? `https://image.tmdb.org/t/p/w500/${actorDetails?.profile_path}`
-                : defaultPicture
-            }
-          />
-        </S.PictureContainer>
+        {loading ? (
+          <PictureContainerSkeleton />
+        ) : (
+          <S.PictureContainer>
+            <S.ActorPicture
+              src={
+                actorDetails?.profile_path
+                  ? `https://image.tmdb.org/t/p/w500/${actorDetails?.profile_path}`
+                  : defaultPicture
+              }
+            />
+          </S.PictureContainer>
+        )}
         <S.ActorDetails>
           <S.ActorName>{actorDetails?.name}</S.ActorName>
           <S.ActorPlaceOfBirth>

@@ -13,6 +13,8 @@ import { useTranslation } from "react-i18next";
 import i18n from "../../../i18n";
 import { LanguageSwitch } from "../../../utils/constants";
 import { DetailsReturnArrow } from "../DetailsReturnArrow";
+import { MediaPosterSkeleton } from "../../Skeleton/MediaDetailsSkeletons/MediaPosterSkeleton";
+import { CastMemberSkeleton } from "../../Skeleton/MediaDetailsSkeletons/CastMemberSkeleton";
 // import { useMutation } from "react-query";
 // import { getMediaDetails } from "../../../utils/requests";
 
@@ -85,20 +87,29 @@ export function MediaDetails({ mediaType }: MediaDetailsProps) {
   const { t }: { t: any } = useTranslation();
   const [mediaDetails, setMediaDetails] = useState<MediaDetailsInterface>();
   const [mediaCredits, setMediaCredits] = useState<MediaCreditsInterface>();
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-    api
+  async function fetchMediaDetailsAndCredits() {
+    await api
       .get(
         `${mediaType}/${id}?api_key=24e0e0f71e0ac9cb9c5418459514eda9&language=${LanguageSwitch()}`
       )
       .then((response) => setMediaDetails(response.data));
-    api
+
+    await api
       .get(
         `${mediaType}/${id}/credits?api_key=24e0e0f71e0ac9cb9c5418459514eda9&language=en-US`
       )
       .then((response) => setMediaCredits(response.data));
+
+    setLoading(false);
+  }
+
+  useEffect(() => {
+    setLoading(true);
+    window.scrollTo(0, 0);
+    fetchMediaDetailsAndCredits();
   }, [id, mediaType, i18n.language]);
 
   const date = new Date(
@@ -119,13 +130,17 @@ export function MediaDetails({ mediaType }: MediaDetailsProps) {
     <S.Container>
       <S.Content>
         <DetailsReturnArrow />
-        <S.Poster
-          src={
-            mediaDetails?.poster_path === null
-              ? defaultPoster
-              : `https://image.tmdb.org/t/p/w500/${mediaDetails?.poster_path}`
-          }
-        />
+        {loading ? (
+          <MediaPosterSkeleton />
+        ) : (
+          <S.Poster
+            src={
+              mediaDetails?.poster_path === null
+                ? defaultPoster
+                : `https://image.tmdb.org/t/p/w500/${mediaDetails?.poster_path}`
+            }
+          />
+        )}
         <S.InfoContainer>
           <S.MediaTitle>
             {mediaDetails?.name || mediaDetails?.title}
@@ -231,25 +246,29 @@ export function MediaDetails({ mediaType }: MediaDetailsProps) {
                   items: 4,
                 },
               }}
-              items={mediaCredits?.cast
-                .slice(0, 10)
-                .map((cast: CastInterface) => (
-                  <S.CastMemberContainer key={cast.id}>
-                    <S.CastMemberPicture
-                      onClick={() => navigate(`/actor/${cast.id}`)}
-                      src={
-                        cast.profile_path === null
-                          ? defaultPicture
-                          : `https://image.tmdb.org/t/p/w200/${cast.profile_path}`
-                      }
-                    />
-                    <S.CastMemberName>
-                      {cast.character !== ""
-                        ? `${cast.name} ${t("as")} ${cast.character}`
-                        : `${cast.name}`}
-                    </S.CastMemberName>
-                  </S.CastMemberContainer>
-                ))}
+              items={
+                loading
+                  ? [1, 2, 3, 4].map(() => <CastMemberSkeleton />)
+                  : mediaCredits?.cast
+                      .slice(0, 10)
+                      .map((cast: CastInterface) => (
+                        <S.CastMemberContainer key={cast.id}>
+                          <S.CastMemberPicture
+                            onClick={() => navigate(`/actor/${cast.id}`)}
+                            src={
+                              cast.profile_path === null
+                                ? defaultPicture
+                                : `https://image.tmdb.org/t/p/w200/${cast.profile_path}`
+                            }
+                          />
+                          <S.CastMemberName>
+                            {cast.character !== ""
+                              ? `${cast.name} ${t("as")} ${cast.character}`
+                              : `${cast.name}`}
+                          </S.CastMemberName>
+                        </S.CastMemberContainer>
+                      ))
+              }
             />
           </S.CastContainer>
           {(diff > 0 || isNaN(diff) === true) && (

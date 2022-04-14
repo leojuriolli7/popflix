@@ -2,9 +2,10 @@ import styled from "styled-components";
 
 export const MediaPosterSkeleton = styled.div`
   position: relative;
-  width: clamp(7rem, 18.5vw, 218.76px);
-  height: clamp(11rem, 27.75vw, 328.14px);
-  border-radius: 20px;
+  transition: 0.3s;
+
+  width: clamp(10rem, 29vw, 187.76px);
+  height: clamp(15rem, 44vw, 276.64px);
 
   @media (max-width: 1035px) {
     min-width: 22vw;
@@ -12,13 +13,18 @@ export const MediaPosterSkeleton = styled.div`
   }
 
   @media (max-width: 835px) {
-    min-width: 29vw;
-    min-height: 43.5vw;
+    min-width: 30vw;
+    min-height: 45vw;
   }
 
   @media (max-width: 580px) {
     min-width: 42vw;
     min-height: 63vw;
+  }
+
+  &:hover {
+    transform: scale(1.05);
+    cursor: pointer;
   }
 
   background-image: linear-gradient(

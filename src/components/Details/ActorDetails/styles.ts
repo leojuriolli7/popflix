@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { IoMdArrowRoundBack } from "react-icons/io";
 
 export const Container = styled.main.attrs({
   className: "animate__animated animate__fadeIn",
