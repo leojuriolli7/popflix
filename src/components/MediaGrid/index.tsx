@@ -17,6 +17,7 @@ import { useTranslation } from "react-i18next";
 import { NoResults } from "../NoResults";
 import i18n from "../../i18n";
 import { LanguageSwitch } from "../../utils/constants";
+import { MediaPosterSkeleton } from "../Skeleton/MediaGridSkeleton/MediaPosterSkeleton";
 
 interface MediaInterface {
   genre_ids: GenreInterface[];
@@ -53,28 +54,33 @@ export function MediaGrid({ mediaType }: MediaDetailsProps) {
   const [selectedGenre, setSelectedGenre] = useState();
   const [selectedType, setSelectedType] = useState();
   const [page, setPage] = useState(1);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
   const { t }: { t: any } = useTranslation();
 
   const handleChange = (e: any) => {
+    setLoading(true);
     setSelectedGenre(e.target.value);
     setPage(1);
     window.scrollTo(0, 0);
   };
 
   const handleTypeChange = (e: any) => {
+    setLoading(true);
     setSelectedType(e.target.value);
     setPage(1);
     window.scrollTo(0, 0);
   };
 
   const handleChangeRadio = (e: any) => {
+    setLoading(true);
     setSelectedValue(e.target.value);
     setPage(1);
     window.scrollTo(0, 0);
   };
 
   const handleChangeDiscover = (e: any) => {
+    setLoading(true);
     setSelectedSortby(e.target.value);
     setPage(1);
     window.scrollTo(0, 0);
@@ -92,6 +98,7 @@ export function MediaGrid({ mediaType }: MediaDetailsProps) {
         `${mediaType}/${selectedValue}?api_key=24e0e0f71e0ac9cb9c5418459514eda9&language=en-US&page=${value}`
       )
       .then((response) => setMediaDetailsData(response.data));
+    setLoading(false);
   }
 
   async function fetchMediaWithGenres(value: number) {
@@ -110,9 +117,12 @@ export function MediaGrid({ mediaType }: MediaDetailsProps) {
         }`
       )
       .then((response) => setMediaDetailsData(response.data));
+
+    setLoading(false);
   }
 
   useEffect(() => {
+    setLoading(true);
     if (isNaN(Number(selectedGenre)) === true) {
       fetchMediaWithoutGenres(page);
       navigate(`?page=${page}`);
@@ -136,6 +146,7 @@ export function MediaGrid({ mediaType }: MediaDetailsProps) {
   ]);
 
   function handlePaginationChange(e: any, value: any) {
+    setLoading(true);
     setPage(value);
     if (isNaN(Number(selectedGenre)) === true) {
       navigate(`?page=${value}`);
@@ -250,29 +261,31 @@ export function MediaGrid({ mediaType }: MediaDetailsProps) {
       </S.InputsContainer>
 
       <S.Content>
-        {mediaDetails?.map((media) => (
-          <S.MediaPosterContainer
-            title={media.name || media.title}
-            key={media.id}
-            onClick={() =>
-              navigate(
-                `/${mediaType === "movie" ? "movie" : "show"}/${media.id}`
-              )
-            }
-          >
-            <S.MediaPoster
-              src={
-                media.poster_path === null
-                  ? defaultPoster
-                  : `https://image.tmdb.org/t/p/w500/${media.poster_path}`
-              }
-            />
-            {media.poster_path === null && (
-              <PlaceholderPoster name={media.name} title={media.title} />
-            )}
-            <RatingCircle vote_average={media!.vote_average} />
-          </S.MediaPosterContainer>
-        ))}
+        {loading
+          ? [0, 1, 2, 3, 4, 5, 6, 7].map(() => <MediaPosterSkeleton />)
+          : mediaDetails?.map((media) => (
+              <S.MediaPosterContainer
+                title={media.name || media.title}
+                key={media.id}
+                onClick={() =>
+                  navigate(
+                    `/${mediaType === "movie" ? "movie" : "show"}/${media.id}`
+                  )
+                }
+              >
+                <S.MediaPoster
+                  src={
+                    media.poster_path === null
+                      ? defaultPoster
+                      : `https://image.tmdb.org/t/p/w500/${media.poster_path}`
+                  }
+                />
+                {media.poster_path === null && (
+                  <PlaceholderPoster name={media.name} title={media.title} />
+                )}
+                <RatingCircle vote_average={media!.vote_average} />
+              </S.MediaPosterContainer>
+            ))}
       </S.Content>
       {mediaDetails?.length === 0 && <NoResults />}
       {mediaDetails?.length !== 0 && (
