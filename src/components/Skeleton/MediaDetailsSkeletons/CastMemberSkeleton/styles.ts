@@ -6,6 +6,7 @@ export const PosterSkeleton = styled.div`
   border-radius: 20px;
   box-shadow: 2px 4px 7px 0px rgb(0 0 0 / 20%);
   margin-bottom: 10px;
+  border-radius: 20px;
 
   @media (max-width: 845px) {
     width: 140px;

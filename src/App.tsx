@@ -34,6 +34,16 @@ import { ProfilePage } from "./pages/profilePage";
 function App() {
   const { theme } = useSelector((state: RootState) => state.theme);
 
+  const isLogged = useSelector((state: RootState) => state.user.isLogged);
+
+  const ProtectedRoute = ({ children }: any) => {
+    if (!isLogged) {
+      return <Navigate to="/" replace />;
+    }
+
+    return children;
+  };
+
   return (
     <ThemeProvider theme={theme === "light" ? light : dark}>
       <Router>
@@ -59,7 +69,14 @@ function App() {
           <Route path="/company/:id" element={<CompanyPage />} />
           <Route path="/network/:id" element={<NetworkPage />} />
           <Route path="/search" element={<FullSearchPage />} />
-          <Route path="/profile" element={<ProfilePage />} />
+          <Route
+            path="/profile"
+            element={
+              <ProtectedRoute>
+                <ProfilePage />
+              </ProtectedRoute>
+            }
+          />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/*" element={<ErrorPage />} />
