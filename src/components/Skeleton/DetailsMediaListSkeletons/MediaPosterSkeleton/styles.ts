@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const MediaPosterSkeleton = styled.div`
   position: relative;
   transition: 0.3s;
-
+  border-radius: 20px;
   width: clamp(10rem, 29vw, 187.76px);
   height: clamp(15rem, 44vw, 276.64px);
 
