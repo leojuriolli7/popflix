@@ -23,7 +23,6 @@ interface ImageContainerProps {
 
 export const ImageContainer = styled.div<ImageContainerProps>`
   width: 30px;
-
   border: ${(props) =>
     props.isActive
       ? props.theme.title === "light"
