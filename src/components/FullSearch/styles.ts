@@ -23,18 +23,17 @@ export const RadioInputContainer = styled.div`
   justify-content: center;
   margin-top: 1rem;
 
-  .css-9l3uo3 {
-    color: ${(props) => props.theme.colors.sectionText};
+  .css-ahj2mt-MuiTypography-root {
     @media (max-width: 610px) {
       font-size: 1.25rem;
     }
   }
 
-  .css-p58oka {
+  .css-qfz70r-MuiFormGroup-root {
     justify-content: center;
   }
 
-  .css-hyxlzm {
+  .css-vqmohf-MuiButtonBase-root-MuiRadio-root {
     color: ${(props) => props.theme.title === "dark" && "white"};
 
     &:hover {
@@ -42,8 +41,12 @@ export const RadioInputContainer = styled.div`
     }
   }
 
-  .css-1a5icme.Mui-checked {
+  .css-vqmohf-MuiButtonBase-root-MuiRadio-root.Mui-checked {
     color: #df2935;
+  }
+
+  .TuztK .css-qfz70r-MuiFormGroup-root {
+    justify-content: center;
   }
 `;
 
@@ -238,19 +241,19 @@ export const PaginationContainer = styled.div`
   justify-content: center;
   margin-bottom: 2rem;
 
-  .css-1qpp9n8 {
+  .css-rppfq7-MuiButtonBase-root-MuiPaginationItem-root {
     color: ${(props) => (props.theme.title === "dark" ? "#fff" : "black")};
   }
 
-  .css-ezc4fw {
+  .css-1scal0h-MuiPaginationItem-root {
     color: ${(props) => (props.theme.title === "dark" ? "#fff" : "black")};
   }
 
-  .css-1qpp9n8.Mui-selected {
+  .css-rppfq7-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected {
     background-color: rgba(223, 41, 53, 0.3);
   }
 
-  .css-1qpp9n8:hover {
+  .css-rppfq7-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected:hover {
     background-color: rgba(223, 41, 53, 0.3);
   }
 `;
