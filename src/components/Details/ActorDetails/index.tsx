@@ -12,44 +12,10 @@ import i18n from "../../../i18n";
 import { DetailsReturnArrow } from "../DetailsReturnArrow";
 import { PictureContainerSkeleton } from "../../Skeleton/ActorDetailsSkeleton/PictureContainerSkeleton";
 import { fetchActorCredits, fetchActorDetails } from "../../../utils/requests";
-
-interface ActorDetailsInterface {
-  name: string;
-  gender: number;
-  place_of_birth: string;
-  biography: string;
-  profile_path: string;
-  birthday: string;
-  deathday?: string;
-  known_for_department: string;
-  id: number;
-}
-
-interface ActorCastInterface {
-  adult: boolean;
-  backdrop_path: string;
-  original_title: string;
-  name?: string;
-  vote_average: number;
-  title?: string;
-  character: string;
-  media_type: string;
-  id: number;
-}
-
-interface ActorCrewInterface {
-  id: number;
-  title?: string;
-  name?: string;
-  backdrop_path: string;
-  job: string;
-  media_type: string;
-}
-
-interface ActorCreditsInterface {
-  cast: ActorCastInterface[];
-  crew: ActorCrewInterface[];
-}
+import {
+  ActorCreditsInterface,
+  ActorDetailsInterface,
+} from "../../../utils/interfaces";
 
 export function ActorDetails() {
   const { id } = useParams();

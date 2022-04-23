@@ -8,22 +8,12 @@ import defaultPoster from "../../../assets/defaultposter.png";
 import tvIcon from "../../../assets/tvicon.svg";
 import movieIcon from "../../../assets/movieicon.svg";
 import { useNavigate, useParams } from "react-router-dom";
+import { MediaDetailsInterface } from "../../../utils/interfaces";
 
 interface DetailsMediaListProps {
   mediaType: "tv" | "movie";
   title: string;
   apiParam: "recommendations" | "similar";
-}
-
-interface MediaInterface {
-  genre_ids: [];
-  id: number;
-  original_title?: string;
-  overview: string;
-  title?: string;
-  vote_average: number;
-  poster_path: string;
-  name?: string;
 }
 
 export function DetailsMediaList({
@@ -32,7 +22,7 @@ export function DetailsMediaList({
   apiParam,
 }: DetailsMediaListProps) {
   const { id } = useParams();
-  const [media, setMedia] = useState<MediaInterface[]>([]);
+  const [media, setMedia] = useState<MediaDetailsInterface[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
 
@@ -95,9 +85,7 @@ export function DetailsMediaList({
                           <S.Icon src={item.name ? tvIcon : movieIcon} />
                         </S.IconContainer>
                         <S.MediaNameContainer>
-                          <S.MediaName>
-                            {item?.name || item?.original_title}
-                          </S.MediaName>
+                          <S.MediaName>{item?.name || item?.title}</S.MediaName>
                         </S.MediaNameContainer>
                       </>
                     )}

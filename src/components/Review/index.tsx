@@ -5,6 +5,7 @@ import * as S from "./styles";
 import defaultProfileImage from "../../assets/default.png";
 import { Rating } from "@mui/material";
 import { useTranslation } from "react-i18next";
+import { MediaDetailsInterface } from "../../utils/interfaces";
 
 interface AuthorDetailsInterface {
   name: string;
@@ -20,25 +21,6 @@ interface ReviewsInterface {
   created_at: string;
   updated_at: string;
   id: string;
-}
-
-interface GenreInterface {
-  name: string;
-  id: number;
-}
-
-interface MediaDetailsInterface {
-  genres: GenreInterface[];
-  id: number;
-  original_title?: string;
-  overview: string;
-  title?: string;
-  name?: string;
-  vote_average: number;
-  poster_path: string;
-  release_date: string;
-  runtime: number;
-  status: string;
 }
 
 interface ReviewProps {

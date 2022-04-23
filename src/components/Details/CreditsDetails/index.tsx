@@ -10,47 +10,13 @@ import {
   fetchTVAggregateCredits,
 } from "../../../utils/requests";
 import { ActorPictureSkeleton } from "../../Skeleton/CreditsDetailsSkeletons/ActorPictureSkeleton";
+import {
+  MediaCreditsInterface,
+  MediaDetailsInterface,
+} from "../../../utils/interfaces";
 
 interface CreditsDetailsProps {
   mediaType: "tv" | "movie";
-}
-
-interface JobsInterface {
-  job: string;
-}
-
-interface CrewInterface {
-  id: number;
-  name: string;
-  department: string;
-  job?: string;
-  jobs: JobsInterface[];
-  profile_path: string;
-}
-
-interface RolesInterface {
-  character: string;
-  episode_count: number;
-  total_episode_count: number;
-}
-
-interface CastInterface {
-  name: string;
-  id: number;
-  character?: string;
-  roles: RolesInterface[];
-  profile_path: string;
-}
-
-interface MediaCreditsInterface {
-  cast: CastInterface[];
-  crew: CrewInterface[];
-}
-
-interface MediaDetailsInterface {
-  name?: string;
-  title?: string;
-  id?: number;
 }
 
 export function CreditsDetails({ mediaType }: CreditsDetailsProps) {

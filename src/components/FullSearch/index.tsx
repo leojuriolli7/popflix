@@ -21,30 +21,15 @@ import { useNavigate } from "react-router-dom";
 import { RatingCircle } from "../RatingCircle";
 import { PlaceholderPoster } from "../PlaceholderPoster";
 import { useTranslation } from "react-i18next";
-
-interface MediaInterface {
-  id: number;
-  original_title?: string;
-  overview: string;
-  title?: string;
-  vote_average: number;
-  poster_path: string;
-  profile_path: string;
-  logo_path: string;
-  name?: string;
-  media_type: string;
-  release_date: string;
-  first_air_date: string;
-}
-
-interface MediaDataInterface {
-  total_pages: number;
-}
+import {
+  MediaDataInterface,
+  MediaDetailsInterface,
+} from "../../utils/interfaces";
 
 export function FullSearch() {
   const [searchType, setSearchType] = useState("movie");
   const [searchTerm, setSearchTerm] = useState("");
-  const [mediaDetails, setMediaDetails] = useState<MediaInterface[]>();
+  const [mediaDetails, setMediaDetails] = useState<MediaDetailsInterface[]>();
   const [mediaData, setMediaData] = useState<MediaDataInterface>();
   const [page, setPage] = useState(1);
   const { theme } = useSelector((state: RootState) => state.theme);

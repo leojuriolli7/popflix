@@ -8,29 +8,11 @@ import { useTranslation } from "react-i18next";
 import i18n from "../../../i18n";
 import { fetchSeasonDetails, fetchShowDetails } from "../../../utils/requests";
 import { EpisodePosterSkeleton } from "../../Skeleton/SeasonDetailsSkeleton/EpisodePosterSkeleton";
-
-interface EpisodesInterface {
-  air_date: string;
-  episode_number: number;
-  id: number;
-  name: string;
-  overview: string;
-  still_path: string;
-}
-
-interface SeasonDetailsInterface {
-  id: number;
-  air_date: number;
-  episodes: EpisodesInterface[];
-  name: string;
-  poster_path: string;
-  season_number: number;
-}
-
-interface ShowDetailsInterface {
-  name: string;
-  id: number;
-}
+import {
+  EpisodesInterface,
+  SeasonDetailsInterface,
+  ShowDetailsInterface,
+} from "../../../utils/interfaces";
 
 export function SeasonDetails() {
   const { id } = useParams();
@@ -85,7 +67,7 @@ export function SeasonDetails() {
             </S.ArrowBackContainer>
             {loading
               ? [1, 2, 3, 4, 5, 6].map((item) => <EpisodePosterSkeleton />)
-              : seasonDetails?.episodes.map((episode) => (
+              : seasonDetails?.episodes.map((episode: EpisodesInterface) => (
                   <S.EpisodeContainer
                     key={episode?.id}
                     onClick={() =>

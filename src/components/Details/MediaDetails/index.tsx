@@ -14,66 +14,12 @@ import { DetailsReturnArrow } from "../DetailsReturnArrow";
 import { MediaPosterSkeleton } from "../../Skeleton/MediaDetailsSkeletons/MediaPosterSkeleton";
 import { CastMemberSkeleton } from "../../Skeleton/MediaDetailsSkeletons/CastMemberSkeleton";
 import { fetchMediaCredits, fetchMediaDetails } from "../../../utils/requests";
-
-interface GenreInterface {
-  name: string;
-  id: number;
-}
-
-interface SpokenLanguagesInterface {
-  english_name: string;
-}
-
-interface NetworkInterface {
-  id: number;
-  name: string;
-}
-
-interface ProductionCompaniesInterface {
-  id: number;
-  name: string;
-}
-
-interface SeasonsInterface {
-  air_date: string;
-  name: string;
-  episode_count: string;
-  id: string;
-  poster_path: string;
-  season_number: number;
-}
-
-interface MediaDetailsInterface {
-  genres: GenreInterface[];
-  id: number;
-  overview: string;
-  name: string;
-  title: string;
-  vote_average: number;
-  poster_path: string;
-  first_air_date: string;
-  release_date: string;
-  episode_run_time: [];
-  number_of_episodes: number;
-  number_of_seasons: number;
-  spoken_languages: SpokenLanguagesInterface;
-  status: string;
-  networks: NetworkInterface[];
-  seasons: SeasonsInterface[];
-  runtime: string;
-  production_companies: ProductionCompaniesInterface[];
-}
-
-interface CastInterface {
-  name: string;
-  character: string;
-  profile_path: string;
-  id: number;
-}
-
-interface MediaCreditsInterface {
-  cast: CastInterface[];
-}
+import {
+  CastInterface,
+  GenreInterface,
+  MediaCreditsInterface,
+  MediaDetailsInterface,
+} from "../../../utils/interfaces";
 
 interface MediaDetailsProps {
   mediaType: "tv" | "movie";
