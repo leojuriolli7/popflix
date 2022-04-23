@@ -9,8 +9,8 @@ Access Popflix via Heroku: http://popflix-app.herokuapp.com/
 ## Tecnologies used in this project:
 
 - ReactJS, Typescript
-- React Redux Toolkit and Redux Persist
 - Cypress for end-2-end tests
+- React Redux Toolkit and Redux Persist
 - i18Next for translations
 - JSON Server for Login and Sign Up
 - Formik and Yup
@@ -53,3 +53,19 @@ Start the application:
 ```bash
 npm start
 ```
+
+## Tests
+
+To run all the tests:
+
+```bash
+npx cypress run
+```
+
+To run the tests on the browser:
+
+```bash
+npx cypress open
+```
+
+You can run a single test by clicking on the test name or click "Run integration specs" to run all the tests.
