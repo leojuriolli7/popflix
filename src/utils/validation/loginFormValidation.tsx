@@ -7,10 +7,10 @@ export const LoginSchema = () => {
 
   return Yup.object().shape({
     email: Yup.string()
-      .required(t("required"))
+      .required(t("emailRequired"))
       .matches(emailRegex, { message: t("emailInvalid") }),
     password: Yup.string()
-      .required(t("required"))
+      .required(t("passwordRequired"))
       .min(5, t("passwordMinErrorMessage"))
       .max(30, t("passwordMaxErrorMessage")),
   });

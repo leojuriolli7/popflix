@@ -59,6 +59,7 @@ export function SignupForm() {
               id="firstName"
               name="firstName"
               placeholder={t("firstNameInputPlaceholder")}
+              data-cy="firstName-input"
               type="text"
             />
             {touched.firstName && errors.firstName && (
@@ -72,6 +73,7 @@ export function SignupForm() {
               id="lastName"
               name="lastName"
               placeholder={t("lastNameInputPlaceholder")}
+              data-cy="lastName-input"
               type="text"
             />
             {touched.lastName && errors.lastName && (
@@ -84,6 +86,7 @@ export function SignupForm() {
             <Field
               id="email"
               name="email"
+              data-cy="email-input"
               placeholder={t("emailInputPlaceholderLogin")}
               type="email"
             />
@@ -98,6 +101,7 @@ export function SignupForm() {
               id="password"
               name="password"
               placeholder={t("passwordInputPlaceholderLogin")}
+              data-cy="password-input"
               type={passwordVisible === true ? "text" : "password"}
             />
             <PasswordEye
@@ -116,6 +120,7 @@ export function SignupForm() {
             <Field
               id="passwordConfirm"
               name="passwordConfirm"
+              data-cy="passwordConfirm-input"
               placeholder={t("PasswordConfirmInputPlaceholder")}
               type={passwordVisible === true ? "text" : "password"}
             />
@@ -130,7 +135,12 @@ export function SignupForm() {
 
           <S.FieldContainer>
             <S.InputLabel htmlFor="date">{t("birthdate")}</S.InputLabel>
-            <Field id="birthday" name="birthday" type="date" />
+            <Field
+              id="birthday"
+              name="birthday"
+              type="date"
+              data-cy="birthday-input"
+            />
             {touched.birthday && errors.birthday && (
               <InputValidationMessage text={errors.birthday} />
             )}
@@ -141,6 +151,7 @@ export function SignupForm() {
             textColor="white"
             borderColor="#df2935"
             type="submit"
+            dataCy="signup-button"
             disabled={isSubmitting}
             text={
               isSubmitting ? (

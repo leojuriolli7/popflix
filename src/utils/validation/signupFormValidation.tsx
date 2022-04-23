@@ -1,9 +1,5 @@
 import * as Yup from "yup";
-import {
-  emailRegex,
-  firstNameRegex,
-  lastNameRegex,
-} from "../../utils/constants";
+import { emailRegex } from "../../utils/constants";
 import { useTranslation } from "react-i18next";
 
 export const SignupSchema = () => {
@@ -13,27 +9,25 @@ export const SignupSchema = () => {
 
   return Yup.object().shape({
     email: Yup.string()
-      .required(t("required"))
+      .required(t("emailRequired"))
       .matches(emailRegex, { message: t("emailInvalid") }),
     password: Yup.string()
-      .required(t("required"))
+      .required(t("passwordRequired"))
       .min(5, t("passwordMinErrorMessage"))
       .max(30, t("passwordMaxErrorMessage")),
     firstName: Yup.string()
-      .required(t("required"))
-      .matches(firstNameRegex, { message: t("nameRegexError") })
+      .required(t("firstNameRequired"))
       .min(3, t("firstNameMinErrorMessage"))
       .max(25, t("firstNameMaxErrorMessage")),
     lastName: Yup.string()
-      .required(t("required"))
-      .matches(lastNameRegex, { message: t("nameRegexError") })
+      .required(t("lastNameRequired"))
       .min(3, t("lastNameMinErrorMessage"))
       .max(40, t("lastNameMaxErrorMessage")),
     passwordConfirm: Yup.string()
-      .required(t("required"))
+      .required(t("passwordConfirmRequired"))
       .oneOf([Yup.ref("password"), null], t("passwordsDontMatchMessage")),
     birthday: Yup.date()
-      .required(t("required"))
+      .required(t("birthdayRequired"))
       .min(minBirthday, "Birthdate not allowed"),
   });
 };

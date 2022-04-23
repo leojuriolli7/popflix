@@ -8,6 +8,7 @@ interface ButtonProps {
   color: string;
   textColor: string;
   borderColor: string;
+  dataCy?: string;
 }
 
 export function Button({
@@ -17,6 +18,7 @@ export function Button({
   color,
   textColor,
   borderColor,
+  dataCy,
 }: ButtonProps) {
   return (
     <S.Button
@@ -25,6 +27,7 @@ export function Button({
       onClick={onClick}
       type={type}
       color={color}
+      data-cy={dataCy}
     >
       {text}
     </S.Button>

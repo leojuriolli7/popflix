@@ -120,5 +120,11 @@
   "signUpMessage": "Don't have an account? Click here to Sign Up",
   "loginMessage": "Already have an account? Click here to Log In",
   "birthdate": "Birth Date",
-  "loading": "Loading..."
+  "loading": "Loading...",
+  "emailRequired": "Email is required",
+  "passwordRequired": "Password is required",
+  "passwordConfirmRequired": "Password confirmation is required",
+  "firstNameRequired": "First name is required",
+  "lastNameRequired": "Last name is required",
+  "birthdayRequired": "Birthday is required"
 }

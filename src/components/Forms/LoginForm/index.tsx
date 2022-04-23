@@ -54,6 +54,7 @@ export const LoginForm = () => {
               name="email"
               placeholder={t("emailInputPlaceholderLogin")}
               type="email"
+              data-cy="email-input"
             />
             {touched.email && errors.email && (
               <InputValidationMessage text={errors.email} />
@@ -67,6 +68,7 @@ export const LoginForm = () => {
               name="password"
               placeholder={t("passwordInputPlaceholderLogin")}
               type={passwordVisible === true ? "text" : "password"}
+              data-cy="password-input"
             />
             <PasswordEye
               passwordVisible={passwordVisible}
@@ -83,6 +85,7 @@ export const LoginForm = () => {
             borderColor="#df2935"
             type="submit"
             disabled={isSubmitting}
+            dataCy="login-button"
             text={
               isSubmitting ? (
                 <Spinner animation="border" size="sm" />
