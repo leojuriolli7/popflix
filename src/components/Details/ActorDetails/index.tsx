@@ -76,42 +76,45 @@ export function ActorDetails() {
             />
           </S.PictureContainer>
         )}
-        {!loading && (
-          <S.ActorDetails>
-            <S.ActorName>{actorDetails?.name}</S.ActorName>
-            <S.ActorPlaceOfBirth>
-              {actorDetails?.place_of_birth}
-            </S.ActorPlaceOfBirth>
-            <S.ActorBirthdayContainer>
-              <S.ActorBirthday>{`${birthdayDate.getDate()}/${
-                birthdayDate.getMonth() + 1
-              }/${birthdayDate.getFullYear()}`}</S.ActorBirthday>
-              {actorDetails?.deathday && (
-                <S.ActorDeathday>{`${deathdayDate.getDate()}/${
-                  deathdayDate.getMonth() + 1
-                }/${deathdayDate.getFullYear()}`}</S.ActorDeathday>
+
+        <S.ActorDetails>
+          {!loading && (
+            <>
+              <S.ActorName>{actorDetails?.name}</S.ActorName>
+              <S.ActorPlaceOfBirth>
+                {actorDetails?.place_of_birth}
+              </S.ActorPlaceOfBirth>
+              <S.ActorBirthdayContainer>
+                <S.ActorBirthday>{`${birthdayDate.getDate()}/${
+                  birthdayDate.getMonth() + 1
+                }/${birthdayDate.getFullYear()}`}</S.ActorBirthday>
+                {actorDetails?.deathday && (
+                  <S.ActorDeathday>{`${deathdayDate.getDate()}/${
+                    deathdayDate.getMonth() + 1
+                  }/${deathdayDate.getFullYear()}`}</S.ActorDeathday>
+                )}
+                <S.ActorBirthday>{`(${Math.floor(
+                  actorAge
+                )} Years old)`}</S.ActorBirthday>
+              </S.ActorBirthdayContainer>
+              {actorDetails?.known_for_department && (
+                <S.KnownFor>{`${t("knownFor")} ${
+                  actorDetails?.known_for_department
+                }`}</S.KnownFor>
               )}
-              <S.ActorBirthday>{`(${Math.floor(
-                actorAge
-              )} Years old)`}</S.ActorBirthday>
-            </S.ActorBirthdayContainer>
-            {actorDetails?.known_for_department && (
-              <S.KnownFor>{`${t("knownFor")} ${
-                actorDetails?.known_for_department
-              }`}</S.KnownFor>
-            )}
-            <S.ActorBiographyContainer>
-              <S.ActorBiography>{actorDetails?.biography}</S.ActorBiography>
-            </S.ActorBiographyContainer>
-            {actorDetails?.biography && (
-              <S.FullBiographyLinkContainer>
-                <S.FullBiographyLink onClick={() => setShow(true)}>
-                  {t("readFullBiographyMessage")}
-                </S.FullBiographyLink>
-              </S.FullBiographyLinkContainer>
-            )}
-          </S.ActorDetails>
-        )}
+              <S.ActorBiographyContainer>
+                <S.ActorBiography>{actorDetails?.biography}</S.ActorBiography>
+              </S.ActorBiographyContainer>
+              {actorDetails?.biography && (
+                <S.FullBiographyLinkContainer>
+                  <S.FullBiographyLink onClick={() => setShow(true)}>
+                    {t("readFullBiographyMessage")}
+                  </S.FullBiographyLink>
+                </S.FullBiographyLinkContainer>
+              )}
+            </>
+          )}
+        </S.ActorDetails>
       </S.MainInfoContainer>
       {!loading && (
         <S.CreditsListContainer>

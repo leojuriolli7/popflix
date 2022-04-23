@@ -61,6 +61,7 @@ export const ActorDetails = styled.div`
 
   @media (max-width: 690px) {
     width: 100%;
+    min-height: 100px;
   }
 `;
 
