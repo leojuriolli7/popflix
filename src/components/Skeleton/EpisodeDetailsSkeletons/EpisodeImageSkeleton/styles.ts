@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const EpisodeImageSkeleton = styled.img`
   width: 100%;
   object-fit: cover;
-  height: 500px;
+  height: clamp(225px, 50vw, 500px);
   border-top-right-radius: 20px;
   border-top-left-radius: 20px;
 
