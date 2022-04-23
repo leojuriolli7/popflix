@@ -6,7 +6,21 @@ Popflix has Dark and light theme, and Portuguese and English translation options
 
 Access Popflix via Heroku: http://popflix-app.herokuapp.com/
 
-## Usage
+## Tecnologies used in this project:
+
+- ReactJS, Typescript
+- React Redux Toolkit and Redux Persist
+- Cypress for end-2-end tests
+- i18Next for translations
+- JSON Server for Login and Sign Up
+- Formik and Yup
+- Axios and React Query
+- Styled Components with light and dark mode
+- React Router
+
+## Installation
+
+While the version accessible through Heroku (main branch) does not have a Sign Up and Login system, the develop branch accessible through cloning the project has authorized routes and functional Login and Sign Up, with a profile page. This is the case because the JSON Server is not deployed on Heroku.
 
 Clone the project:
 
