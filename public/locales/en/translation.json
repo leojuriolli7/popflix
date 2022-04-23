@@ -119,5 +119,6 @@
   "lastNameMaxErrorMessage": "Your surname can't excede 40 characters.",
   "signUpMessage": "Don't have an account? Click here to Sign Up",
   "loginMessage": "Already have an account? Click here to Log In",
-  "birthdate": "Birth Date"
+  "birthdate": "Birth Date",
+  "loading": "Loading..."
 }

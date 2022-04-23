@@ -6,6 +6,7 @@ export const MediaPosterSkeleton = styled.div`
   border-radius: 20px;
   width: clamp(10rem, 29vw, 187.76px);
   height: clamp(15rem, 44vw, 276.64px);
+  box-shadow: 1px 5px 15px 5px rgba(0, 0, 0, 0.2);
 
   @media (max-width: 1035px) {
     min-width: 22vw;

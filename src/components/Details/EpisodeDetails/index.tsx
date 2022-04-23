@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { api } from "../../../services/api";
 import defaultSquare from "../../../assets/defaultsquare.png";
 import defaultPicture from "../../../assets/default2.png";
 import * as S from "./styles";
@@ -8,7 +7,12 @@ import { Rating } from "@mui/material";
 import { DetailsError } from "../DetailsError";
 import { useTranslation } from "react-i18next";
 import i18n from "../../../i18n";
-import { LanguageSwitch } from "../../../utils/constants";
+import {
+  fetchEpisodeCredits,
+  fetchEpisodeDetails,
+  fetchShowDetails,
+} from "../../../utils/requests";
+import { EpisodeImageSkeleton } from "../../Skeleton/EpisodeDetailsSkeletons/EpisodeImageSkeleton";
 
 interface ShowDetailsInterface {
   name: string;
@@ -58,6 +62,8 @@ export function EpisodeDetails() {
   const { t }: { t: any } = useTranslation();
   const { number } = useParams();
   const { episodeNumber } = useParams();
+  const [loading, setLoading] = useState(true);
+  const [doesMediaExist, setDoesMediaExist] = useState(true);
   const [episodeDetails, setEpisodeDetails] =
     useState<EpisodeDetailsInterface>();
   const [showDetails, setShowDetails] = useState<ShowDetailsInterface>();
@@ -65,23 +71,29 @@ export function EpisodeDetails() {
     useState<EpisodeCreditsInterface>();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-    api
-      .get(
-        `tv/${id}/season/${number}/episode/${episodeNumber}?api_key=24e0e0f71e0ac9cb9c5418459514eda9&language=${LanguageSwitch()}`
-      )
-      .then((response) => setEpisodeDetails(response.data));
-    api
-      .get(`tv/${id}?api_key=24e0e0f71e0ac9cb9c5418459514eda9&language=en-US`)
-      .then((response) => setShowDetails(response.data));
+  const fetchData = () => {
+    Promise.all([
+      fetchEpisodeCredits(id, number, episodeNumber),
+      fetchShowDetails(id),
+      fetchEpisodeDetails(id, number, episodeNumber),
+    ])
+      .then((response) => {
+        setEpisodeCredits(response[0].data);
+        setShowDetails(response[1].data);
+        setEpisodeDetails(response[2].data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.log(error.message);
+        setDoesMediaExist(false);
+      });
+  };
 
-    api
-      .get(
-        `tv/${id}/season/${number}/episode/${episodeNumber}/credits?api_key=24e0e0f71e0ac9cb9c5418459514eda9&language=en-US`
-      )
-      .then((response) => setEpisodeCredits(response.data));
-  }, [id, number, episodeNumber, i18n.language]);
+  useEffect(() => {
+    setLoading(true);
+    window.scrollTo(0, 0);
+    fetchData();
+  }, [i18n.language]);
 
   const airDate = new Date(
     episodeDetails?.air_date ? episodeDetails?.air_date : "1969-09-12"
@@ -93,7 +105,7 @@ export function EpisodeDetails() {
     (Number(airDate) - Number(currentDate)) / (1000 * 60 * 60 * 24)
   );
 
-  return episodeDetails?.id ? (
+  return doesMediaExist ? (
     <S.Container>
       <S.Content>
         <S.ArrowBackContainer
@@ -101,24 +113,32 @@ export function EpisodeDetails() {
         >
           <S.WhiteArrowBack />
         </S.ArrowBackContainer>
-        <S.EpisodeImage
-          src={
-            episodeDetails?.still_path
-              ? `https://image.tmdb.org/t/p/w500/${episodeDetails?.still_path}`
-              : defaultSquare
-          }
-        />
-        <S.EpisodeTitle>{episodeDetails?.name}</S.EpisodeTitle>
-        <S.EpisodeInfoContainer>
-          <S.EpisodeInfo>{`${showDetails?.name} S${episodeDetails?.season_number}E${episodeNumber}`}</S.EpisodeInfo>
-          <S.EpisodeAirDate isReleased={diff < 0 ? true : false}>
-            {episodeDetails.air_date
-              ? `${airDate.getDate()}/${
-                  airDate.getMonth() + 1
-                }/${airDate.getFullYear()}`
-              : t("unknownAirDate")}
-          </S.EpisodeAirDate>
-        </S.EpisodeInfoContainer>
+        {loading ? (
+          <EpisodeImageSkeleton />
+        ) : (
+          <S.EpisodeImage
+            src={
+              episodeDetails?.still_path
+                ? `https://image.tmdb.org/t/p/w500/${episodeDetails?.still_path}`
+                : defaultSquare
+            }
+          />
+        )}
+        <S.EpisodeTitle>
+          {loading ? t("loading") : episodeDetails?.name}
+        </S.EpisodeTitle>
+        {loading === false && (
+          <S.EpisodeInfoContainer>
+            <S.EpisodeInfo>{`${showDetails?.name} S${episodeDetails?.season_number}E${episodeNumber}`}</S.EpisodeInfo>
+            <S.EpisodeAirDate isReleased={diff < 0 ? true : false}>
+              {episodeDetails?.air_date
+                ? `${airDate.getDate()}/${
+                    airDate.getMonth() + 1
+                  }/${airDate.getFullYear()}`
+                : t("unknownAirDate")}
+            </S.EpisodeAirDate>
+          </S.EpisodeInfoContainer>
+        )}
         {diff <= 0 && (
           <S.RatingContainer>
             <Rating

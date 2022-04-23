@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { api } from "../../../services/api";
 import defaultPicture from "../../../assets/default2.png";
 import defaultPoster from "../../../assets/defaultposter.png";
 import * as S from "./styles";
@@ -10,9 +9,9 @@ import movieIcon from "../../../assets/movieicon.svg";
 import { DetailsError } from "../DetailsError";
 import { useTranslation } from "react-i18next";
 import i18n from "../../../i18n";
-import { LanguageSwitch } from "../../../utils/constants";
 import { DetailsReturnArrow } from "../DetailsReturnArrow";
 import { PictureContainerSkeleton } from "../../Skeleton/ActorDetailsSkeleton/PictureContainerSkeleton";
+import { fetchActorCredits, fetchActorDetails } from "../../../utils/requests";
 
 interface ActorDetailsInterface {
   name: string;
@@ -57,31 +56,29 @@ export function ActorDetails() {
   const [actorDetails, setActorDetails] = useState<ActorDetailsInterface>();
   const [actorCredits, setActorCredits] = useState<ActorCreditsInterface>();
   const [loading, setLoading] = useState(true);
+  const [doesMediaExist, setDoesMediaExist] = useState(true);
   const { t }: { t: any } = useTranslation();
   const navigate = useNavigate();
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
 
-  async function fetchDetailsAndCredits() {
-    await api
-      .get(
-        `person/${id}?api_key=24e0e0f71e0ac9cb9c5418459514eda9&language=${LanguageSwitch()}`
-      )
-      .then((response) => setActorDetails(response.data));
-
-    await api
-      .get(
-        `person/${id}/combined_credits?api_key=24e0e0f71e0ac9cb9c5418459514eda9&language=en-US`
-      )
-      .then((response) => setActorCredits(response.data));
-
-    setLoading(false);
-  }
+  const fetchData = () => {
+    Promise.all([fetchActorDetails(id), fetchActorCredits(id)])
+      .then((response) => {
+        setActorDetails(response[0].data);
+        setActorCredits(response[1].data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.log(error.message);
+        setDoesMediaExist(false);
+      });
+  };
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    fetchDetailsAndCredits();
-  }, [id, i18n.language]);
+    fetchData();
+  }, [i18n.language]);
 
   const birthdayDate = new Date(
     actorDetails?.birthday ? actorDetails?.birthday : "1969-09-12"
@@ -96,7 +93,7 @@ export function ActorDetails() {
   const actorAge = actorDetails?.deathday
     ? Math.abs(deathdayDate.getTime() - birthdayDate.getTime()) / 3.154e10
     : Math.abs(currentDate.getTime() - birthdayDate.getTime()) / 3.154e10;
-  return actorDetails?.id ? (
+  return doesMediaExist ? (
     <S.Container>
       <S.MainInfoContainer>
         <DetailsReturnArrow />
@@ -113,115 +110,119 @@ export function ActorDetails() {
             />
           </S.PictureContainer>
         )}
-        <S.ActorDetails>
-          <S.ActorName>{actorDetails?.name}</S.ActorName>
-          <S.ActorPlaceOfBirth>
-            {actorDetails?.place_of_birth}
-          </S.ActorPlaceOfBirth>
-          <S.ActorBirthdayContainer>
-            <S.ActorBirthday>{`${birthdayDate.getDate()}/${
-              birthdayDate.getMonth() + 1
-            }/${birthdayDate.getFullYear()}`}</S.ActorBirthday>
-            {actorDetails?.deathday && (
-              <S.ActorDeathday>{`${deathdayDate.getDate()}/${
-                deathdayDate.getMonth() + 1
-              }/${deathdayDate.getFullYear()}`}</S.ActorDeathday>
+        {!loading && (
+          <S.ActorDetails>
+            <S.ActorName>{actorDetails?.name}</S.ActorName>
+            <S.ActorPlaceOfBirth>
+              {actorDetails?.place_of_birth}
+            </S.ActorPlaceOfBirth>
+            <S.ActorBirthdayContainer>
+              <S.ActorBirthday>{`${birthdayDate.getDate()}/${
+                birthdayDate.getMonth() + 1
+              }/${birthdayDate.getFullYear()}`}</S.ActorBirthday>
+              {actorDetails?.deathday && (
+                <S.ActorDeathday>{`${deathdayDate.getDate()}/${
+                  deathdayDate.getMonth() + 1
+                }/${deathdayDate.getFullYear()}`}</S.ActorDeathday>
+              )}
+              <S.ActorBirthday>{`(${Math.floor(
+                actorAge
+              )} Years old)`}</S.ActorBirthday>
+            </S.ActorBirthdayContainer>
+            {actorDetails?.known_for_department && (
+              <S.KnownFor>{`${t("knownFor")} ${
+                actorDetails?.known_for_department
+              }`}</S.KnownFor>
             )}
-            <S.ActorBirthday>{`(${Math.floor(
-              actorAge
-            )} Years old)`}</S.ActorBirthday>
-          </S.ActorBirthdayContainer>
-          {actorDetails?.known_for_department && (
-            <S.KnownFor>{`${t("knownFor")} ${
-              actorDetails?.known_for_department
-            }`}</S.KnownFor>
-          )}
-          <S.ActorBiographyContainer>
-            <S.ActorBiography>{actorDetails?.biography}</S.ActorBiography>
-          </S.ActorBiographyContainer>
-          {actorDetails?.biography && (
-            <S.FullBiographyLinkContainer>
-              <S.FullBiographyLink onClick={() => setShow(true)}>
-                {t("readFullBiographyMessage")}
-              </S.FullBiographyLink>
-            </S.FullBiographyLinkContainer>
-          )}
-        </S.ActorDetails>
+            <S.ActorBiographyContainer>
+              <S.ActorBiography>{actorDetails?.biography}</S.ActorBiography>
+            </S.ActorBiographyContainer>
+            {actorDetails?.biography && (
+              <S.FullBiographyLinkContainer>
+                <S.FullBiographyLink onClick={() => setShow(true)}>
+                  {t("readFullBiographyMessage")}
+                </S.FullBiographyLink>
+              </S.FullBiographyLinkContainer>
+            )}
+          </S.ActorDetails>
+        )}
       </S.MainInfoContainer>
-      <S.CreditsListContainer>
-        <S.CreditsSectionTitle>
-          {t("actorCreditsTitle", { name: actorDetails.name })}
-        </S.CreditsSectionTitle>
-        <S.CreditContainer>
-          {actorCredits?.cast?.map((credit) => (
-            <S.MediaCreditContainer
-              key={credit.id}
-              onClick={() =>
-                navigate(
-                  credit.media_type === "tv"
-                    ? `/show/${credit.id}`
-                    : `/movie/${credit.id}`
-                )
-              }
-            >
-              <S.MediaPosterContainer>
-                <S.MediaPoster
-                  src={
-                    credit.backdrop_path
-                      ? `https://image.tmdb.org/t/p/w500/${credit.backdrop_path}`
-                      : defaultPoster
-                  }
-                />
-                {credit.backdrop_path === null && (
-                  <S.NoPosterIconContainer>
-                    <S.NoPosterIcon
-                      src={credit.media_type === "tv" ? tvIcon : movieIcon}
-                    />
-                  </S.NoPosterIconContainer>
-                )}
-              </S.MediaPosterContainer>
-              <S.MediaTitle>{credit.title || credit.name}</S.MediaTitle>
-              <S.MediaCharacter>{`${t("as")} ${
-                credit.character ? credit.character : "Unknown Character/Self"
-              }`}</S.MediaCharacter>
-            </S.MediaCreditContainer>
-          ))}
+      {!loading && (
+        <S.CreditsListContainer>
+          <S.CreditsSectionTitle>
+            {t("actorCreditsTitle", { name: actorDetails?.name })}
+          </S.CreditsSectionTitle>
+          <S.CreditContainer>
+            {actorCredits?.cast?.map((credit) => (
+              <S.MediaCreditContainer
+                key={credit.id}
+                onClick={() =>
+                  navigate(
+                    credit.media_type === "tv"
+                      ? `/show/${credit.id}`
+                      : `/movie/${credit.id}`
+                  )
+                }
+              >
+                <S.MediaPosterContainer>
+                  <S.MediaPoster
+                    src={
+                      credit.backdrop_path
+                        ? `https://image.tmdb.org/t/p/w500/${credit.backdrop_path}`
+                        : defaultPoster
+                    }
+                  />
+                  {credit.backdrop_path === null && (
+                    <S.NoPosterIconContainer>
+                      <S.NoPosterIcon
+                        src={credit.media_type === "tv" ? tvIcon : movieIcon}
+                      />
+                    </S.NoPosterIconContainer>
+                  )}
+                </S.MediaPosterContainer>
+                <S.MediaTitle>{credit.title || credit.name}</S.MediaTitle>
+                <S.MediaCharacter>{`${t("as")} ${
+                  credit.character ? credit.character : "Unknown Character/Self"
+                }`}</S.MediaCharacter>
+              </S.MediaCreditContainer>
+            ))}
 
-          {actorCredits?.crew?.map((credit) => (
-            <S.MediaCreditContainer
-              key={credit.id}
-              onClick={() =>
-                navigate(
-                  credit.media_type === "tv"
-                    ? `/show/${credit.id}`
-                    : `/movie/${credit.id}`
-                )
-              }
-            >
-              <S.MediaPosterContainer>
-                <S.MediaPoster
-                  src={
-                    credit.backdrop_path
-                      ? `https://image.tmdb.org/t/p/w500/${credit.backdrop_path}`
-                      : defaultPoster
-                  }
-                />
-                {credit.backdrop_path === null && (
-                  <S.NoPosterIconContainer>
-                    <S.NoPosterIcon
-                      src={credit.media_type === "tv" ? tvIcon : movieIcon}
-                    />
-                  </S.NoPosterIconContainer>
-                )}
-              </S.MediaPosterContainer>
-              <S.MediaTitle>{credit.title || credit.name}</S.MediaTitle>
-              <S.MediaCharacter>
-                {credit.job ? credit.job : t("unknown")}
-              </S.MediaCharacter>
-            </S.MediaCreditContainer>
-          ))}
-        </S.CreditContainer>
-      </S.CreditsListContainer>
+            {actorCredits?.crew?.map((credit) => (
+              <S.MediaCreditContainer
+                key={credit.id}
+                onClick={() =>
+                  navigate(
+                    credit.media_type === "tv"
+                      ? `/show/${credit.id}`
+                      : `/movie/${credit.id}`
+                  )
+                }
+              >
+                <S.MediaPosterContainer>
+                  <S.MediaPoster
+                    src={
+                      credit.backdrop_path
+                        ? `https://image.tmdb.org/t/p/w500/${credit.backdrop_path}`
+                        : defaultPoster
+                    }
+                  />
+                  {credit.backdrop_path === null && (
+                    <S.NoPosterIconContainer>
+                      <S.NoPosterIcon
+                        src={credit.media_type === "tv" ? tvIcon : movieIcon}
+                      />
+                    </S.NoPosterIconContainer>
+                  )}
+                </S.MediaPosterContainer>
+                <S.MediaTitle>{credit.title || credit.name}</S.MediaTitle>
+                <S.MediaCharacter>
+                  {credit.job ? credit.job : t("unknown")}
+                </S.MediaCharacter>
+              </S.MediaCreditContainer>
+            ))}
+          </S.CreditContainer>
+        </S.CreditsListContainer>
+      )}
       <ActorBiographyModal
         show={show}
         setShow={setShow}

@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { api } from "../../../services/api";
 import * as S from "./styles";
 import defaultPicture from "../../../assets/default2.png";
 import { Rating } from "@mui/material";
@@ -11,12 +10,10 @@ import { DetailsError } from "../DetailsError";
 import { CompaniesPopover } from "../CompaniesPopover";
 import { useTranslation } from "react-i18next";
 import i18n from "../../../i18n";
-import { LanguageSwitch } from "../../../utils/constants";
 import { DetailsReturnArrow } from "../DetailsReturnArrow";
 import { MediaPosterSkeleton } from "../../Skeleton/MediaDetailsSkeletons/MediaPosterSkeleton";
 import { CastMemberSkeleton } from "../../Skeleton/MediaDetailsSkeletons/CastMemberSkeleton";
-// import { useMutation } from "react-query";
-// import { getMediaDetails } from "../../../utils/requests";
+import { fetchMediaCredits, fetchMediaDetails } from "../../../utils/requests";
 
 interface GenreInterface {
   name: string;
@@ -88,29 +85,30 @@ export function MediaDetails({ mediaType }: MediaDetailsProps) {
   const [mediaDetails, setMediaDetails] = useState<MediaDetailsInterface>();
   const [mediaCredits, setMediaCredits] = useState<MediaCreditsInterface>();
   const [loading, setLoading] = useState(true);
+  const [doesMediaExist, setDoesMediaExist] = useState(true);
   const navigate = useNavigate();
 
-  async function fetchMediaDetailsAndCredits() {
-    await api
-      .get(
-        `${mediaType}/${id}?api_key=24e0e0f71e0ac9cb9c5418459514eda9&language=${LanguageSwitch()}`
-      )
-      .then((response) => setMediaDetails(response.data));
-
-    await api
-      .get(
-        `${mediaType}/${id}/credits?api_key=24e0e0f71e0ac9cb9c5418459514eda9&language=en-US`
-      )
-      .then((response) => setMediaCredits(response.data));
-
-    setLoading(false);
-  }
+  const fetchData = () => {
+    Promise.all([
+      fetchMediaDetails(mediaType, id),
+      fetchMediaCredits(mediaType, id),
+    ])
+      .then((response) => {
+        setMediaDetails(response[0].data);
+        setMediaCredits(response[1].data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.log(error.message);
+        setDoesMediaExist(false);
+      });
+  };
 
   useEffect(() => {
     setLoading(true);
     window.scrollTo(0, 0);
-    fetchMediaDetailsAndCredits();
-  }, [id, mediaType, i18n.language]);
+    fetchData();
+  }, [i18n.language, id]);
 
   const date = new Date(
     mediaDetails?.first_air_date
@@ -126,7 +124,7 @@ export function MediaDetails({ mediaType }: MediaDetailsProps) {
 
   const seasonDate = (date: any) => new Date(date);
 
-  return mediaDetails?.id ? (
+  return doesMediaExist ? (
     <S.Container>
       <S.Content>
         <DetailsReturnArrow />
@@ -182,14 +180,14 @@ export function MediaDetails({ mediaType }: MediaDetailsProps) {
           )}
           <S.ReleaseAndRuntimeContainer>
             <S.MediaReleaseDate>
-              {mediaDetails?.first_air_date || mediaDetails.release_date
+              {mediaDetails?.first_air_date || mediaDetails?.release_date
                 ? `${date.getDate()}/${
                     date.getMonth() + 1
                   }/${date.getFullYear()}`
                 : "Unknown Date"}
             </S.MediaReleaseDate>
             <S.MediaRuntime>
-              {mediaDetails.number_of_seasons
+              {mediaDetails?.number_of_seasons
                 ? mediaDetails?.number_of_seasons
                   ? `${mediaDetails?.number_of_seasons} ${
                       mediaDetails.number_of_seasons > 1
@@ -282,9 +280,7 @@ export function MediaDetails({ mediaType }: MediaDetailsProps) {
             <S.FullCreditsLink
               onClick={() =>
                 navigate(
-                  `/${mediaType === "tv" ? "show" : "movie"}/${
-                    mediaDetails?.id
-                  }/credits`
+                  `/${mediaType === "tv" ? "show" : "movie"}/${id}/credits`
                 )
               }
             >
