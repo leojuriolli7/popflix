@@ -8,30 +8,15 @@ import defaultPoster from "../../assets/defaultposter.png";
 import tvIcon from "../../assets/tvicon.svg";
 import movieIcon from "../../assets/movieicon.svg";
 import { useNavigate } from "react-router-dom";
+import { MediaDetailsInterface } from "../../utils/interfaces";
 
 interface MediaListProps {
-  apiEndpoint: any;
+  apiEndpoint: string;
   title: string;
 }
 
-interface GenreInterface {
-  id: number;
-  name: string;
-}
-
-interface MediaInterface {
-  genre_ids: GenreInterface[];
-  id: number;
-  original_title?: string;
-  overview: string;
-  title?: string;
-  vote_average: number;
-  poster_path: string;
-  name?: string;
-}
-
 export function MediaList({ apiEndpoint, title }: MediaListProps) {
-  const [media, setMedia] = useState<MediaInterface[]>([]);
+  const [media, setMedia] = useState<MediaDetailsInterface[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
 

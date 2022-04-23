@@ -1,25 +1,16 @@
 import styled from "styled-components";
 
-export const MediaPosterSkeleton = styled.div`
-  position: relative;
-  width: clamp(7rem, 18.5vw, 218.76px);
-  height: clamp(11rem, 27.75vw, 328.14px);
+export const EpisodePosterSkeleton = styled.div`
+  width: 300px;
+  height: 200px;
   border-radius: 20px;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
   box-shadow: 1px 5px 15px 5px rgba(0, 0, 0, 0.2);
 
-  @media (max-width: 1035px) {
-    min-width: 22vw;
-    min-height: 33vw;
-  }
-
-  @media (max-width: 835px) {
-    min-width: 29vw;
-    min-height: 43.5vw;
-  }
-
-  @media (max-width: 580px) {
-    min-width: 42vw;
-    min-height: 63vw;
+  @media (max-width: 720px) {
+    width: 240px;
+    height: 160px;
   }
 
   background-image: linear-gradient(

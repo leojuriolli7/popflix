@@ -5,22 +5,13 @@ import { Button } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store";
 import { useTranslation } from "react-i18next";
-
-interface ActorDetailsInterface {
-  name: string;
-  gender: number;
-  place_of_birth: string;
-  biography: string;
-  profile_path: string;
-  birthday: string;
-  deathday?: string;
-}
+import { ActorDetailsInterface } from "../../../utils/interfaces";
 
 interface ActorBiographyModalProps {
   show: boolean;
   handleClose: () => void;
   actorDetails: ActorDetailsInterface | undefined;
-  setShow: any;
+  setShow: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export function ActorBiographyModal({

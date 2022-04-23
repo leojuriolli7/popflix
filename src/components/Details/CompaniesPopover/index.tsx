@@ -1,24 +1,8 @@
 import { OverlayTrigger, Popover } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
+import { MediaDetailsProps } from "../../../utils/interfaces";
 import * as S from "./styles";
-
-interface ProductionCompaniesInterface {
-  id: number;
-  name: string;
-}
-
-interface MediaDetailsInterface {
-  id: number;
-  name: string;
-  title: string;
-  production_companies: ProductionCompaniesInterface[];
-}
-
-interface MediaDetailsProps {
-  mediaType: "tv" | "movie";
-  currentMedia: MediaDetailsInterface;
-}
 
 export function CompaniesPopover({
   mediaType,

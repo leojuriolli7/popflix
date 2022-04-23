@@ -6,6 +6,7 @@ import { DetailsError } from "../DetailsError";
 import { isoCountries } from "../../../utils/constants";
 import { useTranslation } from "react-i18next";
 import { DetailsReturnArrow } from "../DetailsReturnArrow";
+import { fetchCompanyDetails } from "../../../utils/requests";
 
 interface ParentCompaniesInterface {
   name: string;
@@ -34,13 +35,21 @@ export function CompanyDetails({ type }: CompanyDetailsProps) {
   const [companyDetails, setCompanyDetails] =
     useState<CompanyDetailsInterface>();
   const { t }: { t: any } = useTranslation();
+  const [doesMediaExist, setDoesMediaExist] = useState(true);
+
+  const fetchData = async () => {
+    await fetchCompanyDetails(type, id)
+      .then((response) => setCompanyDetails(response.data))
+      .catch((error) => {
+        console.log(error.message);
+        setDoesMediaExist(false);
+      });
+  };
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    api
-      .get(`${type}/${id}?api_key=24e0e0f71e0ac9cb9c5418459514eda9`)
-      .then((response) => setCompanyDetails(response.data));
-  }, [id, type]);
+    fetchData();
+  }, []);
 
   function getCountryName(countryCode: any) {
     if (isoCountries.hasOwnProperty(countryCode)) {
@@ -50,7 +59,7 @@ export function CompanyDetails({ type }: CompanyDetailsProps) {
     }
   }
 
-  return companyDetails?.id ? (
+  return doesMediaExist ? (
     <S.Container>
       <S.Content>
         <S.CompanyLogoAndNameContainer>

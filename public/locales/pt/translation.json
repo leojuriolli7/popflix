@@ -120,5 +120,6 @@
   "lastNameMaxErrorMessage": "Seu sobrenome não pode ter mais de 40 caracteres.",
   "signUpMessage": "Não possui uma conta? Clique aqui para criar",
   "loginMessage": "Já possui uma conta? Clique aqui para entrar",
-  "birthdate": "Data de Nascimento"
+  "birthdate": "Data de Nascimento",
+  "loading": "Carregando..."
 }

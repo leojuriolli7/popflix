@@ -18,36 +18,20 @@ import { NoResults } from "../NoResults";
 import i18n from "../../i18n";
 import { LanguageSwitch } from "../../utils/constants";
 import { MediaPosterSkeleton } from "../Skeleton/MediaGridSkeleton/MediaPosterSkeleton";
-
-interface MediaInterface {
-  genre_ids: GenreInterface[];
-  id: number;
-  original_title?: string;
-  overview: string;
-  title?: string;
-  vote_average: number;
-  poster_path: string;
-  name?: string;
-}
-
-interface GenreInterface {
-  id: number;
-  name: string;
-}
-
-interface MediaDetailsDataInterface {
-  page: number;
-  total_pages: number;
-}
+import {
+  GenreInterface,
+  MediaDataInterface,
+  MediaDetailsInterface,
+} from "../../utils/interfaces";
 
 interface MediaDetailsProps {
   mediaType: "tv" | "movie";
 }
 
 export function MediaGrid({ mediaType }: MediaDetailsProps) {
-  const [mediaDetails, setMediaDetails] = useState<MediaInterface[]>();
+  const [mediaDetails, setMediaDetails] = useState<MediaDetailsInterface[]>();
   const [mediaDetailsData, setMediaDetailsData] =
-    useState<MediaDetailsDataInterface>();
+    useState<MediaDataInterface>();
   const [selectedValue, setSelectedValue] = useState("popular");
   const [selectedSortBy, setSelectedSortby] = useState("popularity.desc");
   const [genres, setGenres] = useState<GenreInterface[]>();
