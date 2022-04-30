@@ -11,5 +11,7 @@ export default {
     sectionText: "#221e22",
     backgroundSecondary: "#E6E8E6",
     logo: "#fff",
+    skeleton1: "#e7edf1",
+    skeleton2: "#f8f8f8",
   },
 };

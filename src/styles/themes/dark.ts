@@ -11,5 +11,7 @@ export default {
     sectionText: "#e6e8e6",
     backgroundSecondary: "#000",
     logo: "invert(4%) sepia(20%) saturate(4745%) hue-rotate(250deg) brightness(91%) contrast(92%)",
+    skeleton1: "#252525",
+    skeleton2: "#303030"
   },
 };
