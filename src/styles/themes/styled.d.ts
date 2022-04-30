@@ -13,6 +13,8 @@ declare module "styled-components" {
       sectionText: string;
       backgroundSecondary: string;
       logo: string;
+      skeleton1: string;
+      skeleton2: string;
     };
   }
 }

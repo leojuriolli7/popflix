@@ -6,23 +6,8 @@ export const ActorPictureSkeleton = styled.div`
   border-radius: 20px;
   box-shadow: 1px 5px 15px 5px rgba(0, 0, 0, 0.2);
 
-  ${(props) =>
-    props.theme.title === "light" &&
-    `background-image: linear-gradient(
-    -90deg,
-    #e7edf1 0%,
-    #f8f8f8 50%,
-    #e7edf1 100%
-  );`}
-
-  ${(props) =>
-    props.theme.title === "dark" &&
-    `background-image: linear-gradient(
-    -90deg,
-    #252525 0%,
-    #303030 50%,
-    #252525 100%
-  );`}
+  background-image: ${(props) =>
+    `linear-gradient(-90deg, ${props.theme.colors.skeleton1} 0%,  ${props.theme.colors.skeleton2} 50%,  ${props.theme.colors.skeleton1} 100%)`};
 
   background-size: 400% 400%;
   animation: shimmer 1.2s ease-in-out infinite;
