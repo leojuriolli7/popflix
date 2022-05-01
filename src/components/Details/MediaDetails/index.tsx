@@ -130,7 +130,7 @@ export function MediaDetails({ mediaType }: MediaDetailsProps) {
                 ? `${date.getDate()}/${
                     date.getMonth() + 1
                   }/${date.getFullYear()}`
-                : "Unknown Date"}
+                : t("unknownDate")}
             </S.MediaReleaseDate>
             <S.MediaRuntime>
               {mediaDetails?.number_of_seasons
