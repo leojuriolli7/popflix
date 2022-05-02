@@ -20,6 +20,13 @@ import {
   MediaCreditsInterface,
   MediaDetailsInterface,
 } from "../../../utils/interfaces";
+import { MediaTitleSkeleton } from "../../Skeleton/MediaDetailsSkeletons/MediaTitleSkeleton";
+import { MediaGenresSkeleton } from "../../Skeleton/MediaDetailsSkeletons/MediaGenresSkeleton";
+import { MediaRatingSkeleton } from "../../Skeleton/MediaDetailsSkeletons/MediaRatingSkeleton";
+import { MediaReleaseAndRuntimeSkeleton } from "../../Skeleton/MediaReleaseAndRuntimeSkeleton";
+import { MediaProductionCompanySkeleton } from "../../Skeleton/MediaDetailsSkeletons/MediaProductionCompanySkeleton";
+import { MediaOverviewSkeleton } from "../../Skeleton/MediaDetailsSkeletons/MediaOverviewSkeleton";
+import { FullCreditsSkeleton } from "../../Skeleton/MediaDetailsSkeletons/FullCreditsSkeleton";
 
 interface MediaDetailsProps {
   mediaType: "tv" | "movie";
@@ -86,81 +93,104 @@ export function MediaDetails({ mediaType }: MediaDetailsProps) {
           />
         )}
         <S.InfoContainer>
-          <S.MediaTitle>
-            {mediaDetails?.name || mediaDetails?.title}
-          </S.MediaTitle>
+          {loading ? (
+            <MediaTitleSkeleton />
+          ) : (
+            <S.MediaTitle>
+              {mediaDetails?.name || mediaDetails?.title}
+            </S.MediaTitle>
+          )}
           <S.MediaGenresContainer>
-            {mediaDetails?.genres.map((genre: GenreInterface) => (
-              <S.MediaGenres key={genre.id}>{genre.name} </S.MediaGenres>
-            ))}
+            {loading ? (
+              <>
+                <MediaGenresSkeleton />
+                <MediaGenresSkeleton />
+              </>
+            ) : (
+              mediaDetails?.genres.map((genre: GenreInterface) => (
+                <S.MediaGenres key={genre.id}>{genre.name} </S.MediaGenres>
+              ))
+            )}
           </S.MediaGenresContainer>
           {diff < 0 && (
             <S.ReleasedContainer>
-              <S.RatingContainer
-                onClick={() =>
-                  navigate(
-                    `/${mediaType === "tv" ? "show" : "movie"}/${id}/reviews`
-                  )
-                }
-              >
-                <Rating
-                  value={
-                    mediaDetails?.vote_average
-                      ? Number(mediaDetails.vote_average / 2)
-                      : 0
+              {loading ? (
+                <MediaRatingSkeleton />
+              ) : (
+                <S.RatingContainer
+                  onClick={() =>
+                    navigate(
+                      `/${mediaType === "tv" ? "show" : "movie"}/${id}/reviews`
+                    )
                   }
-                  precision={0.5}
-                  readOnly
-                  size="large"
-                />
-                <S.RatingText>
-                  {`${
-                    mediaDetails?.vote_average
-                      ? Number(mediaDetails.vote_average / 2)
-                      : 0
-                  }
+                >
+                  <Rating
+                    value={
+                      mediaDetails?.vote_average
+                        ? Number(mediaDetails.vote_average / 2)
+                        : 0
+                    }
+                    precision={0.5}
+                    readOnly
+                    size="large"
+                  />
+                  <S.RatingText>
+                    {`${
+                      mediaDetails?.vote_average
+                        ? Number(mediaDetails.vote_average / 2)
+                        : 0
+                    }
               ${t("stars")}`}
-                </S.RatingText>
-              </S.RatingContainer>
+                  </S.RatingText>
+                </S.RatingContainer>
+              )}
             </S.ReleasedContainer>
           )}
           <S.ReleaseAndRuntimeContainer>
-            <S.MediaReleaseDate>
-              {mediaDetails?.first_air_date || mediaDetails?.release_date
-                ? `${date.getDate()}/${
-                    date.getMonth() + 1
-                  }/${date.getFullYear()}`
-                : t("unknownDate")}
-            </S.MediaReleaseDate>
-            <S.MediaRuntime>
-              {mediaDetails?.number_of_seasons
-                ? mediaDetails?.number_of_seasons
-                  ? `${mediaDetails?.number_of_seasons} ${
-                      mediaDetails.number_of_seasons > 1
-                        ? t("seasons")
-                        : t("season")
-                    }`
-                  : t("unknownSeasons")
-                : mediaDetails?.runtime
-                ? `${mediaDetails?.runtime}min`
-                : t("unknownRuntime")}
-            </S.MediaRuntime>
+            {loading ? (
+              <MediaReleaseAndRuntimeSkeleton />
+            ) : (
+              <>
+                <S.MediaReleaseDate>
+                  {mediaDetails?.first_air_date || mediaDetails?.release_date
+                    ? `${date.getDate()}/${
+                        date.getMonth() + 1
+                      }/${date.getFullYear()}`
+                    : t("unknownDate")}
+                </S.MediaReleaseDate>
+                <S.MediaRuntime>
+                  {mediaDetails?.number_of_seasons
+                    ? mediaDetails?.number_of_seasons
+                      ? `${mediaDetails?.number_of_seasons} ${
+                          mediaDetails.number_of_seasons > 1
+                            ? t("seasons")
+                            : t("season")
+                        }`
+                      : t("unknownSeasons")
+                    : mediaDetails?.runtime
+                    ? `${mediaDetails?.runtime}min`
+                    : t("unknownRuntime")}
+                </S.MediaRuntime>
 
-            {mediaDetails?.networks && (
-              <S.MediaNetwork>
-                Network:{" "}
-                <S.MediaNetworkSpan
-                  onClick={() =>
-                    navigate(`/network/${mediaDetails?.networks[0].id}`)
-                  }
-                >
-                  {mediaDetails?.networks[0]?.name}
-                </S.MediaNetworkSpan>
-              </S.MediaNetwork>
+                {mediaDetails?.networks && (
+                  <S.MediaNetwork>
+                    Network:{" "}
+                    <S.MediaNetworkSpan
+                      onClick={() =>
+                        navigate(`/network/${mediaDetails?.networks[0].id}`)
+                      }
+                    >
+                      {mediaDetails?.networks[0]?.name}
+                    </S.MediaNetworkSpan>
+                  </S.MediaNetwork>
+                )}
+              </>
             )}
           </S.ReleaseAndRuntimeContainer>
           <S.MediaProductionCompaniesContainer>
-            {mediaDetails?.production_companies ? (
+            {loading ? (
+              <MediaProductionCompanySkeleton />
+            ) : mediaDetails?.production_companies ? (
               <CompaniesPopover
                 mediaType={mediaType}
                 currentMedia={mediaDetails}
@@ -172,9 +202,15 @@ export function MediaDetails({ mediaType }: MediaDetailsProps) {
             )}
           </S.MediaProductionCompaniesContainer>
 
-          <S.MediaOverview>
-            {mediaDetails?.overview ? mediaDetails?.overview : t("noOverview")}
-          </S.MediaOverview>
+          {loading ? (
+            <MediaOverviewSkeleton />
+          ) : (
+            <S.MediaOverview>
+              {mediaDetails?.overview
+                ? mediaDetails?.overview
+                : t("noOverview")}
+            </S.MediaOverview>
+          )}
           <S.CastContainer>
             <AliceCarousel
               animationDuration={200}
@@ -222,17 +258,21 @@ export function MediaDetails({ mediaType }: MediaDetailsProps) {
                 : t("releaseDateTBA")}
             </S.UnreleasedText>
           )}
-          <S.FullCreditsLinkContainer>
-            <S.FullCreditsLink
-              onClick={() =>
-                navigate(
-                  `/${mediaType === "tv" ? "show" : "movie"}/${id}/credits`
-                )
-              }
-            >
-              {t("viewFullCredits")}
-            </S.FullCreditsLink>
-          </S.FullCreditsLinkContainer>
+          {loading ? (
+            <FullCreditsSkeleton />
+          ) : (
+            <S.FullCreditsLinkContainer>
+              <S.FullCreditsLink
+                onClick={() =>
+                  navigate(
+                    `/${mediaType === "tv" ? "show" : "movie"}/${id}/credits`
+                  )
+                }
+              >
+                {t("viewFullCredits")}
+              </S.FullCreditsLink>
+            </S.FullCreditsLinkContainer>
+          )}
         </S.InfoContainer>
       </S.Content>
       {mediaDetails?.seasons && (

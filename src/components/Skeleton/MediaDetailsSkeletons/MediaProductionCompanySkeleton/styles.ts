@@ -1,11 +1,9 @@
 import styled from "styled-components";
 
-export const EpisodeImageSkeleton = styled.div`
-  width: 100%;
-  object-fit: cover;
-  height: clamp(225px, 50vw, 500px);
-  border-top-right-radius: 20px;
-  border-top-left-radius: 20px;
+export const MediaRatingTextSkeleton = styled.div`
+  width: 220px;
+  height: 20px;
+  margin: 0 0.5rem;
 
   background-image: ${(props) =>
     `linear-gradient(-90deg, ${props.theme.colors.skeleton1} 0%,  ${props.theme.colors.skeleton2} 50%,  ${props.theme.colors.skeleton1} 100%)`};

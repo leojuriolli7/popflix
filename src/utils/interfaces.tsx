@@ -157,6 +157,29 @@ interface MediaDataInterface {
   total_pages: number;
 }
 
+interface GuestStarsInterface {
+  name: string;
+  id: number;
+  character: string;
+  profile_path: string;
+}
+
+interface EpisodeCreditsInterface {
+  cast: CastInterface[];
+  crew: CrewInterface[];
+  guest_stars: GuestStarsInterface[];
+}
+
+interface EpisodeDetailsInterface {
+  air_date: string;
+  name: string;
+  overview: string;
+  id: number;
+  season_number: number;
+  still_path: string;
+  vote_average: number;
+}
+
 export type {
   ActorCastInterface,
   ActorCreditsInterface,
@@ -175,4 +198,6 @@ export type {
   EpisodesInterface,
   ShowDetailsInterface,
   MediaDataInterface,
+  EpisodeCreditsInterface,
+  EpisodeDetailsInterface,
 };

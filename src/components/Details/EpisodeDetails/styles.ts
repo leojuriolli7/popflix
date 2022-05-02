@@ -63,7 +63,6 @@ export const WhiteArrowBack = styled(IoMdArrowRoundBack).attrs({
 
 export const EpisodeImage = styled.img`
   width: 100%;
-  object-fit: cover;
   height: auto;
   border-top-right-radius: 20px;
   border-top-left-radius: 20px;

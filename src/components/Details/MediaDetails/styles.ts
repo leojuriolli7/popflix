@@ -79,6 +79,10 @@ export const MediaTitle = styled.h1`
   margin-bottom: 0;
   margin: 2.2rem 35px 0 35px;
   line-height: 45px;
+
+  @media (max-width: 845px) {
+    margin: 1.8rem 20px 0 20px;
+  }
 `;
 
 export const MediaGenresContainer = styled.div`
@@ -89,7 +93,7 @@ export const MediaGenresContainer = styled.div`
   flex-wrap: wrap;
 
   @media (max-width: 845px) {
-    margin: 30px 20px 5px 20px;
+    margin: 15px 20px 5px 20px;
   }
 `;
 
@@ -113,7 +117,7 @@ export const ReleaseAndRuntimeContainer = styled.div`
   flex-wrap: wrap;
 
   @media (max-width: 845px) {
-    margin-top: calc(0.7rem + 10px);
+    margin-top: calc(0.7rem + 5px);
   }
 `;
 
@@ -220,6 +224,7 @@ export const CastMemberName = styled.p`
 
   @media (max-width: 845px) {
     font-size: 1.2rem;
+    margin-top: 10px;
   }
 `;
 

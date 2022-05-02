@@ -121,5 +121,11 @@
   "signUpMessage": "Não possui uma conta? Clique aqui para criar",
   "loginMessage": "Já possui uma conta? Clique aqui para entrar",
   "birthdate": "Data de Nascimento",
-  "loading": "Carregando..."
+  "loading": "Carregando...",
+  "emailRequired": "Email é obrigatório",
+  "passwordRequired": "Senha é obrigatória",
+  "passwordConfirmRequired": "Confirmação de senha é obrigatória",
+  "firstNameRequired": "Nome é obrigatório",
+  "lastNameRequired": "Sobrenome é obrigatório",
+  "birthdayRequired": "Data de nascimento é obrigatória"
 }
