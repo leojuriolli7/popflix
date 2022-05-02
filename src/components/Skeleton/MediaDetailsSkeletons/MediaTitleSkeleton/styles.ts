@@ -1,11 +1,16 @@
 import styled from "styled-components";
 
-export const EpisodeImageSkeleton = styled.div`
-  width: 100%;
-  object-fit: cover;
-  height: clamp(225px, 50vw, 500px);
-  border-top-right-radius: 20px;
-  border-top-left-radius: 20px;
+export const MediaTitleSkeletonContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const MediaTitleSkeleton = styled.div`
+  width: 80%;
+  height: 50px;
+  margin: 2.2rem 35px 0 35px;
+  line-height: 45px;
 
   background-image: ${(props) =>
     `linear-gradient(-90deg, ${props.theme.colors.skeleton1} 0%,  ${props.theme.colors.skeleton2} 50%,  ${props.theme.colors.skeleton1} 100%)`};
@@ -21,5 +26,9 @@ export const EpisodeImageSkeleton = styled.div`
     100% {
       background-position: -135% 0%;
     }
+  }
+
+  @media (max-width: 845px) {
+    margin: 1.8rem 20px 0 20px;
   }
 `;

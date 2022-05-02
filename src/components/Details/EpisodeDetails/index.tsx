@@ -13,48 +13,18 @@ import {
   fetchShowDetails,
 } from "../../../utils/requests";
 import { EpisodeImageSkeleton } from "../../Skeleton/EpisodeDetailsSkeletons/EpisodeImageSkeleton";
+import { EpisodeTitleSkeleton } from "../../Skeleton/EpisodeDetailsSkeletons/EpisodeTitleSkeleton";
+import { MediaRatingSkeleton } from "../../Skeleton/MediaDetailsSkeletons/MediaRatingSkeleton";
+import { EpisodeOverviewSkeleton } from "../../Skeleton/EpisodeDetailsSkeletons/EpisodeOverviewSkeleton";
+import { EpisodeReleaseAndRuntimeSkeleton } from "../../Skeleton/EpisodeDetailsSkeletons/EpisodeReleaseAndRuntimeSkeleton";
+import {
+  EpisodeCreditsInterface,
+  EpisodeDetailsInterface,
+} from "../../../utils/interfaces";
 
 interface ShowDetailsInterface {
   name: string;
   id: number;
-}
-
-interface CrewInterface {
-  id: number;
-  name: string;
-  department: string;
-  job: string;
-  profile_path: string;
-}
-
-interface GuestStarsInterface {
-  name: string;
-  id: number;
-  character: string;
-  profile_path: string;
-}
-
-interface CastInterface {
-  name: string;
-  id: number;
-  character: string;
-  profile_path: string;
-}
-
-interface EpisodeCreditsInterface {
-  cast: CastInterface[];
-  crew: CrewInterface[];
-  guest_stars: GuestStarsInterface[];
-}
-
-interface EpisodeDetailsInterface {
-  air_date: string;
-  name: string;
-  overview: string;
-  id: number;
-  season_number: number;
-  still_path: string;
-  vote_average: number;
 }
 
 export function EpisodeDetails() {
@@ -124,10 +94,14 @@ export function EpisodeDetails() {
             }
           />
         )}
-        <S.EpisodeTitle>
-          {loading ? t("loading") : episodeDetails?.name}
-        </S.EpisodeTitle>
-        {loading === false && (
+        {loading ? (
+          <EpisodeTitleSkeleton />
+        ) : (
+          <S.EpisodeTitle>{episodeDetails?.name}</S.EpisodeTitle>
+        )}
+        {loading ? (
+          <EpisodeReleaseAndRuntimeSkeleton />
+        ) : (
           <S.EpisodeInfoContainer>
             <S.EpisodeInfo>{`${showDetails?.name} S${episodeDetails?.season_number}E${episodeNumber}`}</S.EpisodeInfo>
             <S.EpisodeAirDate isReleased={diff < 0 ? true : false}>
@@ -139,7 +113,7 @@ export function EpisodeDetails() {
             </S.EpisodeAirDate>
           </S.EpisodeInfoContainer>
         )}
-        {diff <= 0 && (
+        {diff <= 0 && loading === false && (
           <S.RatingContainer>
             <Rating
               value={
@@ -158,9 +132,12 @@ export function EpisodeDetails() {
             </S.RatingText>
           </S.RatingContainer>
         )}
-        {episodeDetails?.overview && (
+
+        {loading === true && <MediaRatingSkeleton />}
+        {episodeDetails?.overview && loading === false && (
           <S.EpisodeOverview>{episodeDetails?.overview}</S.EpisodeOverview>
         )}
+        {loading === true && <EpisodeOverviewSkeleton />}
         {diff >= 0 && (
           <S.UnreleasedMessage>{`Releases in ${diff} days`}</S.UnreleasedMessage>
         )}

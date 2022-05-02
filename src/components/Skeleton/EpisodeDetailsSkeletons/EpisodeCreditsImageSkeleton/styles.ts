@@ -1,11 +1,9 @@
 import styled from "styled-components";
 
-export const EpisodeImageSkeleton = styled.div`
-  width: 100%;
-  object-fit: cover;
-  height: clamp(225px, 50vw, 500px);
-  border-top-right-radius: 20px;
-  border-top-left-radius: 20px;
+export const EpisodeCreditsImageSkeleton = styled.div`
+  height: 300px;
+  width: 200px;
+  border-radius: 20px;
 
   background-image: ${(props) =>
     `linear-gradient(-90deg, ${props.theme.colors.skeleton1} 0%,  ${props.theme.colors.skeleton2} 50%,  ${props.theme.colors.skeleton1} 100%)`};
@@ -21,5 +19,10 @@ export const EpisodeImageSkeleton = styled.div`
     100% {
       background-position: -135% 0%;
     }
+  }
+
+  @media (max-width: 500px) {
+    height: 270px;
+    width: 180px;
   }
 `;

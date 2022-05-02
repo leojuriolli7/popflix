@@ -8,11 +8,20 @@ export const PosterSkeleton = styled.div`
   border-bottom-left-radius: 20px;
 
   @media (max-width: 845px) {
-    height: 400px;
+    height: 800px;
     width: 100%;
     border-top-right-radius: 20px;
     border-bottom-left-radius: 0px;
   }
+
+  @media (max-width: 560px) {
+    height: 700px;
+  }
+
+  @media (max-width: 475px) {
+    height: 600px;
+  }
+
   background-image: ${(props) =>
     `linear-gradient(-90deg, ${props.theme.colors.skeleton1} 0%,  ${props.theme.colors.skeleton2} 50%,  ${props.theme.colors.skeleton1} 100%)`};
 

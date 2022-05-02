@@ -5,6 +5,10 @@ export const PopoverTitle = styled.h3`
   text-align: center;
   font-size: 1.2rem;
   margin: 0;
+
+  @media (max-width: 985px) {
+    font-size: 1.4rem;
+  }
 `;
 
 export const OpenPopoverText = styled.p`

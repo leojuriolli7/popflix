@@ -1,11 +1,21 @@
 import styled from "styled-components";
 
-export const EpisodeImageSkeleton = styled.div`
-  width: 100%;
-  object-fit: cover;
-  height: clamp(225px, 50vw, 500px);
-  border-top-right-radius: 20px;
-  border-top-left-radius: 20px;
+export const MediaOverviewSkeletonContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 7px;
+  margin: 10px 40px 20px 40px;
+
+  @media (max-width: 985px) {
+    margin: 10px 15px 30px 15px;
+  }
+`;
+
+export const MediaOverviewTextSkeleton = styled.div`
+  width: 80%;
+  height: 20px;
 
   background-image: ${(props) =>
     `linear-gradient(-90deg, ${props.theme.colors.skeleton1} 0%,  ${props.theme.colors.skeleton2} 50%,  ${props.theme.colors.skeleton1} 100%)`};
