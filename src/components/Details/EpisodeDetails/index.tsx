@@ -127,8 +127,8 @@ export function EpisodeDetails() {
             />
             <S.RatingText>
               {episodeDetails?.vote_average
-                ? Number(episodeDetails.vote_average / 2) + " Stars"
-                : "No Reviews yet"}
+                ? `${Number(episodeDetails.vote_average / 2)} ${t("stars")}`
+                : t("noReviewsError")}
             </S.RatingText>
           </S.RatingContainer>
         )}
@@ -139,7 +139,9 @@ export function EpisodeDetails() {
         )}
         {loading === true && <EpisodeOverviewSkeleton />}
         {diff >= 0 && (
-          <S.UnreleasedMessage>{`Releases in ${diff} days`}</S.UnreleasedMessage>
+          <S.UnreleasedMessage>{`${t("releasesIn")} ${diff} ${t(
+            "days"
+          )}`}</S.UnreleasedMessage>
         )}
       </S.Content>
       <S.CastListWrapper>
