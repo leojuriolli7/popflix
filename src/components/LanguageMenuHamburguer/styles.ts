@@ -22,7 +22,6 @@ interface ImageContainerProps {
 
 export const ImageContainer = styled.div<ImageContainerProps>`
   display: flex;
-  width: 50px;
   border: ${(props) => (props.isActive ? "3px solid black" : "0px")};
   border-radius: 50%;
 
@@ -33,4 +32,6 @@ export const ImageContainer = styled.div<ImageContainerProps>`
   }
 `;
 
-export const FlagImage = styled.img``;
+export const FlagImage = styled.img`
+  width: 50px;
+`;
