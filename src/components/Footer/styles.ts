@@ -36,6 +36,5 @@ export const BackToTopButton = styled(BsFillArrowUpCircleFill).attrs({
 
   &:hover {
     transform: scale(1.1);
-    background: ${darken(0.5, "white")};
   }
 `;
