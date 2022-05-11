@@ -127,5 +127,6 @@
   "passwordConfirmRequired": "Confirmação de senha é obrigatória",
   "firstNameRequired": "Nome é obrigatório",
   "lastNameRequired": "Sobrenome é obrigatório",
-  "birthdayRequired": "Data de nascimento é obrigatória"
+  "birthdayRequired": "Data de nascimento é obrigatória",
+  "yearsOld": "anos"
 }

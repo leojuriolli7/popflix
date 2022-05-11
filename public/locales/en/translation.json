@@ -126,5 +126,6 @@
   "passwordConfirmRequired": "Password confirmation is required",
   "firstNameRequired": "First name is required",
   "lastNameRequired": "Last name is required",
-  "birthdayRequired": "Birthday is required"
+  "birthdayRequired": "Birthday is required",
+  "yearsOld": "Years old"
 }
