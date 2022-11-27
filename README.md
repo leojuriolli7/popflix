@@ -4,7 +4,7 @@ Popflix is a movie and TV shows website, where one may find information about mo
 
 Popflix has Dark and light theme, and Portuguese and English translation options.
 
-Access Popflix via Heroku: http://popflix-app.herokuapp.com/
+Access Popflix via Vercel: https://popflix-app.vercel.app/
 
 ## Tecnologies used in this project:
 
@@ -20,7 +20,7 @@ Access Popflix via Heroku: http://popflix-app.herokuapp.com/
 
 ## Installation
 
-While the version accessible through Heroku (main branch) does not have a Sign Up and Login system, the develop branch accessible through cloning the project has authorized routes and functional Login and Sign Up, with a profile page. This is the case because the JSON Server is not deployed on Heroku.
+While the version accessible through Vercel (main branch) does not have a Sign Up and Login system, the develop branch accessible through cloning the project has authorized routes and functional Login and Sign Up, with a profile page. This is the case because the JSON Server is not deployed on Vercel.
 
 Clone the project:
 
