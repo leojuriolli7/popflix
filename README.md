@@ -4,7 +4,7 @@ Popflix is a movie and TV shows website, where one may find information about mo
 
 Popflix has Dark and light theme, and Portuguese and English translation options.
 
-Access Popflix via Vercel: popflix-leojuriolli.vercel.app
+Access Popflix via Vercel: https://popflix-app.vercel.app/
 
 ## Tecnologies used in this project:
 
