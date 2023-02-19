@@ -128,5 +128,8 @@
   "firstNameRequired": "Nome é obrigatório",
   "lastNameRequired": "Sobrenome é obrigatório",
   "birthdayRequired": "Data de nascimento é obrigatória",
-  "yearsOld": "anos"
+  "yearsOld": "anos",
+  "flatRate": "Mensal",
+  "buy": "Comprar",
+  "trailersAndProviders": "Trailers e onde assistir"
 }

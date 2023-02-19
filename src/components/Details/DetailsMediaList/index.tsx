@@ -23,76 +23,89 @@ export function DetailsMediaList({
 }: DetailsMediaListProps) {
   const { id } = useParams();
   const [media, setMedia] = useState<MediaDetailsInterface[]>([]);
+  const [disabled, setDisabled] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
+
+  const apiKey = process.env.REACT_APP_API_KEY;
 
   useEffect(() => {
     api
       .get(
-        `${mediaType}/${id}/${apiParam}?api_key=24e0e0f71e0ac9cb9c5418459514eda9&language=en-US&page=1`
+        `${mediaType}/${id}/${apiParam}?api_key=${apiKey}&language=en-US&page=1`
       )
       .then((response) => {
         setMedia(response.data.results);
         setIsLoading(false);
+
+        if (!response.data.results?.length) setDisabled(true);
       });
   }, [mediaType, id, apiParam]);
 
   return (
     <S.Container>
       <S.Content>
-        <S.SectionTitle>{title}</S.SectionTitle>
-        <AliceCarousel
-          infinite
-          animationDuration={200}
-          disableDotsControls
-          responsive={{
-            0: {
-              items: 2,
-            },
-            580: {
-              items: 3,
-            },
-            835: {
-              items: 4,
-            },
-            1035: {
-              items: 5,
-            },
-          }}
-          paddingRight={10}
-          paddingLeft={10}
-          items={
-            isLoading
-              ? [1, 2, 3, 4, 5].map(() => <MediaPosterSkeleton />)
-              : media.map((item) => (
-                  <S.MediaPosterContainer>
-                    <S.MediaPoster
-                      title={item.name || item.title}
-                      key={item.id}
-                      src={
-                        item.poster_path === null
-                          ? defaultPoster
-                          : `https://image.tmdb.org/t/p/w500/${item.poster_path}`
-                      }
-                      alt={`${item.title} Poster`}
-                      onClick={() =>
-                        navigate(`/${item.title ? "movie" : "show"}/${item.id}`)
-                      }
-                    />
-                    {item.poster_path === null && (
-                      <>
-                        <S.IconContainer>
-                          <S.Icon src={item.name ? tvIcon : movieIcon} />
-                        </S.IconContainer>
-                        <S.MediaNameContainer>
-                          <S.MediaName>{item?.name || item?.title}</S.MediaName>
-                        </S.MediaNameContainer>
-                      </>
-                    )}
-                  </S.MediaPosterContainer>
-                ))
-          }
-        />
+        {!disabled && (
+          <>
+            <S.SectionTitle>{title}</S.SectionTitle>
+            <AliceCarousel
+              infinite
+              animationDuration={200}
+              disableDotsControls
+              responsive={{
+                0: {
+                  items: 2,
+                },
+                580: {
+                  items: 3,
+                },
+                835: {
+                  items: 4,
+                },
+                1035: {
+                  items: 5,
+                },
+              }}
+              paddingRight={10}
+              paddingLeft={10}
+              items={
+                isLoading
+                  ? [1, 2, 3, 4, 5].map(() => <MediaPosterSkeleton />)
+                  : media.map((item) => (
+                      <S.MediaPosterContainer>
+                        <S.MediaPoster
+                          title={item.name || item.title}
+                          key={item.id}
+                          src={
+                            item.poster_path === null
+                              ? defaultPoster
+                              : `https://image.tmdb.org/t/p/w500/${item.poster_path}`
+                          }
+                          alt={`${item.title} Poster`}
+                          onClick={() =>
+                            navigate(
+                              `/${item.title ? "movie" : "show"}/${item.id}`
+                            )
+                          }
+                        />
+                        {item.poster_path === null && (
+                          <>
+                            <S.IconContainer>
+                              <S.Icon src={item.name ? tvIcon : movieIcon} />
+                            </S.IconContainer>
+                            <S.MediaNameContainer>
+                              <S.MediaName>
+                                {item?.name || item?.title}
+                              </S.MediaName>
+                            </S.MediaNameContainer>
+                          </>
+                        )}
+                      </S.MediaPosterContainer>
+                    ))
+              }
+            />
+          </>
+        )}
       </S.Content>
     </S.Container>
   );
