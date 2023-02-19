@@ -103,6 +103,7 @@ export const EpisodeInfo = styled.p`
   margin: 0;
   margin-top: 1rem;
   font-size: 1.1rem;
+  text-align: center;
 
   @media (max-width: 1080px) {
     font-size: 1.3rem;

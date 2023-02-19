@@ -2,12 +2,14 @@ import { api } from "../../services/api";
 import { apiJson } from "../../services/api";
 import { LanguageSwitch } from "../constants";
 
+const apiKey = process.env.REACT_APP_API_KEY;
+
 export const fetchSeasonDetails = (
   id: string | undefined,
   number: string | undefined
 ) =>
   api.get(
-    `tv/${id}/season/${number}?api_key=24e0e0f71e0ac9cb9c5418459514eda9&language=${LanguageSwitch()}`
+    `tv/${id}/season/${number}?api_key=${apiKey}&language=${LanguageSwitch()}`
   );
 
 export const fetchEpisodeDetails = (
@@ -16,11 +18,11 @@ export const fetchEpisodeDetails = (
   episodeNumber: string | undefined
 ) =>
   api.get(
-    `tv/${id}/season/${number}/episode/${episodeNumber}?api_key=24e0e0f71e0ac9cb9c5418459514eda9&language=${LanguageSwitch()}`
+    `tv/${id}/season/${number}/episode/${episodeNumber}?api_key=${apiKey}&language=${LanguageSwitch()}`
   );
 
 export const fetchShowDetails = (id: string | undefined) =>
-  api.get(`tv/${id}?api_key=24e0e0f71e0ac9cb9c5418459514eda9&language=en-US`);
+  api.get(`tv/${id}?api_key=${apiKey}&language=en-US`);
 
 export const fetchEpisodeCredits = (
   id: string | undefined,
@@ -28,46 +30,53 @@ export const fetchEpisodeCredits = (
   episodeNumber: string | undefined
 ) =>
   api.get(
-    `tv/${id}/season/${number}/episode/${episodeNumber}/credits?api_key=24e0e0f71e0ac9cb9c5418459514eda9&language=en-US`
+    `tv/${id}/season/${number}/episode/${episodeNumber}/credits?api_key=${apiKey}&language=en-US`
   );
 
 export const fetchCompanyDetails = (
   type: "network" | "company",
   id: string | undefined
-) => api.get(`${type}/${id}?api_key=24e0e0f71e0ac9cb9c5418459514eda9`);
+) => api.get(`${type}/${id}?api_key=${apiKey}`);
 
 export const fetchActorDetails = (id: string | undefined) =>
-  api.get(
-    `person/${id}?api_key=24e0e0f71e0ac9cb9c5418459514eda9&language=${LanguageSwitch()}`
-  );
+  api.get(`person/${id}?api_key=${apiKey}&language=${LanguageSwitch()}`);
 
 export const fetchActorCredits = (id: string | undefined) =>
-  api.get(
-    `person/${id}/combined_credits?api_key=24e0e0f71e0ac9cb9c5418459514eda9&language=en-US`
-  );
+  api.get(`person/${id}/combined_credits?api_key=${apiKey}&language=en-US`);
 
 export const fetchMediaDetails = (
   mediaType: "tv" | "movie",
   id: string | undefined
 ) =>
+  api.get(`${mediaType}/${id}?api_key=${apiKey}&language=${LanguageSwitch()}`);
+
+export const fetchMediaVideos = (
+  mediaType: "tv" | "movie",
+  id: string | undefined
+) =>
   api.get(
-    `${mediaType}/${id}?api_key=24e0e0f71e0ac9cb9c5418459514eda9&language=${LanguageSwitch()}`
+    `${mediaType}/${id}/videos?api_key=${apiKey}&language=${LanguageSwitch()}`
+  );
+
+export const fetchMediaProviders = (
+  mediaType: "tv" | "movie",
+  id: string | undefined
+) =>
+  api.get(
+    `${mediaType}/${id}/watch/providers?api_key=${apiKey}&language=${LanguageSwitch()}`
   );
 
 export const fetchMediaCredits = (
   mediaType: "tv" | "movie",
   id: string | undefined
-) =>
-  api.get(
-    `${mediaType}/${id}/credits?api_key=24e0e0f71e0ac9cb9c5418459514eda9&language=en-US`
-  );
+) => api.get(`${mediaType}/${id}/credits?api_key=${apiKey}&language=en-US`);
 
 export const fetchTVAggregateCredits = (
   mediaType: "tv" | "movie",
   id: string | undefined
 ) =>
   api.get(
-    `${mediaType}/${id}/aggregate_credits?api_key=24e0e0f71e0ac9cb9c5418459514eda9&language=en-US`
+    `${mediaType}/${id}/aggregate_credits?api_key=${apiKey}&language=en-US`
   );
 
 export async function userLogin(payload: any) {

@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { BsXLg } from "react-icons/bs";
 import { MdDarkMode } from "react-icons/md";
 import { FaSun } from "react-icons/fa";
+import { darken } from "polished";
 
 export const Container = styled.div``;
 
@@ -82,6 +83,11 @@ export const MenuOption = styled.p<MenuOptionProps>`
   margin: 0;
   font-weight: ${(props) => (props.isSelected ? "bold" : "400")};
   color: ${(props) => props.theme.colors.sectionText};
+
+  &:hover {
+    cursor: pointer;
+    color: ${darken(0.3, "white")};
+  }
 
   @media (max-width: 426px) {
     font-size: 3rem;

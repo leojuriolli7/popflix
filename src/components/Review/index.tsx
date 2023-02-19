@@ -33,19 +33,16 @@ export function Review({ mediaType }: ReviewProps) {
   const [mediaDetails, setMediaDetails] = useState<MediaDetailsInterface>();
   const { t }: { t: any } = useTranslation();
 
+  const apiKey = process.env.REACT_APP_API_KEY;
   const navigate = useNavigate();
 
   useEffect(() => {
     api
-      .get(
-        `${mediaType}/${id}/reviews?api_key=24e0e0f71e0ac9cb9c5418459514eda9&language=en-US&page=1`
-      )
+      .get(`${mediaType}/${id}/reviews?api_key=${apiKey}&language=en-US&page=1`)
       .then((response) => setReviews(response.data.results));
 
     api
-      .get(
-        `${mediaType}/${id}?api_key=24e0e0f71e0ac9cb9c5418459514eda9&language=en-US`
-      )
+      .get(`${mediaType}/${id}?api_key=${apiKey}&language=en-US`)
       .then((response) => setMediaDetails(response.data));
   }, [id, mediaType]);
 

@@ -93,9 +93,9 @@ export function ActorDetails() {
                     deathdayDate.getMonth() + 1
                   }/${deathdayDate.getFullYear()}`}</S.ActorDeathday>
                 )}
-                <S.ActorBirthday>{`(${Math.floor(
-                  actorAge
-                )} Years old)`}</S.ActorBirthday>
+                <S.ActorBirthday>{`(${Math.floor(actorAge)} ${t(
+                  "yearsOld"
+                )})`}</S.ActorBirthday>
               </S.ActorBirthdayContainer>
               {actorDetails?.known_for_department && (
                 <S.KnownFor>{`${t("knownFor")} ${

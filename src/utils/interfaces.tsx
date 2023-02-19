@@ -180,6 +180,31 @@ interface EpisodeDetailsInterface {
   vote_average: number;
 }
 
+interface VideosInterface {
+  id: string;
+  key: string;
+  name: string;
+  site: string;
+  type: string;
+  official: boolean;
+}
+
+interface ProviderInfo {
+  logo_path: string;
+  provider_id: number;
+  provider_name: string;
+}
+
+interface ProviderInterface {
+  flatrate: ProviderInfo[];
+  buy: ProviderInfo[];
+  link: string;
+}
+
+interface ProviderObjectInterface {
+  [key: string]: ProviderInterface;
+}
+
 export type {
   ActorCastInterface,
   ActorCreditsInterface,
@@ -200,4 +225,7 @@ export type {
   MediaDataInterface,
   EpisodeCreditsInterface,
   EpisodeDetailsInterface,
+  VideosInterface,
+  ProviderObjectInterface,
+  ProviderInterface,
 };

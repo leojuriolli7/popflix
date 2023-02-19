@@ -426,3 +426,134 @@ export const SeasonEpisodeCount = styled.p`
 export const SeasonAirDate = styled(SeasonEpisodeCount)`
   margin: 0rem;
 `;
+
+export const TrailerHeader = styled.h2`
+  font-size: 2.1rem;
+  color: ${(props) => props.theme.colors.sectionText};
+
+  @media (max-width: 1150px) {
+    margin-left: 2rem;
+    margin-right: 2rem;
+  }
+
+  @media (max-width: 420px) {
+    font-size: 1.5rem;
+  }
+`;
+
+export const TrailerAndImagesContainer = styled.div`
+  margin: 0 auto;
+  margin-top: 24px;
+  width: 100%;
+  max-width: 1050px;
+`;
+
+export const TrailerAndProviders = styled.div`
+  display: flex;
+  gap: 20px;
+
+  @media (max-width: 1150px) {
+    margin: 0 2rem 0 2rem;
+  }
+
+  @media (max-width: 555px) {
+    flex-direction: column;
+  }
+`;
+
+export const TrailerContainer = styled.div`
+  flex: 85%;
+  height: fit-content;
+
+  * {
+    border-radius: 20px;
+  }
+`;
+
+export const ProvidersContainer = styled.div<{ height: number | undefined }>`
+  flex: 15%;
+  height: ${({ height }) => (height ? `${height}px` : `300px`)};
+  overflow-y: auto;
+  box-shadow: 1px 5px 10px 5px rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+
+  ::-webkit-scrollbar {
+    background-color: white;
+    color: red;
+    width: 10px;
+    border-radius: 50px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #e3e3e3;
+    border-radius: 50px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #bdbdbd;
+  }
+
+  @media (max-width: 555px) {
+    height: auto;
+
+    ::-webkit-scrollbar {
+      display: none;
+    }
+  }
+`;
+
+export const ProvidersList = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
+  padding-bottom: 20px;
+
+  @media (max-width: 555px) {
+    flex-direction: row;
+    padding: 10px;
+  }
+`;
+
+export const Provider = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 1px 5px 5px 2px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+`;
+
+export const ProviderContainer = styled.div`
+  position: relative;
+  width: 75%;
+  height: 75%;
+  border-radius: 10px;
+
+  @media (max-width: 555px) {
+    min-width: 60px;
+    min-height: 60px;
+  }
+`;
+
+export const ProviderType = styled.div<{ type: "buy" | "flatrate" }>`
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-radius: 0 10px 0 10px;
+  background: ${({ type }) => (type === "buy" ? "green" : "#1F51FF")};
+  box-shadow: 1px 2px 5px 4px rgba(0, 0, 0, 0.2);
+  padding: 3px;
+  font-size: 12px;
+  color: white;
+
+  @media (max-width: 555px) {
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    border-radius: 10px;
+    top: -10px;
+    width: fit-content;
+  }
+`;

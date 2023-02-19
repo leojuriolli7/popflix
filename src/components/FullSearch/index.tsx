@@ -35,6 +35,7 @@ export function FullSearch() {
   const { theme } = useSelector((state: RootState) => state.theme);
   const navigate = useNavigate();
   const { t }: { t: any } = useTranslation();
+  const apiKey = process.env.REACT_APP_API_KEY;
 
   const handleChangeRadio = (e: any) => {
     setSearchType(e.target.value);
@@ -65,7 +66,7 @@ export function FullSearch() {
   async function fetchSearch(value: any) {
     await api
       .get(
-        `/search/${searchType}?api_key=24e0e0f71e0ac9cb9c5418459514eda9&language=en-US&query=${searchTerm}&page=${value}&include_adult=false`
+        `/search/${searchType}?api_key=${apiKey}&language=en-US&query=${searchTerm}&page=${value}&include_adult=false`
       )
       .then((response) => setMediaDetails(response.data.results));
   }
@@ -73,7 +74,7 @@ export function FullSearch() {
   async function fetchSearchData(value: any) {
     await api
       .get(
-        `/search/${searchType}?api_key=24e0e0f71e0ac9cb9c5418459514eda9&language=en-US&query=${searchTerm}&page=${value}&include_adult=false`
+        `/search/${searchType}?api_key=${apiKey}&language=en-US&query=${searchTerm}&page=${value}&include_adult=false`
       )
       .then((response) => setMediaData(response.data));
   }
