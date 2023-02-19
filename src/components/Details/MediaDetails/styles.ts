@@ -533,7 +533,9 @@ export const ProviderContainer = styled.div`
 
   @media (max-width: 555px) {
     min-width: 60px;
+    max-width: 60px;
     min-height: 60px;
+    max-height: 60px;
   }
 `;
 
