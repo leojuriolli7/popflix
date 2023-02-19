@@ -8,15 +8,6 @@
       "birthday": "2005-02-17",
       "accountCreatedAt": "2022-04-13T15:50:26.617Z",
       "id": 1
-    },
-    {
-      "email": "leojuriolli@gmail.com",
-      "password": "$2a$10$0xAicmHZDk4LDo3CLu5k7.ziTZZYIBmm0mKyKL7a92Rd8AAsThi/G",
-      "firstName": "Leonardo",
-      "lastName": "Dias",
-      "birthday": "2004-12-04",
-      "accountCreatedAt": "2023-02-19T00:37:55.062Z",
-      "id": 2
     }
   ]
 }
