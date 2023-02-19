@@ -42,6 +42,8 @@ export function MediaGrid({ mediaType }: MediaDetailsProps) {
   const navigate = useNavigate();
   const { t }: { t: any } = useTranslation();
 
+  const apiKey = process.env.REACT_APP_API_KEY;
+
   const handleChange = (e: any) => {
     setLoading(true);
     setSelectedGenre(e.target.value);
@@ -73,13 +75,13 @@ export function MediaGrid({ mediaType }: MediaDetailsProps) {
   async function fetchMediaWithoutGenres(value: number) {
     await api
       .get(
-        `${mediaType}/${selectedValue}?api_key=24e0e0f71e0ac9cb9c5418459514eda9&language=en-US&page=${value}`
+        `${mediaType}/${selectedValue}?api_key=${apiKey}&language=en-US&page=${value}`
       )
       .then((response) => setMediaDetails(response.data.results));
 
     await api
       .get(
-        `${mediaType}/${selectedValue}?api_key=24e0e0f71e0ac9cb9c5418459514eda9&language=en-US&page=${value}`
+        `${mediaType}/${selectedValue}?api_key=${apiKey}&language=en-US&page=${value}`
       )
       .then((response) => setMediaDetailsData(response.data));
     setLoading(false);
@@ -88,7 +90,7 @@ export function MediaGrid({ mediaType }: MediaDetailsProps) {
   async function fetchMediaWithGenres(value: number) {
     await api
       .get(
-        `discover/${mediaType}?api_key=24e0e0f71e0ac9cb9c5418459514eda9&language=en-US&sort_by=${selectedSortBy}&include_adult=false&include_video=false&page=${value}&with_genres=${selectedGenre}${
+        `discover/${mediaType}?api_key=${apiKey}&language=en-US&sort_by=${selectedSortBy}&include_adult=false&include_video=false&page=${value}&with_genres=${selectedGenre}${
           selectedType !== String && `&with_type=${selectedType}`
         }`
       )
@@ -96,7 +98,7 @@ export function MediaGrid({ mediaType }: MediaDetailsProps) {
 
     await api
       .get(
-        `discover/${mediaType}?api_key=24e0e0f71e0ac9cb9c5418459514eda9&language=en-US&sort_by=${selectedSortBy}&include_adult=false&include_video=false&page=${value}&with_genres=${selectedGenre}${
+        `discover/${mediaType}?api_key=${apiKey}&language=en-US&sort_by=${selectedSortBy}&include_adult=false&include_video=false&page=${value}&with_genres=${selectedGenre}${
           selectedType !== String && `&with_type=${selectedType}`
         }`
       )
@@ -117,7 +119,7 @@ export function MediaGrid({ mediaType }: MediaDetailsProps) {
 
     api
       .get(
-        `genre/${mediaType}/list?api_key=24e0e0f71e0ac9cb9c5418459514eda9&language=${LanguageSwitch()}`
+        `genre/${mediaType}/list?api_key=${apiKey}&language=${LanguageSwitch()}`
       )
       .then((response) => setGenres(response.data.genres));
   }, [

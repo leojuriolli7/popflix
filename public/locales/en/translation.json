@@ -127,5 +127,8 @@
   "firstNameRequired": "First name is required",
   "lastNameRequired": "Last name is required",
   "birthdayRequired": "Birthday is required",
-  "yearsOld": "Years old"
+  "yearsOld": "Years old",
+  "flatRate": "Flat-rate",
+  "buy": "Buy",
+  "trailersAndProviders": "Trailer & where you can watch it"
 }

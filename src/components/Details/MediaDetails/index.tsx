@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import * as S from "./styles";
 import defaultPicture from "../../../assets/default2.png";
@@ -13,12 +13,19 @@ import i18n from "../../../i18n";
 import { DetailsReturnArrow } from "../DetailsReturnArrow";
 import { MediaPosterSkeleton } from "../../Skeleton/MediaDetailsSkeletons/MediaPosterSkeleton";
 import { CastMemberSkeleton } from "../../Skeleton/MediaDetailsSkeletons/CastMemberSkeleton";
-import { fetchMediaCredits, fetchMediaDetails } from "../../../utils/requests";
+import {
+  fetchMediaCredits,
+  fetchMediaDetails,
+  fetchMediaProviders,
+  fetchMediaVideos,
+} from "../../../utils/requests";
 import {
   CastInterface,
   GenreInterface,
   MediaCreditsInterface,
   MediaDetailsInterface,
+  ProviderInterface,
+  VideosInterface,
 } from "../../../utils/interfaces";
 import { MediaTitleSkeleton } from "../../Skeleton/MediaDetailsSkeletons/MediaTitleSkeleton";
 import { MediaGenresSkeleton } from "../../Skeleton/MediaDetailsSkeletons/MediaGenresSkeleton";
@@ -27,6 +34,9 @@ import { MediaReleaseAndRuntimeSkeleton } from "../../Skeleton/MediaReleaseAndRu
 import { MediaProductionCompanySkeleton } from "../../Skeleton/MediaDetailsSkeletons/MediaProductionCompanySkeleton";
 import { MediaOverviewSkeleton } from "../../Skeleton/MediaDetailsSkeletons/MediaOverviewSkeleton";
 import { FullCreditsSkeleton } from "../../Skeleton/MediaDetailsSkeletons/FullCreditsSkeleton";
+import { filterProviderByCountry, getYoutubeTrailersAndTeasers } from "./utils";
+import ReactPlayer from "react-player";
+import useWindowSize from "./useWindowSize";
 
 interface MediaDetailsProps {
   mediaType: "tv" | "movie";
@@ -37,18 +47,39 @@ export function MediaDetails({ mediaType }: MediaDetailsProps) {
   const { t }: { t: any } = useTranslation();
   const [mediaDetails, setMediaDetails] = useState<MediaDetailsInterface>();
   const [mediaCredits, setMediaCredits] = useState<MediaCreditsInterface>();
+  const [mediaTrailer, setMediaTrailer] = useState<VideosInterface>();
+  const [mediaProviders, setMediaProviders] = useState<ProviderInterface>();
   const [loading, setLoading] = useState(true);
   const [doesMediaExist, setDoesMediaExist] = useState(true);
   const navigate = useNavigate();
+
+  const size = useWindowSize();
+
+  const trailerRef = useRef<HTMLDivElement>(null);
+  const videoHeight = useMemo(
+    () => trailerRef?.current?.offsetHeight,
+    [size, trailerRef?.current?.offsetHeight]
+  );
 
   const fetchData = () => {
     Promise.all([
       fetchMediaDetails(mediaType, id),
       fetchMediaCredits(mediaType, id),
+      fetchMediaVideos(mediaType, id),
+      fetchMediaProviders(mediaType, id),
     ])
       .then((response) => {
         setMediaDetails(response[0].data);
         setMediaCredits(response[1].data);
+
+        const videos = getYoutubeTrailersAndTeasers(response[2].data.results);
+        setMediaTrailer(videos?.[0]);
+
+        const filteredProvider = filterProviderByCountry(
+          response[3].data.results
+        );
+        setMediaProviders(filteredProvider);
+
         setLoading(false);
       })
       .catch((error) => {
@@ -275,6 +306,75 @@ export function MediaDetails({ mediaType }: MediaDetailsProps) {
           )}
         </S.InfoContainer>
       </S.Content>
+      <S.TrailerAndImagesContainer>
+        {mediaTrailer?.id && (
+          <>
+            <S.TrailerHeader>
+              {mediaProviders ? t("trailersAndProviders") : "Trailer"}
+            </S.TrailerHeader>
+            <S.TrailerAndProviders>
+              <S.TrailerContainer ref={trailerRef}>
+                <ReactPlayer
+                  width="100%"
+                  height="auto"
+                  style={{
+                    aspectRatio: "16/9",
+                  }}
+                  url={`https://www.youtube.com/watch?v=${mediaTrailer?.key}`}
+                  controls
+                  config={{
+                    youtube: {
+                      playerVars: { showinfo: 1, controls: 1 },
+                    },
+                  }}
+                />
+              </S.TrailerContainer>
+
+              {mediaProviders && (
+                <S.ProvidersContainer height={videoHeight}>
+                  <S.ProvidersList>
+                    {mediaProviders?.flatrate?.map((provider) => (
+                      <S.ProviderContainer>
+                        <a
+                          href={mediaProviders.link}
+                          target="_blank"
+                          rel="noreferrer"
+                        >
+                          <S.Provider
+                            key={provider.provider_id}
+                            src={`https://image.tmdb.org/t/p/w500/${provider.logo_path}`}
+                            alt={provider.provider_name}
+                          />
+                        </a>
+                        <S.ProviderType type="flatrate">
+                          {t("flatRate")}
+                        </S.ProviderType>
+                      </S.ProviderContainer>
+                    ))}
+
+                    {mediaProviders?.buy?.map((provider) => (
+                      <S.ProviderContainer>
+                        <a
+                          href={mediaProviders.link}
+                          target="_blank"
+                          rel="noreferrer"
+                        >
+                          <S.Provider
+                            key={provider.provider_id}
+                            src={`https://image.tmdb.org/t/p/w500/${provider.logo_path}`}
+                            alt={provider.provider_name}
+                          />
+                        </a>
+                        <S.ProviderType type="buy">{t("buy")}</S.ProviderType>
+                      </S.ProviderContainer>
+                    ))}
+                  </S.ProvidersList>
+                </S.ProvidersContainer>
+              )}
+            </S.TrailerAndProviders>
+          </>
+        )}
+      </S.TrailerAndImagesContainer>
       {mediaDetails?.seasons && (
         <S.SeasonContainerWrap>
           <S.SeasonSectionTitle>
